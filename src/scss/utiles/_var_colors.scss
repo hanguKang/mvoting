@@ -1,0 +1,41 @@
+$primary_color : #0074e0;
+
+$primary_bg : #0047EB;
+
+// board list color
+$bdcolor            : #dddddd;
+$bdtopcolor         : #494b50;
+$linkColor          : #000;
+$cellhovercolor		: #f4f4f4;
+
+// board view color
+$viewbdColor    : #dddddd;
+$viewbdtopcolor : #494b50;
+$viewheadBgcolor : #f4f4f4;
+$viewheadcolor : #333333; 
+
+
+$color_black        : #000;
+$color_deepgray     : #333;
+$color_orange       : #e73100;
+$color_blue         : $primary_color;
+$color_cobalt       : #02728D;
+$color_red          : #c10101;
+$color_green        : #3A7525;
+
+/* font color */
+.fc_black    {color : $color_black}
+.fc_deepgray {color : $color_deepgray}
+.fc_orange   {color : $color_orange}
+.fc_blue     {color : $color_blue}
+.fc_cobalt   {color : $color_cobalt}
+.fc_red      {color : $color_red}
+.fc_green    {color : $color_green}
+
+.color_black    {color : $color_black}
+.color_deepgray {color : $color_deepgray}
+.color_orange   {color : $color_orange}
+.color_blue     {color : $color_blue}
+.color_cobalt   {color : $color_cobalt}
+.color_red      {color : $color_red}
+.color_green    {color : $color_green}

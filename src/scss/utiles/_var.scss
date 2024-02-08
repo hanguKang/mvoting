@@ -1,0 +1,25 @@
+//디자인의 변수 값
+//폰트
+//width, height, padding, margin ...등을 사용
+@use '../config/mixin';
+
+
+// input
+$formHeight         : 30px;
+// button
+$btnHeight          : $formHeight;
+//font
+$fontSet            : "맑은고딕","malgun gothic","AppleGothic","돋움","dotum",Helvetica,Arial,sans-serif;
+//"Nanum Gothic",
+//h1~h6
+$headingFont        : "Noto Sans","맑은고딕","malgun gothic";
+
+$imgurl:'../img/common/';
+@for $i from 1 through 8 {
+  .card_bg_type_#{$i} { 
+    @include mixin.bg-card( 'url('+#{$imgurl}+'card-bg-'+#{$i}+".png)" )
+  }
+
+}
+
+

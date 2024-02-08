@@ -1,0 +1,9 @@
+@use '../utiles/box-shadow';
+@mixin border-card {
+  border-radius: 16px;
+  box-shadow: box-shadow.$box-shadow-card;
+}
+
+@mixin bg-card($url:'#ffffff'){
+  background:$url no-repeat 50% 50%/auto 100%;
+}

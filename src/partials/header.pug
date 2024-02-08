@@ -1,0 +1,254 @@
+//
+    script.
+        
+        let thisfilefullname = document.URL.substring(document.URL.lastIndexOf('/') + 1, document.URL.lastIndexOf('.'));
+        let imgurl = './img';
+
+        if(thisfilefullname.indexOf('localhost') == -1  && thisfilefullname != 'index') { imgurl = '../img'; }
+    
+.wraper_box
+    dl.skip
+        dt 
+            strong 바로가기 메뉴
+        dd
+            a(href="#nav") 네비게이션 바로가기
+        dd 
+            a(href="#contens") 본문 바로가기    
+        dd 
+            a(href="#footer") 하단내용 바로가기
+
+    
+    #seoul-common-gnb.seoul-common-gnb
+        #seoul-gnb-plugin.seoul-gnb-plugin
+            .seoul-gnb-holder
+                p.seoul-gnb-link
+                a.seoul-gnb-icon-link.wise-link(href="//www.seoul.go.kr/sgnb/seoulgnblog.do?gid=G218&amp;kind=logo&amp;link=https://www.seoul.go.kr" target="_blank" data-kind="logo" , title="새창열림" ) 서울특별시
+
+                dl.seoul-gnb-news
+                    dt
+                        a.seoul-gnb-icon-notice(href="https://www.seoul.go.kr/realmnews/in/list.do" target="_blank" title="새창열림(서울소식)") 서울소식
+                    dd
+                        a(href="//www.seoul.go.kr/sgnb/seoulgnblog.do?gid=G218&amp;kind=hotissue&amp;link=https://news.seoul.go.kr/welfare/archives/559481" target="_blank" title="새창열림") 서울시, 설 명절 맞이 코로나19 백신 집중접종기간 운영 </a>
+
+                dl.seoul-gnb-menu
+                    dt.hide 주요메뉴
+                    dd 
+                        a.seoul-gnb-icon-menu1.wise-link(href="//www.seoul.go.kr/sgnb/seoulgnblog.do?gid=G218&amp;kind=seoulnews&amp;link=https://www.seoul.go.kr/realmnews/in/list.do" , target="_blank" title="새창열림" data-kind="seoulnews") 서울소식
+                    dd
+                        a.seoul-gnb-icon-menu3.wise-link(href="//www.seoul.go.kr/sgnb/seoulgnblog.do?gid=G218&amp;kind=eungdapso&amp;link=http://eungdapso.seoul.go.kr" target="_blank" title="새창열림" data-kind="eungdapso") 응답소
+                    dd
+                        a.seoul-gnb-icon-menu3.wise-link(href="//www.seoul.go.kr/sgnb/seoulgnblog.do?gid=G218&amp;kind=opengov&amp;link=http://opengov.seoul.go.kr", target="_blank", title="새창열림", data-kind="opengov") 정보공개
+                        button(type="button") 분야별정보
+                        div.seoul-gnb-menu-section
+                        dl
+                            dt.hide 분야별정보
+                            dd 
+                                ul
+                                    li
+                                        a.wise-link(href="//www.seoul.go.kr/sgnb/seoulgnblog.do?gid=G218&amp;kind=citybuild&amp;link=http://news.seoul.go.kr/citybuild/", target="_blank" ,title="새창열림" data-kind="citybuild") 주택
+                                    li
+                                        a.wise-link(href="//www.seoul.go.kr/sgnb/seoulgnblog.do?gid=G218&amp;kind=economy&amp;link=http://news.seoul.go.kr/economy/", target="_blank" title="새창열림", data-kind="economy") 경제
+                                    li
+                                        a.wise-link(href="//www.seoul.go.kr/sgnb/seoulgnblog.do?gid=G218&amp;kind=traffic&amp;link=http://news.seoul.go.kr/traffic/", target="_blank", title="새창열림", data-kind="traffic") 교통
+                                    li
+                                        a.wise-link(href="//www.seoul.go.kr/sgnb/seoulgnblog.do?gid=G218&amp;kind=env&amp;link=http://news.seoul.go.kr/env/", target="_blank", title="새창열림", data-kind="env") 환경
+                                    li
+                                        a.wise-link(href="//www.seoul.go.kr/sgnb/seoulgnblog.do?gid=G218&amp;kind=welfare&amp;link=http://news.seoul.go.kr/welfare/", target="_blank", title="새창열림",data-kind="welfare") 복지
+                                    li
+                                        a.wise-link(href="//www.seoul.go.kr/sgnb/seoulgnblog.do?gid=G218&amp;kind=safe&amp;link=http://news.seoul.go.kr/safe/", target="_blank", title="새창열림", data-kind="safe") 안전
+                                    li
+                                        a.wise-link(href="//www.seoul.go.kr/sgnb/seoulgnblog.do?gid=G218&amp;kind=culture&amp;link=http://news.seoul.go.kr/culture/", target="_blank", title="새창열림",  data-kind="culture") 문화	
+                                    li
+                                        a.wise-link(href="//www.seoul.go.kr/sgnb/seoulgnblog.do?gid=G218&amp;kind=gov&amp;link=http://news.seoul.go.kr/gov/", target="_blank", title="새창열림", data-kind="gov") 행정
+                        p
+                        a.wise-link(href="//www.seoul.go.kr/sgnb/seoulgnblog.do?gid=G218&amp;kind=allservice&amp;link=https://www.seoul.go.kr/service/all.do", target="_blank", title="새창열림",  data-kind="allservice") 
+                            span.seoul-gnb-icon-service
+                            | 서비스 | 전체보기
+                        button(type="button")
+                            span.seoul-gnb-icon-service-close
+                            span.hd-element 분야별 정보 닫기
+    //header 시작
+    header.header
+        .outer_container
+            div.container.clearfix            
+                h1.head_logo
+                    a(href="/", title="홈으로 이동")
+                        img(src= imgurl+"/logo.png", alt="mvoting M엠보팅")
+                        // head_util_menu
+                form#searchForm(method="get")
+                    input#sch_vote_ty_yn(type="hidden", name="sch_vote_ty_yn", value="")
+                    input#sch_vote_sttus_yn(type="hidden", name="sch_vote_sttus_yn", value="")
+                    input(type="hidden", name="vote_no", value="")
+                    input(type="hidden", name="vote_othbc_trget", value="")
+                    input(type="hidden", name="vote_pwd", value="")
+                    input(type="hidden", name="order_type", value="")
+                    input(type="hidden", name="sch_vote_ty_0012", value="")
+                    input(type="hidden", name="sch_vote_ty_0022", value="")
+                    input(type="hidden", name="sch_vote_ty_0032", value="")
+                    input(type="hidden", name="sch_vote_ty_0042", value="")
+                    input(type="hidden", name="sch_vote_ty_0062", value="")
+                    input(type="hidden", name="sch_tot_text", value="")
+                    input(type="hidden", name="sch_tag", value="")
+                    input(type="hidden", name="sch_tag", value="")
+                    input(type="hidden", name="sch_tag_type", value="")
+                    input(type="hidden", name="sch_tag_code", value="")
+                    //서치창
+                    .head_sch_box
+                        .inner
+                            input.head_sch_input(type="text", title="검색어입력", name="sch_text1", placeholder="검색어를 입력해주세요")
+                    a.head_common_btn.btn_detail_search(href="submit")
+                        span.hide 검색하기
+                    p 
+                        a.head_common_btn.btn_detail_search(href="/") 상세검색 +
+                    //layer_pop
+                    #tsch_layer_popup.layer_pop_box(data-layernum="1")
+                        .layer_pop.tsch
+                            h2.sub_tit2 상세검색
+                            //tbl_style_list
+                            ul.tbl_style_list
+                                li
+                                    .cell.left
+                                        h3.tit 유형                                    
+                                    .cell.right
+                                        .chk_each_box
+                                            span.chk_each
+                                                input#tSchType2.hide.sch_vote_ty.sch_vote_ty(type="checkbox", name="sch_vote_ty_002", value="002", checked)
+                                                label(for="tSchType2")
+                                                    span.vchkbox
+                                                    | 정책반영
+                                            span.chk_each
+                                                input#tSchType3.hide.sch_vote_ty.sch_vote_ty(type="checkbox", name="sch_vote_ty_003", value="003", checked)
+                                                label(for="tSchType3")
+                                                    span.vchkbox
+                                                    | 정책참고
+                                            span.chk_each
+                                                input#tSchType1.hide.sch_vote_ty.sch_vote_ty(type="checkbox", name="sch_vote_ty_001", value="001", checked)
+                                                label(for="tSchType1")
+                                                    span.vchkbox
+                                                    | 우리끼리
+                                            span.chk_each
+                                                input#tSchType4.hide.sch_vote_ty.sch_vote_ty(type="checkbox", name="sch_vote_ty_004", value="004", checked)
+                                                label(for="tSchType4")
+                                                    span.vchkbox
+                                                    | 지역투표  
+                                li
+                                    .cell.left
+                                        h3.tit 상태
+                                    .cell.right
+                                        .chk_each_box
+                                            span.chk_each
+                                                input#tSchStat1.hide.sch_vote_sttus(type="checkbox", name="sch_vote_sttus_4",value="004", checked)
+                                                label(for="tSchStat1")
+                                                    span.vchkbox
+                                                    | 진행투표
+                                            span.chk_each
+                                                input#tSchStat2.hide.sch_vote_sttus(type="checkbox", name="sch_vote_sttus_6",value="006", checked)
+                                                label(for="tSchStat1")
+                                                    span.vchkbox
+                                                    | 마감투표                                
+                            // tbl_style_list
+                            input.tsch_input( type="text", name="sch_text2", title="검색어 입력", placeholder="검색어를 입력해 주세요.", value="")
+                            .common_btn_box
+                                a.common_btn.sch.btn_search2( href="#") 검색하기
+                            
+                            button.layer_pop_close(onclick="fnHideDataLayer('tsch_layer_popup'); return false;")
+                                span.hide 레이어 창 닫기
+                        // layer_pop End
+                    ul.head_util_menu
+                    li.login
+                        a(href="/mvoting/login/login.do") 로그인
+                    li.join
+                        a(href="/mvoting/join/general/joinChoice.do") 회원가입
+                    li.seoul
+                        a(href="#", onclick="fnGoSeoul(); return false;", title="서울특별시 사이트 새창열림") 서울특별시
+                        //head_util_menu  
+                        //모바일시 메뉴버튼
+                        button.m_gnb_btn.m(type="button",  onclick="gps_search(); return false")
+                            span.hide 모바일 주 메뉴 열기
+                            //햄버거 메뉴
+                            span.top
+                            span.mid
+                            span.btm
+                        
+                        
+                        //a.gps_btn(href="#", onclick="gps_search(); return false;")
+                                span.hide 모바일 주 메뉴 열기
+                                span.top
+                                span.mid
+                                span.btm
+                        
+                                        
+                // -//container 
+        // 모바일에서 보이는 1뎁스 header 메뉴
+        ul.m_dep2_menu.tab_4p
+            // <li><a href="/mvoting/voting/hotissue/selectPageListHotissue.do">투표하기</a></li>
+            // <li><a href="/mvoting/myvote/takepart/selectPageListTakepart.do">내투표함</a></li>
+            // <li><a href="/mvoting/policy/selectPageListPolicy.do">정책반영결과</a></li>
+            // <li><a href="/mvoting/notice/selectPageListNotice.do">공지사항</a></li>
+            li
+                a(href="/mvoting/voting/hotissue/selectPageListHotissue.do") 핫이슈
+            li
+                a(href="/mvoting/voting/ourselves/selectPageListOurselves.do") 우리끼리
+            li
+                a(href="/mvoting/voting/policyvote/selectPageListPolicyvote.do?policy_vote_ty=001") 정책반영
+            li
+                a(href="/mvoting/voting/policyvote/selectPageListPolicyvote.do?policy_vote_ty=002") 정책참고
+            
+        .m_gnb_wrap
+            h2.m_gnb_logo
+                a( href="/", title="홈으로")
+                    img( src= imgurl+"/logo.png", alt="mvoting M엠보팅")
+            .inner
+                ul.m_gnb_util_menu.mobile
+                    li.login
+                        a(href="/mvoting/login/login.do") 로그인
+                    li.join
+                        a(href="/mvoting/join/general/joinChoice.do") 회원가입
+            
+                // m_gnb 내부 태그는 쿼리로 들어감.
+                ul.m_gnb.mobile
+                    li
+                        a(href="/mvoting/useinqry/selectPageListUseInqry.do", data-dep2="false") 이용문의
+                    li.active
+                        a(href="#", data-dep2="true", title="하위항목 닫기") 투표하기
+                        ul.m_sub_gnb
+                            li.active
+                                a(href="/mvoting/voting/hotissue/selectPageListHotissue.do", data-dep2="true") 핫이슈
+                            li
+                                a(href="/mvoting/voting/policyvote/selectPageListPolicyvote.do?policy_vote_ty=001", data-dep2="true") 정책반영
+                            li
+                                a(href="/mvoting/voting/policyvote/selectPageListPolicyvote.do?policy_vote_ty=002", data-dep2="true") 정책참고
+                            li
+                                a(href="/mvoting/voting/ourselves/selectPageListOurselves.do", data-dep2="true") 우리끼리
+
+                    li
+                        a(href="#", data-dep2="true", title="하위항목 열기") 내투표함
+                        ul.m_sub_gnb
+                            li
+                                a(href="/mvoting/myvote/takepart/selectPageListTakepart.do", data-dep2="true") 참여투표                            
+                            li
+                                a(href="/mvoting/myvote/mymake/selectPageListMymake.do", data-dep2="true") 만든투표                           
+                            li
+                                a(href="/mvoting/myvote/acceptvote/selectPageListAcceptvote.do", data-dep2="true") 받은투표                            
+
+                    li
+                        a(href="/mvoting/policy/selectPageListPolicy.do", data-dep2="false") 정책반영결과
+
+                    li
+                        a(href="/mvoting/notice/selectPageListNotice.do", data-dep2="false") 공지사항
+
+                    li
+                        a(href="#" data-dep2="true", title="하위항목 열기") 마이페이지
+                        ul.m_sub_gnb
+                            li
+                                a(href="/mvoting/setting/mypage/indvsetting/set1.do", data-dep2="true") 개인정보 설정
+                            li
+                                a(href="/mvoting/setting/mypage/help/help.do", data-dep2="true") 서비스안내
+                         
+                // m_gnb end
+
+            button.m_gnb_close(type="button")
+                span.hide 모바일 주 메뉴 닫기
+        
+
+        

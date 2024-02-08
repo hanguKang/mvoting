@@ -1,0 +1,45 @@
+extends ./templates/layout
+
+block content 
+    main        
+        .contents
+            .container.clearfix
+                p
+                    a(href="./html/sub-1.html") 링크
+                .vote_list
+                    each val, index in [1,2,3,4,5]
+                        article.card_hot_issue.item
+                            a.img_box(href="#")
+                                .inner
+                                    div(class="card_bg_type_" + val)
+                                        span.btn-blue(href="") 인기투표
+                                        span.btn-red(href="") 정책반영
+                            .card_txt
+                                .card_top
+                                    div(class="txt_" + val )                                                
+                                        h1 블록체인 객관식 정책투표
+                                        p.txt 
+                                            a(href="#") 2024년 서울시 북스타트 엄마북(Book) 돋움 엄마아빠책을 투표해주세요!
+                                        p.date_box 
+                                            span.date 2023.11.01 ~ 2023.11.15 
+                                                em.dday (D-1)
+                                .card_btm.util_area 
+                                    ul.ico_info_list
+                                        li.usr_cnt
+                                            span.hide 투표인원
+                                            | 6,789
+                                        li.reply
+                                            span.hide 댓글수
+                                            | 20
+                                        li.lookup
+                                            span.hide 조회수
+                                            | 20
+                                    .fl_box
+                                        button.share_btn.btn_share(type="button")
+                                            span.hide SNS 공유 창 열기
+                                .hash_area
+                                    a.vote_hash_mark(href="#") #어울림플라자
+                                    a.vote_hash_mark(href="#") #장애인
+                                    a.vote_hash_mark(href="#") #비장애인
+                                    a.vote_hash_mark(href="#") #명칭
+
