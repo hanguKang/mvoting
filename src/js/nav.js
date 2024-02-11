@@ -39,6 +39,7 @@ class Nav {
     //console.dir(this._descendants_a);
     $_this._descendants_a.forEach(function (descendant) {
       descendant.onfocus = $_this.on_Click.bind($_this);
+      descendant.onmouseenter = $_this.on_Click.bind($_this);
     });
   }
 
