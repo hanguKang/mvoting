@@ -1,0 +1,23 @@
+header{
+    .nav{
+        &:has( > .nav_item ){
+            display:flex; justify-content: space-between; align-items: center;
+            .nav_item {
+                margin:0 0.25rem; 
+                &:has( >.nav_list_dp2 ){position:relative; height:2rem;
+                    &.active{ background:$primary_color; 
+                        > .link {color:#fff;}
+                        .nav_list_dp2{
+                            display:block;
+                        }
+                    }
+                    .nav_list_dp2{
+                        position:absolute; top:2rem; left:0; width:100%;
+                        display:none;
+                    }
+                }
+            }
+           
+        }
+    }
+}

@@ -181,8 +181,48 @@
                             span.mid
                             span.btm
                         
-                                        
-                // -//container 
+                // m_gnb 내부 태그는 쿼리로 들어감.
+                ul#nav1.m_gnb.web.nav
+                    li.nav_item(data-action="addClass")
+                        a.link(href="/mvoting/useinqry/selectPageListUseInqry.do", data-dep2="false") 이용문의
+                    li.nav_item.active(data-action="addClass")
+                        a.link(href="#", data-dep2="true", title="하위항목 닫기") 투표하기
+                        ul.nav_list_dp2
+                            li.active
+                                a(href="/mvoting/voting/hotissue/selectPageListHotissue.do", data-dep2="true") 핫이슈
+                            li
+                                a(href="/mvoting/voting/policyvote/selectPageListPolicyvote.do?policy_vote_ty=001", data-dep2="true") 정책반영
+                            li
+                                a(href="/mvoting/voting/policyvote/selectPageListPolicyvote.do?policy_vote_ty=002", data-dep2="true") 정책참고
+                            li
+                                a(href="/mvoting/voting/ourselves/selectPageListOurselves.do", data-dep2="true") 우리끼리
+
+                    li.nav_item(data-action="addClass")
+                        a.link(href="#", data-dep2="true", title="하위항목 열기") 내투표함
+                        ul.nav_list_dp2
+                            li
+                                a(href="/mvoting/myvote/takepart/selectPageListTakepart.do", data-dep2="true") 참여투표                            
+                            li
+                                a(href="/mvoting/myvote/mymake/selectPageListMymake.do", data-dep2="true") 만든투표                           
+                            li
+                                a(href="/mvoting/myvote/acceptvote/selectPageListAcceptvote.do", data-dep2="true") 받은투표                            
+
+                    li.nav_item(data-action="addClass")
+                        a.link(href="/mvoting/policy/selectPageListPolicy.do", data-dep2="false") 정책반영결과
+
+                    li.nav_item(data-action="addClass")
+                        a.link(href="/mvoting/notice/selectPageListNotice.do", data-dep2="false") 공지사항
+
+                    li.nav_item(data-action="addClass")
+                        a.link(href="#" data-dep2="true", title="하위항목 열기") 마이페이지
+                        ul.m_sub_gnb
+                            li
+                                a(href="/mvoting/setting/mypage/indvsetting/set1.do", data-dep2="true") 개인정보 설정
+                            li
+                                a(href="/mvoting/setting/mypage/help/help.do", data-dep2="true") 서비스안내
+                         
+                // m_gnb end                            
+            // -//container 
         // 모바일에서 보이는 1뎁스 header 메뉴
         ul.m_dep2_menu.tab_4p
             // <li><a href="/mvoting/voting/hotissue/selectPageListHotissue.do">투표하기</a></li>
@@ -208,7 +248,6 @@
                         a(href="/mvoting/login/login.do") 로그인
                     li.join
                         a(href="/mvoting/join/general/joinChoice.do") 회원가입
-            
                 // m_gnb 내부 태그는 쿼리로 들어감.
                 ul.m_gnb.mobile
                     li

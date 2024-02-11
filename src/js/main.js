@@ -1,29 +1,36 @@
 import { random } from "./util";
+//import { nav_ } from "./nav";
+import { Nav } from "./nav";
 import _ from "lodash";
 import $ from "jquery";
 import bootstrapMin from "bootstrap/dist/js/bootstrap.min";
 
-const rOne = random(10);
-const rTwo = random(20);
+// const rOne = random(10);
+// const rTwo = random(20);
 
-console.log(`${rOne} ${rTwo}`);
+// console.log(`${rOne} ${rTwo}`);
 
-function component() {
-  //alert('test');
-  let element = document.createElement("div");
+// function component() {
+//   //alert('test');
+//   let element = document.createElement("div");
 
-  /* lodash */
-  element.innerHTML = _.join(["Hello", "gulp"], " "); //lodash는 명시적으로 _로 바인딩한다.
-  return element;
-}
+//   /* lodash */
+//   element.innerHTML = _.join(["Hello", "gulp"], " "); //lodash는 명시적으로 _로 바인딩한다.
+//   return element;
+// }
 
-document.body.appendChild(component());
+// document.body.appendChild(component());
 
 $(function () {
   //carousel
   const carousel = new bootstrapMin.Carousel("#myCarousel");
-
   //modal
+  modal();
+  //nav
+  doNav();
+});
+
+const modal = () => {
   const tsch_layer_popup = document.getElementById("tsch_layer_popup");
   const tSchType2 = document.getElementById("tSchType2");
 
@@ -37,4 +44,11 @@ $(function () {
       e.preventDefault();
     }
   );
-});
+};
+
+const doNav = () => {
+  //const navClassName = ".nav";
+  //nav_(navClassName);
+  const nav1 = "#nav1";
+  new Nav(nav1);
+};
