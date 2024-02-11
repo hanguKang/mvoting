@@ -1,5 +1,5 @@
 import hello from './components/utils' //tsconfig의 compilerOptions.paths 절대경로 설정
-import $ from 'jquery'
+//import $ from 'jquery'
 
 function aplus(a: number, b: number) : void {
   console.log(a+b);
@@ -7,12 +7,12 @@ function aplus(a: number, b: number) : void {
 hello('typescript');
 aplus(19, 20);
 
-$(function(){
-  $('dt').on('click',function(){
-    console.log('test'+1234);
-  });
+// $(function(){
+//   $('dt').on('click',function(){
+//     console.log('test'+1234);
+//   });
 
-});
+// });
 
 //npm i -D ts-node를 설치하면 tsc로 컴파일 하지 않고도 ts-node typescript.ts 파일을 바로 실행할 수 있다. 
 //npm i nodemon 을 설치하고 package.json에서 "dev": "nodemon --exec ts-node ./src/index.ts" 또는 nodemon --exec ts-node ./src/index.ts 또는 npm run dev 이제 코드를 변경 후 저정할 때마다 터미널에 실행결과가 나오게 됩니다.

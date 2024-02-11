@@ -21,7 +21,10 @@ table {display:table;width:100%;border-collapse:collapse;border-spacing:0;table-
 select::-ms-expand { display: none; }
 input::-ms-check { display: none; }
 form {display:block;width:100%;}
-input,  select, textarea {padding: 0 10px; -webkit-appearance: none; -moz-appearance: none; -ms-appearance: none; appearance: none; -webkit-box-sizing: border-box; box-sizing: border-box; width: 100%; display: block; border: 0; font-family: inherit; }
+input,  select, textarea {
+  padding: 0 10px; 
+  //-webkit-appearance: none; -moz-appearance: none; -ms-appearance: none; appearance: none; -webkit-box-sizing: border-box; box-sizing: border-box; width: 100%; display: block; border: 0; font-family: inherit; 
+}
 input[type="checkbox"], input[type="radio"]{accent-color: #000;}
 textarea{resize:none;}
 // a:visited {
@@ -46,6 +49,4 @@ body{
 .clear {clear:both;}
 .br {display:block;}
 table {display:table;width:100%;border-collapse:collapse;border-spacing:0;table-layout:fixed;}
-input,  select, textarea {padding: 0 10px; -webkit-appearance: none; -moz-appearance: none; -ms-appearance: none; appearance: none; -webkit-box-sizing: border-box; box-sizing: border-box; width: 100%; display: block; border: 0; font-family: inherit; }
-input[type="checkbox"], input[type="radio"]{accent-color: #000;}
-textarea{resize:none;}
+

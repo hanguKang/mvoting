@@ -1,6 +1,7 @@
 @import './config/reset';
 @import './utiles/var_colors';
 @import './utiles/var';
+@import "../../node_modules/bootstrap/scss/bootstrap";
 h1{background:#000; color:#fff;}
 header+img{background:black;}
 body{font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;}

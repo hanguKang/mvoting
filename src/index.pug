@@ -3,6 +3,27 @@ extends ./templates/layout
 block content 
     main        
         .contents
+            #myCarousel.carousel.slide(data-bs-touch="true")
+                .carousel-indicators
+                    button.active( type="button", data-bs-target="#carouselExampleIndicators", data-bs-slide-to="0",  aria-label="Slide 1")
+                        span.hide 첫 번째 배너
+                    button( type="button", data-bs-target="#carouselExampleIndicators", data-bs-slide-to="1" , aria-label="Slide 2")
+                        span.hide 두 번째 배너
+                    button( type="button", data-bs-target="#carouselExampleIndicators", data-bs-slide-to="2" , aria-label="Slide 3")
+                        span.hide 세 번째 배너
+                .carousel-inner
+                    .carousel-item.active
+                        img.d-block.w-100(src="...",alt="슬라이드1")
+                    .carousel-item
+                        img.d-block.w-100(src="...",alt="슬라이드2")
+                    .carousel-item
+                        img.d-block.w-100(src="...",alt="슬라이드3")
+                button.carousel-control-prev(type="button", data-bs-target="#carouselExampleIndicators", data-bs-slide="prev")
+                    span.carousel-control-prev-icon(aria-hidden="true")
+                    span.visually-hidden 이전 배너 보기
+                button.carousel-control-next(type="button", data-bs-target="#carouselExampleIndicators", data-bs-slide="next")
+                    span.carousel-control-next-icon(aria-hidden="true")
+                    span.visually-hidden 다음 배너 보기
             .container.clearfix
                 p
                     a(href="./html/sub-1.html") 링크
@@ -12,8 +33,8 @@ block content
                             a.img_box(href="#")
                                 .inner
                                     div(class="card_bg_type_" + val)
-                                        span.btn-blue(href="") 인기투표
-                                        span.btn-red(href="") 정책반영
+                                        span.btn-blue 인기투표
+                                        span.btn-red 정책반영
                             .card_txt
                                 .card_top
                                     div(class="txt_" + val )                                                
