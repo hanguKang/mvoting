@@ -20,8 +20,10 @@ function component() {
 document.body.appendChild(component());
 
 $(function () {
+  //carousel
   const carousel = new bootstrapMin.Carousel("#myCarousel");
 
+  //modal
   const tsch_layer_popup = document.getElementById("tsch_layer_popup");
   const tSchType2 = document.getElementById("tSchType2");
 
