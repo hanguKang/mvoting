@@ -3,17 +3,18 @@ html(lang="ko")
     head
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        link(rel="stylesheet", href="css/style.css")
+        link(rel="stylesheet", href="./css/style.css")
         block styles 
         block scripts
         title Document
-    body 
-        include ../partials/index_head 
-        include ../partials/header 
+    body
+        include ../partials/index_head.pug 
+        .Page.wrapper(class=page)
+            include ../partials/header 
+            // ----------------------- // 컨텐츠 시작 -----------------------
+            block content 
 
-        block content 
-
-        include ../partials/footer
+            include ../partials/banner
+            include ../partials/footer
         script(src="js/main.js")
         script(src="js/test.js", type="module")
-    

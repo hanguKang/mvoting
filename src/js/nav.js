@@ -30,7 +30,7 @@ class Nav {
     let $_this = this;
     $_this._elem = document.querySelector(elem);
     //console.log(this._elem);
-    $_this._elem.onclick = $_this.on_Click.bind($_this); // this.onClick은 this에 바인딩했다. 이렇게 하지 않으면 this는 Nav Class가 아닌 DOM 요소(elem)- 즉, 현재 class를 참조하게 된다. 이렇게 하지 않으면 this[action]에서 원하는 것을 얻지 못한다.
+    //$_this._elem.addEventListener('click', $_this.on_Event.bind($_this) ); // this.onClick은 this에 바인딩했다. 이렇게 하지 않으면 this는 Nav Class가 아닌 DOM 요소(elem)- 즉, 현재 class를 참조하게 된다. 이렇게 하지 않으면 this[action]에서 원하는 것을 얻지 못한다.
     //console.dir(this._elem.querySelectorAll("a")); //nodeList를 return
     $_this._descendants_a = Array.prototype.slice.call(
       //arrayList를 return
@@ -38,8 +38,8 @@ class Nav {
     );
     //console.dir(this._descendants_a);
     $_this._descendants_a.forEach(function (descendant) {
-      descendant.onfocus = $_this.on_Click.bind($_this);
-      descendant.onmouseenter = $_this.on_Click.bind($_this);
+      descendant.addEventListener("focus", $_this.on_Event.bind($_this));
+      descendant.addEventListener("mouseenter", $_this.on_Event.bind($_this));
     });
   }
 
@@ -68,7 +68,7 @@ class Nav {
     alert("검색하기");
   }
 
-  on_Click(event) {
+  on_Event(event) {
     //console.log("inininin");
     //console.log(this);
     event.preventDefault();

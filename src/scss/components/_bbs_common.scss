@@ -1,0 +1,100 @@
+@use '../config/mixin';
+@use '../utiles/var_colors';
+@use '../utiles/var';
+
+//상단 서치창
+.sch_bar {font-size:1rem; font-family: var.$fontSet; position: relative; display:flex; justify-content: center; align-items: center; height: em(64px); margin:0 auto; width:em(940px);
+  .sch_slt {
+    appearance: none;
+    $font-size:20px;
+    box-sizing: border-box;
+    width: em(200px, $font-size);
+    height: em(64px, $font-size);
+    margin-right: em(16px, $font-size);
+    padding: 0 em(30px, $font-size);
+    border: 2px solid var_colors.$bdcolor;
+    border-radius: radius_50(em(64px, $font-size)); 
+    vertical-align: top;
+    box-shadow: em(12px, $font-size) em(12px, $font-size) em(12px, $font-size) rgba(23,100,232,0.06);
+    font-size: em($font-size);    
+    background:url(var.$imgurl_ico+'ico_slct_arrow.png') no-repeat 90% 50%/auto auto;
+  }
+  .sch_input{$font-size:20px;  position: relative; width: em(720px); height: em(64px);
+    .sch_input {
+      width: em(720px, $font-size);
+      height: em(64px, $font-size);
+      padding: 0 em(64px, $font-size) 0 em(32px, $font-size);
+      border: 2px solid var_colors.$bdcolor;
+      border-radius: radius_50(em(64px, $font-size)); 
+      font-size: em($font-size);
+      vertical-align: top;
+      box-shadow: em(12px, $font-size) em(12px, $font-size) em(12px, $font-size) rgba(23,100,232,0.06);
+    }
+    .sch_btn{
+      @include mixin.pos_y_50('right');
+      position: absolute;
+      right: 15px;
+      width: 60px;
+      height: 60px;      
+      background: url(var.$imgurl_ico+'ico_bbs_srch.png') no-repeat center/auto;
+    }
+  }
+  
+}
+
+.contents{font-size:1rem; width:100%; margin:0; font-family:var.$fontSet;
+  .container{padding:0; 
+    .common_right{
+      .bbs_form{font-size:1rem;
+        .board_list_box{
+          // table과 pagination 감싸는 상자 start
+          .s_outer{
+            .s_table{
+              // 실제 table start
+              .board_list{margin:0 auto; max-width: em(1400px); 
+                font-size: 16px;
+                text-align: center;
+                border-collapse: collapse;
+                table-layout: fixed;
+                .thd{background-color:#5e7182;height:em(78px);
+                  .thd_tr{$font-size: 20px; font-size:em(20px); font-weight:600;
+                    th{color:#ffffff;}
+                    >:first-child{ border-radius:em(8px, $font-size) 0 0 em(8px, $font-size); }
+                    >:last-child{ border-radius:0 em(8px,$font-size) em(8px, $font-size) 0; }
+                  }
+                }
+                .tbd{
+                  .item{$font-size: 18px; font-size:em(18px); height: em(90px,18px);
+                    .num{font-weight:600; position:relative;
+                      &:before{
+                        @include mixin.afterBefore(('_width':1px, '_height':em(43px,$font-size),'_border':0 none, '_border-radius':0, '_padding':0, '_bg-color':#EBEEF0, '_right':em(0px) ));
+                      }
+                    }
+                    .sort{
+                      .sort_txt{display: flex; justify-content: center; align-items: center;
+                        &.notice{$font-size:14px; @extend .sort_txt; color:#fff; flex:0 0 em(48px, $font-size); margin:0 auto; width:em(48px, $font-size); height: em(28px, $font-size); background-color:var_colors.$primary_bg; font-size:14px;
+                        }
+                      }
+                    }
+                    .tit_td{
+                      h3{position:relative; text-align:left; margin-left: em(26px);}
+                    }
+                    &:nth-child(odd){background-color:#F7F7F8;}
+                    &:nth-child(even){background-color:#ffffff;
+                      >:first-child{ border-radius:em(8px) 0 0 em(8px); }
+                      >:last-child{ border-radius:0 em(8px) em(8px) 0; }
+                    }
+                  }
+                  
+                }
+              }// .board_list End              
+            }//.s_table End                     
+          }//.s_table_outer End
+        }
+        
+      }
+    }
+  }
+}
+
+            

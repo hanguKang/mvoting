@@ -138,7 +138,7 @@ const js = async () => {
     .pipe(gulp.dest(routes.js.dest));
 };
 const pug = () =>
-  gulp.src(routes.pug.src).pipe(gpug()).pipe(gulp.dest(routes.pug.dest));
+  gulp.src(routes.pug.src).pipe(gpug({pretty:true})).pipe(gulp.dest(routes.pug.dest));
 const webServer = () => {
   gulp.src("build").pipe(gws({ livereload: true, open: true }));
 };

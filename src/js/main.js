@@ -51,8 +51,8 @@ const modal = () => {
 const doNav = () => {
   //const navClassName = ".nav";
   //nav_(navClassName);
-  const nav1 = "#nav1";
-  new Nav(nav1);
+  const nav_web = "#common_menu_left";
+  new Nav(nav_web);
 };
 
 const MVOTING_LAYOUT = {
@@ -62,38 +62,44 @@ const MVOTING_LAYOUT = {
   hover_link: false,
   menu_detail_idx: 0,
   menu_detail_prev: false,
-  inint() {
+  init() {
+    //alert(1111);
     let window_width = $(window).width();
     this.mobile_check(window_width);
     // nav > ul
-    document.querySelector(".Page .main_menu>nav>ul").mouseleave(function () {
-      MVOTING_LAYOUT.close_menu_detail();
-    });
+    document.querySelector(".Page .main_menu>.nav>.nav_list").onmouseleave = () => {
+      //----- MVOTING_LAYOUT.close_menu_detail();
+    };
     // nav > ul > li
     document
-      .querySelector(".Page .main_menu>nav>ul>li")
-      .mouseenter(function () {
-        //console.log('123456');
-        let delay = true;
-        MVOTING_LAYOUT.hover_link = $(this).children("a");
-        MVOTING_LAYOUT.menu_detail_idx = $(MVOTING_LAYOUT.hover_link)
-          .parent("li")
-          .index();
-        //alert(MVOTING_LAYOUT.menu_detail_idx);
-        if (MVOTING_LAYOUT.mouse_prev) {
-          MVOTING_LAYOUT.header_enter = false;
-        } else {
-          MVOTING_LAYOUT.header_enter = true;
-        }
-
-        if (MVOTING_LAYOUT.header_enter) {
-          delay = true;
-        } else {
-          delay = false;
-        }
-
-        MVOTING_LAYOUT.open_menu_detail(MVOTING_LAYOUT.hover_link, delay);
-      });
+      .querySelectorAll(".Page .main_menu>.nav>ul.nav_list>li.nav_item").forEach((elem)=>{
+        elem.addEventListener("mouseenter", (e) => {
+          let delay = true,
+          cur_li = e.currentTarget;
+          MVOTING_LAYOUT.hover_link = Array.prototype.filter.call(cur_li.children, x=> {
+            if (x.tagName == "A") return x;
+          })[0];
+          // console.log('========');
+          // console.dir(MVOTING_LAYOUT.hover_link);
+          MVOTING_LAYOUT.menu_detail_idx = Array.prototype.findIndex.call( MVOTING_LAYOUT.hover_link.closest("ul").children, x => x == cur_li )
+          console.log(MVOTING_LAYOUT.menu_detail_idx);
+          //alert(MVOTING_LAYOUT.menu_detail_idx);
+          if (MVOTING_LAYOUT.mouse_prev) {
+            MVOTING_LAYOUT.header_enter = false;
+          } else {
+            MVOTING_LAYOUT.header_enter = true;
+          }
+  
+          if (MVOTING_LAYOUT.header_enter) {
+            delay = true;
+          } else {
+            delay = false;
+          }
+  
+          MVOTING_LAYOUT.open_menu_detail(MVOTING_LAYOUT.hover_link, delay);
+        });
+      }); // forEach End
+      
   },
   mobile_check(window_width) {
     if (window_width < 721) {
@@ -103,96 +109,97 @@ const MVOTING_LAYOUT = {
     }
     //this.main_grid();
   },
-  close_menu_detail: function ($_this, no_delay) {
-    //console.log($_this);
-    //console.log('닫혔음');
+  // close_menu_detail: function ($_this, no_delay) {
+  //   //console.log($_this);
+  //   //console.log('닫혔음');
 
-    let $_menu_detail = `.Page .menu_detail`;
-    let $_wait = 200;
+  //   let $_menu_detail = `.Page .menu_detail`;
+  //   let $_wait = 200;
 
-    if ($_this) {
-      $_menu_detail = $_this;
-    }
-    if (no_delay) {
-      $_wait = 0;
-      $(KEAD_LAYOUT.hover_link).css("color", "#000000");
-    }
+  //   if ($_this) {
+  //     $_menu_detail = $_this;
+  //   }
+  //   if (no_delay) {
+  //     $_wait = 0;
+  //     $(MVOTING_LAYOUT.hover_link).css("color", "#000000");
+  //   }
 
-    jQuery($_menu_detail).slideUp($_wait, function () {
-      //console.log('닫혔다.');
-      //        	if($("section.main").length == 1){ //메인페이지 일 때만 작동
-      //            	$(".depth1Class").css("color", "#fff");
-      //            }else{
-      //            	$(".depth1Class").css("color", "#000000");
-      //            }
+  //   jQuery($_menu_detail).slideUp($_wait, function () {
+  //     //console.log('닫혔다.');
+  //     //        	if($("section.main").length == 1){ //메인페이지 일 때만 작동
+  //     //            	$(".depth1Class").css("color", "#fff");
+  //     //            }else{
+  //     //            	$(".depth1Class").css("color", "#000000");
+  //     //            }
 
-      //            try{
-      //            	if(fn_setWhiteSet){
-      //                	fn_setWhiteSet();
-      //                }
-      //            }catch (e) {
-      //
-      //    		}
-      //닫힐 때 모두 검정색
-      $(".depth1Class").css("color", "#000000");
-    });
-    jQuery(`.Page .menu_detail`).removeClass("open");
-    //        setTimeout(function(){
-    //        	jQuery('.Page.main>header').removeClass('act');
-    //        },$_wait);
+  //     //            try{
+  //     //            	if(fn_setWhiteSet){
+  //     //                	fn_setWhiteSet();
+  //     //                }
+  //     //            }catch (e) {
+  //     //
+  //     //    		}
+  //     //닫힐 때 모두 검정색
+  //     $(".depth1Class").css("color", "#000000");
+  //   });
+  //   jQuery(`.Page .menu_detail`).removeClass("open");
+  //   //        setTimeout(function(){
+  //   //        	jQuery('.Page.main>header').removeClass('act');
+  //   //        },$_wait);
 
-    jQuery(".Page.main>header").removeClass("act");
-    this.blocking_layer(false);
-  }, //close_menu_detail() End
+  //   jQuery(".Page.main>header").removeClass("act");
+  //   this.blocking_layer(false);
+  // }, //close_menu_detail() End
   open_menu_detail: function (_link, delay) {
-    if (jQuery(".Page").hasClass("open_all_menu")) {
-      return false;
-    }
-    var link = _link;
+    // if ( document.querySelector(".Page").classList.contains("open_all_menu") ) {
+    //   return false;
+    // }
+    let link = _link;
+    let nxtElm = false;
+    if(link.nextElementSibling) nxtElm = link.nextElementSibling;
+    document.querySelector(".menu_detail").classList.remove("open");
+    //jQuery(".menu_detail:not(.open)").css("display", "none");
+    document.querySelector(".Page.main>header").classList.add("act");
     if (delay) {
       setTimeout(function () {
-        //console.log('열렸다.');
-        let link = KEAD_LAYOUT.hover_link; //li>a:mouseenter 이벤트로 open_menu_detail 할때는  a링크
-        if (link) {
-          jQuery(".menu_detail").removeClass("open"); //현재 열려는 것 이전에 열려있는 것 삭제
-          jQuery(".Page.main>header").addClass("act");
-          const target = jQuery(link).parent("li").find(".menu_detail");
-          target.addClass("open"); //내가 열려는 요소에 open클래스 적용
-          jQuery(".menu_detail:not(.open)").css("display", "none");
-          //                    try{
-          //                    	if(fn_setBlueSet){
-          //                        	fn_setBlueSet();
-          //                        }
-          //                    }catch (e) {
+        //li:mouseenter 이벤트로 자식요소 a를 return  / open_menu_detail 할때는  a링크
+        
+        if (link && nxtElm && nxtElm.classList.contains(".menu_detail") ) {
+          const target = nxtElm;
+          target.classList.add("open"); //내가 열려는 요소에 open클래스 적용
+          
+          //try{
+          //     	if(fn_setBlueSet){
+          //         fn_setBlueSet();
+          //      }
+          //}catch (e) {
           //
-          //					}
+          //}
 
-          jQuery(link).parent("li").find(".menu_detail").slideDown(300);
+          $(target).slideDown(300);
 
-          KEAD_LAYOUT.blocking_layer(true);
+          MVOTING_LAYOUT.blocking_layer(true);
           //$(".depth1Class").css("color", "#000000"); 네비게이터 depth1 색상 검정색
-          $(link).css("color", "#016FF3");
+          link.style.color = "#016FF3";
         }
         return false;
       }, 300);
     } else {
       //console.log('여기야.');
-      jQuery(".menu_detail").removeClass("open");
-      jQuery(".Page.main>header").addClass("act");
-      const target = jQuery(link).parent("li").find(".menu_detail");
-      target.addClass("open");
-      jQuery(".menu_detail:not(.open)").css("display", "none");
+      
+      const target = nxtElm;
+      target.classList.add("open");
 
       //li부분으로 mouseleave인지, 서브네비게이터 상자에서 mouse가 떠난건지 판별
-      if (KEAD_LAYOUT.mouse_prev) {
+      if (MVOTING_LAYOUT.mouse_prev) {
         let prev_height = $(".menu_detail")
-          .eq(KEAD_LAYOUT.menu_detail_prev)
+          .eq(MVOTING_LAYOUT.menu_detail_prev)
           .css("height");
         //console.log(prev_height);
         jQuery(target)
           .css({ display: "block", height: prev_height })
           .animate(
-            { height: menu_detail_heights[KEAD_LAYOUT.menu_detail_idx] },
+            { height: menu_detail_heights[MVOTING_LAYOUT.menu_detail_idx] },
             100
           );
       } else {

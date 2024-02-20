@@ -1,23 +1,42 @@
+@use '../config/mixin';
+@use '../utiles/var_colors';
+@use '../utiles/var';
 header{
-    .nav{
-        &:has( > .nav_item ){
-            display:flex; justify-content: space-between; align-items: center;
-            .nav_item {
-                margin:0 0.25rem; 
-                &:has( >.nav_list_dp2 ){position:relative; height:2rem;
-                    &.active{ background:$primary_color; 
-                        > .link {color:#fff;}
+    .nav{font-size:1rem; margin-top: em(38px); letter-spacing: -2px;
+        .nav_list{margin:0 auto; width: em(690px); 
+            &:has( > .nav_item ){
+                display:flex; justify-content: space-between; align-items: center;
+                
+                .nav_item { font-size: em(14px);
+                    .link{position:relative; display:block; margin:0 auto; width: em(64px); height: em(94px); 
+                     padding-top: em(72px);  text-align:center; 
+                        .txt{ @include mixin.pos_x_50;}
+                    }
+                    &:has( >.nav_list_dp2 ){position:relative; height: em(94px);
+                        &.active{ 
+                            > .link {color:#fff;}
+                            .nav_list_dp2{
+                                display:block;
+                            }
+                        }
                         .nav_list_dp2{
-                            display:block;
+                            position:absolute; top: em(94px); left:0; width:100%;
+                            display:none;
                         }
                     }
-                    .nav_list_dp2{
-                        position:absolute; top:2rem; left:0; width:100%;
-                        display:none;
+                    @each $idx in (1,2,3,4,5,6,7) {
+                        &:nth-child(#{$idx}){ background: url( var.$imgurl_ico + "ico_header_"+$idx+".png") no-repeat 0 0/contain;
+                            &:has(>.nav_list_dp2){
+                                &.active{background: url( var.$imgurl_ico + "ico_header_"+$idx+".png") no-repeat center 0/contain, linear-gradient(#fff, #fff em(24px), var_colors.$primary_color em(24px), var_colors.$primary_color);
+                                }
+                            }
+                        }
                     }
+                   
+                    
                 }
+            
             }
-           
         }
     }
 }

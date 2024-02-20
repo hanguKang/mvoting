@@ -1,0 +1,4 @@
+@use '../utiles/var';
+.sub_tit1_box{font-family: var.$fontSet; font-size:1rem; margin-top:em(24px);
+  .sub_tit1 {text-align:center; margin-bottom: em(25px); font-size: em(26px); font-weight: 600; line-height:1.5;}
+}

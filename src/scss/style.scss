@@ -1,20 +1,38 @@
-@charset "UTF-8";
+@charset 'UTF-8';
+@import './common/bootcustom';
+@import '../../node_modules/bootstrap/scss/bootstrap';
+@import './config/function';
+@import './config/mixin';
 @import './config/reset';
 @import './utiles/var_colors';
 @import './utiles/var';
-@import "../../node_modules/bootstrap/scss/bootstrap";
-@import "./components/nav";
+@import './breakpoints/breakpoint';
+@import './utiles/box-shadow';
+@import './components/button';
+@import './common/header';
+@import './common/footer';
+@import './components/nav';
+@import './pages/sub_head';
+@import './components/bbs_common';
+@import './components/bbs_pic';
+@import './common/page_bg_color';
+@import './common/pagination';
+@import './components/banner';
+@import './pages/index';
+@import './pages/term';
 
-h1{background:#000; color:#fff;}
+
+
+
 header+img{background:black;}
 body{font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;}
+.pagination{display:block;}
 
-
-
+.mobile{display:none;}
 @media only screen and ( max-width: 720px )  {
-
+  .web{display:none;}
 }
 
 @media only screen and (pointer:coarse) and (max-height:720px) {
-
+  .web{display:none;}
 }

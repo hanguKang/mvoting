@@ -1,0 +1,621 @@
+<!-- header::Start -->
+<script type="text/javascript">
+	//****헤더 상단****
+	//회원가입
+	function fnJoinChoiceForm(){
+		document.location.href="/mvoting/join/general/joinChoice.do";
+	}
+	//로그인
+	function fnLoginForm(){
+		document.location.href="/mvoting/login/login.do";
+	}
+	//로그아웃
+	function fnLogoutForm(){
+		document.location.href="/mvoting/login/logout.do";
+	}
+	
+	//****헤더 중단****
+	
+	// 서울 홈페이지로 이동
+	function fnGoSeoul(){
+	
+		window.open('http://www.seoul.go.kr/main/index.html', 'seoul');
+	
+	}
+	
+	//****페이지 공통****
+	//이전페이지
+	function fnBackPage(){
+		// 레퍼러 주소가 없는경우는 메인으로 이동시킨다.
+		// 안드로이드 앱에서 referrer를 셋팅하지 않아서 사용을 할수 없어 일단 백하고 반응없으면 메인으로 가게끔 설정
+		setTimeout(function(){
+			location.href = '/';
+		}, 100);
+		history.back();
+	}
+	//다음페이지 이동
+	function fnNextPage(nextPage){
+		document.location.href=nextPage;
+	}
+	
+	// 내주변 투표 메뉴 클릭시
+	function fnGoSurroundVote(){
+		
+		// 위치정보 제공 동의창 띄우기
+		if(confirm('\'엠보팅\'에서 현재 위치를 사용하고자 합니다.||허용||허용안함')){
+			// gps설정창 띄우기
+			alert('gpsSetting:/mvoting/myvote/surrounding/selectPageListSurrounding.do');
+		}
+		return false;
+	}
+	
+	var options = {
+			  enableHighAccuracy: true,
+			  timeout: 5000,
+			  maximumAge: 0
+			};
+	function success(pos) {
+			  var crd = pos.coords;
+			  console.log('Your current position is:');
+			  console.log('Latitude 위도 : ' + crd.latitude);
+			  console.log('Longitude 경도 : ' + crd.longitude);
+			  console.log('More or less ' + crd.accuracy + ' meters.');
+			  $('#gpsform [name=pos_x]').val(crd.longitude);
+			  $('#gpsform [name=pos_y]').val(crd.latitude);
+			  $('#gpsform').attr({ 'action' : '/mvoting/myvote/surrounding/selectPageListSurrounding.do', 'method' : 'post' }).submit();
+			  //해당 목록 페이지로  
+			  
+	};
+	function error(err) {
+			  console.warn('ERROR(' + err.code + '): ' + err.message);
+			  //위치동의를 하셔야지 내주변투표로 이동하실수있습니다.
+			  if(err.code == 1) {
+			  	alert("위치 접근 허용에 동의하셔야 gps 투표를 이용하실 수 있습니다.");
+			  }
+	};
+		
+	function gps_search(){
+		
+			navigator.geolocation.getCurrentPosition(success, error, options);
+		
+	}
+	
+</script>
+<script type="text/javascript">
+//<![CDATA[
+	// firefox, safari의 bfcache를 차단하기 위함
+	$(window).bind('pageshow', function(event){
+  		if(event.originalEvent && event.originalEvent.persisted){
+  		  location.reload();
+	 	}
+	});
+	
+	$(document).ready(function(){
+		// 통합검색 클릭시(돋보기모양)
+		$(".btn_search1").on('click',function(e){ 
+			e.preventDefault();
+			fnTSearch();
+		});
+		$(".btn_search2").on('click',function(e){ 
+			e.preventDefault();
+			fnTotalSearch();
+		});
+		
+		//태그검색
+		$('.vote_list').on({			
+			'click' : function(e){
+		//$(".vote_hash_mark").on('click',function(e){	
+			e.preventDefault();
+			e.stopPropagation();			
+			var sch_txt =$(this).text();
+				if(	$(this).data('tag-type') == null){
+					sch_txt = sch_txt.replace("#","");
+					fnCustomTagSearch(sch_txt);
+				}else{
+					$('[name=sch_tag_type]').val($(this).data('tag-type'));
+					$('[name=sch_tag_code]').val($(this).data('tag-code'));
+					fnTagSearch();
+				}
+			},
+		}, '.vote_hash_mark');			
+		
+		// 그냥 검색이벤트
+		$('#searchForm [name=sch_text1]').on({
+			'keydown' : function(e){
+				// 엔터를 누를시 이벤트를 막는다.
+				if(e.which == 13){ e.preventDefault(); }
+			}
+			, 'keyup' : function(e){
+				// 엔터를 누르고 뗄때 검색 시작
+				if(e.which == 13){ fnTSearch(); }
+			}
+		});
+		
+		// 상세 검색이벤트
+		$('#searchForm [name=sch_text2]').on({
+			'keydown' : function(e){
+				// 엔터를 누를시 이벤트를 막는다.
+				if(e.which == 13){ e.preventDefault(); }
+			}
+			, 'keyup' : function(e){
+				// 엔터를 누르고 뗄때 검색 시작
+				if(e.which == 13){ fnTotalSearch(); }
+			}
+		});
+
+		
+		
+		//유형값 체크
+		var sch_vote_ty_yn = '';
+		if(sch_vote_ty_yn == "Y"){
+			$("#sch_vote_ty_yn").val("Y");
+//			$(".search_detail_box").addClass("on");
+//			$(".btn_detail_search").addClass("on");
+//			$("#header").addClass("h244");
+		}
+		
+		//유형값 체크
+		var sch_vote_sttus_yn = '';
+		if(sch_vote_sttus_yn == "Y"){
+			$("#sch_vote_sttus_yn").val("Y");
+//			$(".search_detail_box").addClass("on");
+//			$(".btn_detail_search").addClass("on");
+//			$("#header").addClass("h244");
+		}
+		
+		// 해시값 검색 이벤트(투표 리스트, 투표 상세에서 사용)
+		
+		$('.user').click(function(e){
+			e.preventDefault();
+			// 검색어 셋팅
+			//$('[name=sch_text1]').val($(this).text());
+			//fnTSearch();
+			var sch_txt =$(this).text();
+			sch_txt = sch_txt.replace("#","");
+			fnCustomTagSearch(sch_txt);
+		});
+		
+		
+		
+		
+		var pathname = document.location.pathname;
+		if(pathname.indexOf('Ourselves') != -1 || pathname.indexOf('Hotissue') != -1 || pathname.indexOf('Policyvote') != -1){
+			$('.btm_header').addClass('m_on_sch');	// 모바일 통합검색 노출
+			//일반적인 PC 웹환경에서는 모두 노출 화면이 작은 모바일 웹환경에서는 미노출
+		}
+	});
+	
+	
+	function  fnTagSearch(){
+		
+		$("input[name=sch_vote_ty_0012]").val("001");
+		$("input[name=sch_vote_ty_0022]").val("002");
+		$("input[name=sch_vote_ty_0032]").val("003");
+		$("input[name=sch_vote_ty_0042]").val("004");
+		$("input[name=sch_vote_sttus_42]").val("004");
+		$("input[name=sch_vote_sttus_62]").val("006");
+		$("#sch_vote_ty_yn").val("Y");
+		$("#sch_vote_sttus_yn").val("Y");		
+		$('[name=sch_tot_text]').val('');
+		$('[name=sch_text1]').val('');
+		$('[name=sch_text2]').val('');
+		$('[name=sch_tag]').val('');
+		
+		// 기존페이지 form값, 검색폼 정보 가져오기
+		var param = $('#searchForm').serialize();
+		location.href = '/mvoting/searchlist/selectPageListSearchlist.do?' + param;
+		
+	}
+	
+	//그냥 검색 
+	function fnTSearch(){
+		if($('[name=sch_text1]').val().trim() == '' ){
+			alert('검색어를 입력해 주세요.');
+			$('[name=sch_text1]').val("");
+			$('[name=sch_text1]').focus();
+			return false;
+		}
+		
+		$("input[name=sch_vote_ty_0012]").val("001");
+		$("input[name=sch_vote_ty_0022]").val("002");
+		$("input[name=sch_vote_ty_0032]").val("003");
+		$("input[name=sch_vote_ty_0042]").val("004");
+		$("input[name=sch_vote_sttus_42]").val("004");
+		$("input[name=sch_vote_sttus_62]").val("006");
+		$("#sch_vote_ty_yn").val("Y");
+		$("#sch_vote_sttus_yn").val("Y");		
+		$('[name=sch_tot_text]').val($('[name=sch_text1]').val().trim());
+		$('[name=sch_text2]').val('');
+		$('[name=sch_tag]').val($('[name=sch_text1]').val().trim());
+		
+		// 기존페이지 form값, 검색폼 정보 가져오기
+		var param = $('#searchForm').serialize();
+		location.href = '/mvoting/searchlist/selectPageListSearchlist.do?' + param;
+	}
+	
+	function fnCustomTagSearch(sch){
+		
+		$("input[name=sch_vote_ty_0012]").val("001");
+		$("input[name=sch_vote_ty_0022]").val("002");
+		$("input[name=sch_vote_ty_0032]").val("003");
+		$("input[name=sch_vote_ty_0042]").val("004");
+		$("input[name=sch_vote_sttus_42]").val("004");
+		$("input[name=sch_vote_sttus_62]").val("006");
+		$("#sch_vote_ty_yn").val("Y");
+		$("#sch_vote_sttus_yn").val("Y");		
+		$('[name=sch_tot_text]').val('');
+		$('[name=sch_text1]').val('');
+		$('[name=sch_text2]').val('');
+		$('[name=sch_tag]').val(sch);
+		// 기존페이지 form값, 검색폼 정보 가져오기
+		var param = $('#searchForm').serialize();
+		location.href = '/mvoting/searchlist/selectPageListSearchlist.do?' + param;
+	}
+	
+	
+	// 검색하기(통합)
+	function fnTotalSearch(){
+		// 검색어 없는경우
+		if($('[name=sch_text2]').val().trim() == '' ){
+			alert('검색어를 입력해 주세요.');
+			$('[name=sch_text2]').val("");
+			$('[name=sch_text2]').focus();
+			return false;
+		}
+		
+		
+		
+		$("input[name=sch_vote_ty_0012]").val("N");
+		if($("input:checkbox[name=sch_vote_ty_001]").is(":checked")){
+			$("input[name=sch_vote_ty_0012]").val("001");
+		}
+
+		$("input[name=sch_vote_ty_0022]").val("N");
+		if($("input:checkbox[name=sch_vote_ty_002]").is(":checked")){
+			$("input[name=sch_vote_ty_0022]").val("002");
+		}
+		
+		$("input[name=sch_vote_ty_0032]").val("N");
+		if($("input:checkbox[name=sch_vote_ty_003]").is(":checked")){
+			$("input[name=sch_vote_ty_0032]").val("003");
+		}
+		
+		$("input[name=sch_vote_ty_0042]").val("N");
+		if($("input:checkbox[name=sch_vote_ty_004]").is(":checked")){
+			$("input[name=sch_vote_ty_0042]").val("004");
+		}
+		
+		$("input[name=sch_vote_sttus_42]").val("000");
+		if($("input:checkbox[name=sch_vote_sttus_4]").is(":checked")){
+			$("input[name=sch_vote_sttus_42]").val("004");
+		}
+		
+		$("input[name=sch_vote_sttus_62]").val("000");
+		if($("input:checkbox[name=sch_vote_sttus_6]").is(":checked")){
+			$("input[name=sch_vote_sttus_62]").val("006");
+		}
+		
+		var sch_vote_ty_checked = $(".sch_vote_ty:checked").length;
+		var sch_vote_sttus_checked = $(".sch_vote_sttus:checked").length;
+		if(sch_vote_ty_checked==0){
+			// 투표 유형 선택 안했을시는 모든 유형으로 검사함
+			$("input[name=sch_vote_ty_0012]").val("001");
+			$("input[name=sch_vote_ty_0022]").val("002");
+			$("input[name=sch_vote_ty_0032]").val("003");
+			$("input[name=sch_vote_ty_0042]").val("004");
+		}
+		$("#sch_vote_ty_yn").val("Y");
+		if(sch_vote_sttus_checked==0){
+			// 투표 상태 선택 안했을시는 모든 유형으로 검사함
+			$("input[name=sch_vote_sttus_42]").val("004");
+			$("input[name=sch_vote_sttus_62]").val("006");
+		}
+		$("#sch_vote_sttus_yn").val("Y");
+		$('[name=sch_tot_text]').val($('[name=sch_text2]').val().trim());
+		$('[name=sch_text1]').val('');
+		
+		$('[name=sch_tag]').val($('[name=sch_text2]').val().trim());
+		// 기존페이지 form값, 검색폼 정보 가져오기
+		var param = $('#searchForm').serialize();
+		location.href = '/mvoting/searchlist/selectPageListSearchlist.do?' + param;
+	}
+	
+	
+	
+	function fnShowDataLayer(popup) {
+		$('#' + popup).show();
+	    $("body").css({"overflow":"hidden"});
+		//if(popup == "tsch_layer_popup"){
+			//$('[name=sch_text2]').focus();			
+		//}
+	    return false;
+	}
+	
+	function fnHideDataLayer(popup) {
+		$('#' + popup).hide();
+		$("body").css({"overflow":"visible"});
+		return false;
+	}
+
+	
+</script>
+	<!-- skip_navi -->
+	<dl class="skip_navi">
+		<dt class="hide"><strong>바로가기 메뉴</strong></dt>
+		<dd><a href="#real_contents">본문 바로가기</a></dd>
+		<dd><a href="#common_menu_left">주메뉴 바로가기</a></dd>
+	</dl>
+	<!-- // skip_navi -->
+ 	<!-- 서울 GNB 영역 S -->
+    <!-- div id는 전체 문서에서 중복이 되지 않아야 함 -->
+    <div id="seoul-common-gnb" style="background-color:#0c82e9;height:48px; ">	
+			<div id="seoul-gnb-plugin">		
+				<div class="seoul-gnb-holder">
+					<p class="seoul-gnb-link">
+						<a href="//www.seoul.go.kr/sgnb/seoulgnblog.do?gid=G218&amp;kind=logo&amp;link=https://www.seoul.go.kr" target="_blank" title="새창열림" class="seoul-gnb-icon-link wise-link" data-kind="logo">서울특별시</a>
+					</p>			
+					<dl class="seoul-gnb-news">				
+						<dt><a href="https://www.seoul.go.kr/realmnews/in/list.do" target="_blank" title="새창열림(서울소식)" class="seoul-gnb-icon-notice">서울소식</a></dt>				<dd><a href="//www.seoul.go.kr/sgnb/seoulgnblog.do?gid=G218&amp;kind=hotissue&amp;link=https://mediahub.seoul.go.kr/archives/2010234" target="_blank" title="새창열림">아이 탄생부터 육아까지! 서울의 초특급 응원 프로젝트</a></dd>			
+					</dl>			
+					<dl class="seoul-gnb-menu">
+						<dt>주요메뉴</dt>
+						<dd><a href="//www.seoul.go.kr/sgnb/seoulgnblog.do?gid=G218&amp;kind=seoulnews&amp;link=https://www.seoul.go.kr/realmnews/in/list.do" target="_blank" title="새창열림" class="seoul-gnb-icon-menu1 wise-link" data-kind="seoulnews">서울소식</a></dd>
+						<dd><a href="//www.seoul.go.kr/sgnb/seoulgnblog.do?gid=G218&amp;kind=eungdapso&amp;link=http://eungdapso.seoul.go.kr" target="_blank" title="새창열림" class="seoul-gnb-icon-menu2 wise-link" data-kind="eungdapso">응답소</a></dd>				
+						<dd><a href="//www.seoul.go.kr/sgnb/seoulgnblog.do?gid=G218&amp;kind=opengov&amp;link=http://opengov.seoul.go.kr" target="_blank" title="새창열림" class="seoul-gnb-icon-menu3 wise-link" data-kind="opengov">정보공개</a></dd>
+						<dd><button type="button" class="seoul-gnb-icon-menu4">분야별정보</button>
+								<div class="seoul-gnb-menu-section" style="display: none;">
+									<dl>
+										<dt>분야별정보</dt>
+										<dd>
+											<ul>
+												<li><a href="//www.seoul.go.kr/sgnb/seoulgnblog.do?gid=G218&amp;kind=citybuild&amp;link=http://news.seoul.go.kr/citybuild/" target="_blank" title="새창열림" class="wise-link" data-kind="citybuild">주택</a></li>
+												<li><a href="//www.seoul.go.kr/sgnb/seoulgnblog.do?gid=G218&amp;kind=economy&amp;link=http://news.seoul.go.kr/economy/" target="_blank" title="새창열림" class="wise-link" data-kind="economy">경제</a></li>
+												<li><a href="//www.seoul.go.kr/sgnb/seoulgnblog.do?gid=G218&amp;kind=traffic&amp;link=http://news.seoul.go.kr/traffic/" target="_blank" title="새창열림" class="wise-link" data-kind="traffic">교통</a></li>
+												<li><a href="//www.seoul.go.kr/sgnb/seoulgnblog.do?gid=G218&amp;kind=env&amp;link=http://news.seoul.go.kr/env/" target="_blank" title="새창열림" class="wise-link" data-kind="env">환경</a></li>
+												<li><a href="//www.seoul.go.kr/sgnb/seoulgnblog.do?gid=G218&amp;kind=welfare&amp;link=http://news.seoul.go.kr/welfare/" target="_blank" title="새창열림" class="wise-link" data-kind="welfare">복지</a></li>	
+												<li><a href="//www.seoul.go.kr/sgnb/seoulgnblog.do?gid=G218&amp;kind=safe&amp;link=http://news.seoul.go.kr/safe/" target="_blank" title="새창열림" class="wise-link" data-kind="safe">안전</a></li>
+												<li><a href="//www.seoul.go.kr/sgnb/seoulgnblog.do?gid=G218&amp;kind=culture&amp;link=http://news.seoul.go.kr/culture/" target="_blank" title="새창열림" class="wise-link" data-kind="culture">문화</a></li>
+												<li><a href="//www.seoul.go.kr/sgnb/seoulgnblog.do?gid=G218&amp;kind=gov&amp;link=http://news.seoul.go.kr/gov/" target="_blank" title="새창열림" class="wise-link" data-kind="gov">행정</a></li>
+											</ul>
+										</dd>
+									</dl>
+									<p>
+										<a href="//www.seoul.go.kr/sgnb/seoulgnblog.do?gid=G218&amp;kind=allservice&amp;link=https://www.seoul.go.kr/service/all.do" target="_blank" title="새창열림" class="wise-link" data-kind="allservice">
+											<span class="seoul-gnb-icon-service"></span> 
+											서비스 전체보기
+										</a>
+									</p>
+									<button type="button">
+										<span class="seoul-gnb-icon-service-close"></span>
+										<span class="hd-element">분야별 정보 닫기</span>
+									</button>
+								</div>
+							</dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+    <!-- 서울 GNB 영역 E -->
+		<!-- header -->
+		<div class="header" style="padding-top: 80px;">
+			<!-- top_header -->
+			<div class="top_header clearfix" style="transition: all 0.3s ease 0s; top: 0px;">
+				<div class="outer_container">
+					<!-- container --><!-- header 상단 -->
+					<div class="container clearfix">
+					 <!-- 서울시 모바일 휘장 컬러 아이콘 -->
+<!-- 						 <a href="https://www.seoul.go.kr/seoulgnb/seoulgnblog.html?gid=G218&amp;kind=mlogo&amp;link=//www.seoul.go.kr" target="_blank"> -->
+<!-- 			 				<img src="http://seoul.go.kr/seoulgnb/images/seoul-logo-mobile.png"> -->
+<!-- 			 			</a>					 -->
+						<h1 class="head_logo"><a href="/" title="홈으로 이동"><img src="/common/images/common/head_logo.png" alt="mvoting, 서울시 엠보팅"></a></h1>
+<!-- 						<a href="//www.seoul.go.kr/seoulgnb/seoulgnblog.html?gid=G218&amp;kind=mlogo&amp;link=//www.seoul.go.kr" target="_blank" class="seoul_logo" title="서울특별시 홈페이지로 이동 (새 창 열림)"><img src="/common/images/common/img_seoullogo.png" alt="서울특별시"></a> -->
+						<!-- head_util_menu -->
+						<ul class="head_util_menu">
+							<li class="login"><a href="/mvoting/login/login.do">로그인</a></li>
+							<li class="join"><a href="/mvoting/join/general/joinChoice.do">회원가입</a></li>
+							<li class="seoul"><a href="#" onclick="fnGoSeoul(); return false;" title="서울특별시 사이트 새창열림">서울특별시</a></li>
+						</ul>
+						<!-- // head_util_menu --> <!--  모바일시 메뉴버튼 -->
+						<button type="button" class="m_gnb_btn">
+							<span class="hide">모바일 주 메뉴 열기</span>
+							<span class="top"></span>
+							<span class="mid"></span>
+							<span class="btm"></span>
+						</button>
+						<form id="gpsform" method="post">
+							<input type="hidden" id="pos_y" name="pos_y">
+							<input type="hidden" id="pos_x" name="pos_x">
+						</form>
+						<a href="#" class="page_back_btn" onclick="fnBackPage(); return false;">
+							<span class="hide">모바일 주 메뉴 열기</span>
+							<span class="top"></span>
+							<span class="mid"></span>
+							<span class="btm"></span>
+						</a>
+					</div>
+					<!-- // container -->
+					<!-- 모바일에서 보이는 1뎁스 header 메뉴 -->
+					<ul class="m_dep2_menu tab_4p">
+<!-- 						<li><a href="/mvoting/voting/hotissue/selectPageListHotissue.do">투표하기</a></li> -->
+<!-- 						<li><a href="/mvoting/myvote/takepart/selectPageListTakepart.do">내투표함</a></li> -->
+<!-- 						<li><a href="/mvoting/policy/selectPageListPolicy.do">정책반영결과</a></li> -->
+<!-- 						<li><a href="/mvoting/notice/selectPageListNotice.do">공지사항</a></li> -->
+						<li><a href="/mvoting/voting/hotissue/selectPageListHotissue.do">핫이슈</a></li>
+						<li><a href="/mvoting/voting/ourselves/selectPageListOurselves.do">우리끼리</a></li>
+						<li><a href="/mvoting/voting/policyvote/selectPageListPolicyvote.do?policy_vote_ty=001">정책반영</a></li>
+						<li><a href="/mvoting/voting/policyvote/selectPageListPolicyvote.do?policy_vote_ty=002">정책참고</a></li>
+					</ul>
+				</div>
+				<div class="right_bg"></div>
+				<!-- m_gnb_wrap 모바일 메뉴 -->
+				<div class="m_gnb_wrap">
+					<h2 class="m_gnb_logo"><a href="/" title="홈으로"><img src="/common/images//logo.png" alt="mvoting"></a></h2>
+					<div class="inner">
+						<ul class="m_gnb_util_menu">
+							<li class="login"><a href="/mvoting/login/login.do">로그인</a></li>
+							<li class="join"><a href="/mvoting/join/general/joinChoice.do">회원가입</a></li>
+						</ul>
+						<!-- m_gnb 내부 태그는 쿼리로 들어감. -->
+						<ul class="m_gnb">
+							<li class="">
+								<a href="/mvoting/useinqry/selectPageListUseInqry.do" data-dep2="false">이용문의</a>
+							</li>
+							<li class="">
+								<a href="#" data-dep2="true" title="하위항목 열기">투표하기</a>
+								<ul class="m_sub_gnb">
+									<li class="">
+										<a href="/mvoting/voting/hotissue/selectPageListHotissue.do" data-dep2="true">핫이슈</a>
+									</li>
+									<li class="">
+										<a href="/mvoting/voting/policyvote/selectPageListPolicyvote.do?policy_vote_ty=001" data-dep2="true">정책반영</a>
+									</li>
+									<li class="">
+										<a href="/mvoting/voting/policyvote/selectPageListPolicyvote.do?policy_vote_ty=002" data-dep2="true">정책참고</a>
+									</li>
+									<li class="">
+										<a href="/mvoting/voting/ourselves/selectPageListOurselves.do" data-dep2="true">우리끼리</a>
+									</li>
+								</ul>
+							</li>
+							<li class="">
+								<a href="#" data-dep2="true" title="하위항목 열기">내투표함</a>
+								<ul class="m_sub_gnb">
+									<li class="">
+										<a href="/mvoting/myvote/takepart/selectPageListTakepart.do" data-dep2="true">참여투표</a>
+									</li>
+									<li class="">
+										<a href="/mvoting/myvote/mymake/selectPageListMymake.do" data-dep2="true">만든투표</a>
+									</li>
+									<li class="">
+										<a href="/mvoting/myvote/acceptvote/selectPageListAcceptvote.do" data-dep2="true">받은투표</a>
+									</li>
+								</ul>
+							</li>
+							<li class=""><a href="/mvoting/policy/selectPageListPolicy.do" data-dep2="false">정책반영결과</a></li>
+							<li class="active"><a href="/mvoting/notice/selectPageListNotice.do" data-dep2="false">공지사항</a></li>
+							<li class="">
+								<a href="#" data-dep2="true" title="하위항목 열기">마이페이지</a>
+								<ul class="m_sub_gnb">
+									<li class="">
+										<a href="/mvoting/setting/mypage/indvsetting/set1.do" data-dep2="true">개인정보 설정</a>
+									</li>
+									<li class="">
+										<a href="/mvoting/setting/mypage/help/help.do" data-dep2="true">서비스안내</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<!-- // m_gnb -->
+					</div>
+					<button type="button" class="m_gnb_close"><span class="hide">모바일 주 메뉴 닫기</span></button>
+				</div>
+			</div><!-- // m_gnb_wrap End -->
+			<!-- // top_header -->
+			<!-- btm_header -->
+			<div class="btm_header">
+				<!-- container -->
+				<div class="container clearfix">
+					<form id="searchForm" method="get" action="#">
+						<input type="hidden" name="sch_vote_ty_yn" id="sch_vote_ty_yn" value="N">
+						<input type="hidden" name="sch_vote_sttus_yn" id="sch_vote_sttus_yn" value="N">
+						<input type="hidden" name="vote_no" value="">
+						<input type="hidden" name="vote_othbc_trget" value="">
+						<input type="hidden" name="vote_pwd" value="">
+						<input type="hidden" name="order_type" value="">
+						<!-- 2020.08.21 상세검색 유형 변경됨 - 김정원수정
+						<input type="hidden" name="sch_vote_ty_m2" value="">
+						<input type="hidden" name="sch_vote_ty_s2" value="">
+						<input type="hidden" name="sch_vote_ty_v2" value=""> -->
+						<input type="hidden" name="sch_vote_ty_0012" value="">
+						<input type="hidden" name="sch_vote_ty_0022" value="">
+						<input type="hidden" name="sch_vote_ty_0032" value="">
+						<input type="hidden" name="sch_vote_ty_0042" value="">
+						<input type="hidden" name="sch_vote_sttus_42" value="">
+						<input type="hidden" name="sch_vote_sttus_62" value="">
+						<input type="hidden" name="sch_tot_text" value="">
+						<input type="hidden" name="sch_tag" value="">
+						<input type="hidden" name="sch_tag_type" value="">
+						<input type="hidden" name="sch_tag_code" value="">
+						<!-- head_sch_box -->
+						<div class="head_sch_box">
+							<div class="inner">
+								<input type="text" class="head_sch_input" title="검색어 입력" name="sch_text1" value="" placeholder="검색어를 입력해 주세요.">
+								<a href="#" class="head_sch_btn btn_search1"><span class="hide">검색하기</span></a>
+							</div>
+							<a href="#" class="head_common_btn btn_detail_search" data-layeropen="1" onclick="fnShowDataLayer('tsch_layer_popup');">상세 검색 +</a>
+							<!-- layer_pop_box -->
+							<div id="tsch_layer_popup" class="layer_pop_box" data-layernum="1">
+								<!-- layer_pop -->
+								<div class="layer_pop tsch">
+									<h2 class="sub_tit2">상세검색</h2>
+
+									<!-- tbl_style_list -->
+									<ul class="tbl_style_list">
+										<li>
+											<div class="cell left">
+												<h3 class="tit">유형</h3>
+											</div>
+											<div class="cell right">
+												<div class="chk_each_box">
+													
+													<span class="chk_each">
+														<input type="checkbox" name="sch_vote_ty_002" id="tSchType2" class="hide sch_vote_ty sch_vote_ty" value="002" checked="">
+														<label for="tSchType2"><span class="vchkbox"></span>정책반영</label>
+													</span>
+													<span class="chk_each">
+														<input type="checkbox" name="sch_vote_ty_003" id="tSchType3" class="hide sch_vote_ty sch_vote_ty" value="003" checked="">
+														<label for="tSchType3"><span class="vchkbox"></span>정책참고</label>
+													</span>
+													<span class="chk_each">
+														<input type="checkbox" name="sch_vote_ty_001" id="tSchType1" class="hide sch_vote_ty sch_vote_ty" value="001" checked="">
+														<label for="tSchType1"><span class="vchkbox"></span>우리끼리</label>
+													</span>
+													<span class="chk_each">
+														<input type="checkbox" name="sch_vote_ty_004" id="tSchType4" class="hide sch_vote_ty sch_vote_ty" value="004" checked="">
+														<label for="tSchType4"><span class="vchkbox"></span>지역투표</label>
+													</span>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="cell left">
+												<h3 class="tit">상태</h3>
+											</div>
+											<div class="cell right">
+												<div class="chk_each_box">
+													<span class="chk_each">
+														<input type="checkbox" name="sch_vote_sttus_4" id="tSchStat1" class="hide sch_vote_sttus" value="004" checked="">
+														<label for="tSchStat1"><span class="vchkbox"></span>진행투표</label>
+													</span>
+													<span class="chk_each">
+														<input type="checkbox" name="sch_vote_sttus_6" id="tSchStat2" class="hide sch_vote_sttus" value="006" checked="">
+														<label for="tSchStat2"><span class="vchkbox"></span>마감투표</label>
+													</span>
+												</div>
+											</div>
+										</li>
+									</ul>
+									<!-- // tbl_style_list -->
+									<input type="text" class="tsch_input" name="sch_text2" title="검색어 입력" placeholder="검색어를 입력해 주세요." value="">
+									<div class="common_btn_box">
+										<a href="#" class="common_btn sch btn_search2">검색하기</a>
+									</div>
+									<button class="layer_pop_close" onclick="fnHideDataLayer('tsch_layer_popup'); return false;"><span class="hide">레이어 창 닫기</span></button>
+								</div>
+								<!-- // layer_pop -->
+							</div>
+							<!-- // layer_pop_box -->
+						</div>
+						<!-- // head_sch_box -->
+					</form>
+					<div class="btm_head_link_box">
+						<a href="/mvoting/useinqry/selectPageListUseInqry.do" class="head_common_btn col2">이용문의 +</a>
+						<a href="/mvoting/makevote/insertFormObjectiveVote.do" class="head_common_btn col3">투표만들기 +</a>
+					</div>
+				</div>
+				<!-- // container -->
+			</div>
+			<!-- // btm_header -->
+		</div>
+		<!-- // header -->
+	<!--// header::End -->
