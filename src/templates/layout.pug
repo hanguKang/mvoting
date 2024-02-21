@@ -8,7 +8,7 @@ html(lang="ko")
         block scripts
         title Document
     body
-        include ../partials/index_head.pug 
+        include ../partials/index_head
         .Page.wrapper(class=page)
             include ../partials/header 
             // ----------------------- // 컨텐츠 시작 -----------------------
@@ -16,5 +16,5 @@ html(lang="ko")
 
             include ../partials/banner
             include ../partials/footer
-        script(src="js/main.js")
-        script(src="js/test.js", type="module")
+        script(src="./js/main.js" defer )
+        script(src="./js/test.js", type="module")

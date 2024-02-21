@@ -54,7 +54,7 @@ table {display:table;width:100%;border-collapse:collapse;border-spacing:0;table-
   ul, ol {line-height: 1.8;margin: 0;padding-inline-start: 1.5em;list-style-position: inside;}
   ul {list-style-type: square;}
   ol {list-style-type: decimal;}
-  li::marker {font-weight: bold;}
+  li::marker {font-weight: bold;} //목록의 맨 앞에 점이나 동그라미 
   ol {counter-reset: list 0;
     >li{margin-top:$font-size;
       &:before {content: counter(list, decimal) ". ";counter-increment: list;} 

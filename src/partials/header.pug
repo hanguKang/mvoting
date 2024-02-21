@@ -105,16 +105,17 @@ header.header
                                 span.ico_srch
                                     span.hide 검색하기
                     p.btn_box 
-                        a.b-srch.lg.btn.head_common_btn.btn-primary.round-lg.fc_white(href="#", data-bs-toggle="modal", data-bs-target="#tsch_layer_popup") 상세검색 +
+                        a.b-srch.lg.btn.head_common_btn.btn-primary.round-lg.fc_white(href="#") 상세검색 +
                     //layer_popup 팝업
-                    #tsch_layer_popup.modal.fade.layer_pop_box(data-layernum="1", tabindex="-1", role="dialog", aria-hidden="true")
-                        .modal-dialog.layer_pop.tsch( role="document")
-                            .modal-content
-                                .modal-header
+                    .modal-overlay(style="display:none;")
+                    #tsch_layer_popup.layer_pop_box(data-layernum="1", tabindex="-1", role="dialog", aria-hidden="true")
+                        .layer_pop_start.tsch( role="document")
+                            .layer_pop_content
+                                .layer_pop_header
                                     h2.sub_tit2 상세검색
                                     //button.btn-close( type="button", data-bs-dismiss="modal", aria-label="Close")
                                 //tbl_style_list
-                                .modal-body
+                                .layer_pop_body.round-sm
                                     ul.tbl_style_list
                                         li
                                             .cell.left
@@ -156,13 +157,13 @@ header.header
                                                         label(for="tSchStat1")
                                                             span.vchkbox
                                                             | 마감투표                                
-                            // tbl_style_list
-                            input.tsch_input( type="text", name="sch_text2", title="검색어 입력", placeholder="검색어를 입력해 주세요.", value="")
-                            .common_btn_box
-                                a.common_btn.sch.btn_search2( href="#") 검색하기
+                                    // tbl_style_list
+                                    input.tsch_input.round-xlg( type="text", name="sch_text2", title="검색어 입력", placeholder="검색어를 입력해 주세요.", value="")
+                                    .common_btn_box
+                                        a.b-srch.common_btn.sch.btn_search2.round-xlg( href="#") 검색하기
                             
-                            button.btn.layer_pop_close.btn-primary(onclick="fnHideDataLayer('tsch_layer_popup'); return false;",data-bs-dismiss="modal", aria-label="Close")
-                                span 레이어 창 닫기
+                                button.btn.layer_pop_close.btn-primary(aria-label="Close")
+                                    span.hide 상세검색 창 닫기
                     //  //layer_pop End
                 ul.head_util_menu
                     li.login.head_util_menu_item
@@ -242,7 +243,7 @@ header.header
                             a(href="/mvoting/policy/selectPageListPolicy.do", data-dep2="false") 정책반영결과
 
                         li
-                            a(href="/mvoting/notice/selectPageListNotice.do", data-dep2="false") 공지사항
+                            a(href="./html/selectPageListNotice.html", data-dep2="false") 공지사항
 
                         li
                             a(href="#" data-dep2="true", title="하위항목 열기") 마이페이지
@@ -265,30 +266,30 @@ header.header
                     // 현재 페이지에 해당되는 1차, 2차 메뉴 li태그에 'active' 삽입
                     // common_left_menu
                     // m_gnb 내부 태그는 쿼리로 들어감.
-                    nav.nav
+                    nav.nav(data-action="resetNav")
                         ul#common_menu_left.common_left_menu.nav_list.web
-                            li.nav_item.active.round-rg(data-action="addClass")
+                            li.nav_item.round-rg(data-action="addClass")
                                 a.link(href="#", data-dep2="true", title="하위항목 닫기") 
                                     span.txt 투표하기
                                 ul.common_left_dep2.nav_list_dp2
-                                    li.active
+                                    li.active.first(data-action="addClass")
                                         a(href="#", data-dep2="true") 핫이슈
-                                    li
+                                    li(data-action="addClass")
                                         a(href="#", data-dep2="true") 정책반영
-                                    li
+                                    li(data-action="addClass")
                                         a(href="#", data-dep2="true") 정책참고
-                                    li
+                                    li(data-action="addClass")
                                         a(href="#", data-dep2="true") 우리끼리
 
                             li.nav_item.round-rg(data-action="addClass")
                                 a.link(href="#", data-dep2="true", title="하위항목 열기") 
                                     span.txt  내투표함
                                 ul.common_left_dep2.nav_list_dp2
-                                    li
+                                    li.active.first(data-action="addClass")
                                         a(href="#", data-dep2="true") 참여투표                            
-                                    li
+                                    li(data-action="addClass")
                                         a(href="#", data-dep2="true") 만든투표                           
-                                    li
+                                    li(data-action="addClass")
                                         a(href="#", data-dep2="true") 받은투표                            
 
                             li.nav_item.round-rg(data-action="addClass")
@@ -296,16 +297,16 @@ header.header
                                     span.txt  정책반영결과
 
                             li.nav_item.round-rg(data-action="addClass")
-                                a.link(href="#", data-dep2="false") 
+                                a.link(href="./html/selectPageListNotice.html", data-dep2="false") 
                                     span.txt  공지사항
 
                             li.nav_item.round-rg(data-action="addClass")
                                 a.link(href="#", data-dep2="true", title="하위항목 열기") 
                                     span.txt  마이페이지
                                 ul.common_left_dep2.nav_list_dp2
-                                    li
+                                    li.active.first(data-action="addClass")
                                         a(href="#", data-dep2="true") 개인정보 설정
-                                    li
+                                    li(data-action="addClass")
                                         a(href="#", data-dep2="true") 서비스안내
                             li.nav_item.round-rg(data-action="addClass")
                                 a.link(href="/mvoting/useinqry/selectPageListUseInqry.do", data-dep2="false") 

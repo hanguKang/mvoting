@@ -5,7 +5,7 @@ $btn:"[class^=b-]";
 	text-indent:0;
 	display:inline-block;
 	height: em(var.$btnHeight);
-	padding: ($btnHeight - 2 - $defaultfontsize / 2) 12px;
+	padding: calc(( $btnHeight - $defaultfontsize ) / 4) 12px;
 	font-size:$defaultfontsize;
 	line-height: em(var.$btnHeight);
 	text-align:center;

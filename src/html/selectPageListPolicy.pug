@@ -8,9 +8,9 @@ block content
       .container.s_container
         // original : contents_left_nav.html( 주석 : commonLeft::Start )이 들어갈 자리  
         // common_right
-        .common_right
+        #real_contents.common_right
           form#aform.bbs_form(method="get" action="/mvoting/notice/selectPageListNotice.do")
-            input#notice_no(type="hidden" name="notice_no" value="")
+            input(type="hidden",name="policy_reflct_seq")
             div.sub_tit1_box
               h2.sub_tit1 정책반영결과
             // board_list_box 
@@ -24,7 +24,7 @@ block content
                   a.sch_btn(href="#" onclick="fnSearch(); return false;")
                     span.hide 검색하기
 
-              .s_table_outer 
+              .s_outer 
                 .s_table
                   //board시작
                   ul.row_board_list.police_vote_list

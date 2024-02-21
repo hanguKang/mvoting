@@ -14,20 +14,23 @@ header{
                     }
                     &:has( >.nav_list_dp2 ){position:relative; height: em(94px);
                         &.active{ 
-                            > .link {color:#fff;}
+                            > .link {}
                             .nav_list_dp2{
                                 display:block;
+                                li{
+                                    &.active{
+                                        a{text-decoration:underline; color:var_colors.$primary_color;}
+                                    }
+                                }
                             }
                         }
-                        .nav_list_dp2{
-                            position:absolute; top: em(94px); left:0; width:100%;
-                            display:none;
+                        .nav_list_dp2{$font-size:14px; font-size:$font-size; line-height:1.5; font-weight:600; display:none; box-sizing:border-box; position:absolute; top: em(62px,$font-size); right:0; padding:em(12px,$font-size) em(20px,$font-size); margin-bottom:em(4px, $font-size); width:em(107px,$font-size); border:1.5px solid var_colors.$primary_color; border-radius:em(24px,$font-size) 0 em(24px,$font-size) 0; background-color:#fff;
                         }
                     }
                     @each $idx in (1,2,3,4,5,6,7) {
                         &:nth-child(#{$idx}){ background: url( var.$imgurl_ico + "ico_header_"+$idx+".png") no-repeat 0 0/contain;
                             &:has(>.nav_list_dp2){
-                                &.active{background: url( var.$imgurl_ico + "ico_header_"+$idx+".png") no-repeat center 0/contain, linear-gradient(#fff, #fff em(24px), var_colors.$primary_color em(24px), var_colors.$primary_color);
+                                &.active{
                                 }
                             }
                         }

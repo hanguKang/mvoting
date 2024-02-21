@@ -1,9 +1,11 @@
 import { random } from "./util";
 //import { nav_ } from "./nav";
+
 import { Nav } from "./nav";
 import _ from "lodash";
 import $ from "jquery";
 import bootstrapMin from "bootstrap/dist/js/bootstrap.min";
+
 
 // const rOne = random(10);
 // const rTwo = random(20);
@@ -24,28 +26,102 @@ import bootstrapMin from "bootstrap/dist/js/bootstrap.min";
 $(function () {
   MVOTING_LAYOUT.init();
   //carousel
-  const carousel = new bootstrapMin.Carousel("#myCarousel");
+  if(document.querySelector("#myCarousel")){
+    const carousel = new bootstrapMin.Carousel("#myCarousel");
+  }
+  
   //modal
   modal();
   //nav
   doNav();
+
+  console.log(123456);
 });
 
 //모달
 const modal = () => {
-  const tsch_layer_popup = document.getElementById("tsch_layer_popup");
-  const tSchType2 = document.getElementById("tSchType2");
+  
+  
+  // 부트스트랩
+  // modal.addEventListener("shown.bs.modal", () => {
+  //   chbox.focus();
+  // });
+  
+  let focusedElementBeforeModal;
+  //모달창
+  const modal = document.getElementById("tsch_layer_popup");
+  //체크
+  const chbox = document.getElementById("tSchType2");
+  //모달 배경레이어
+  let modalOverlay = document.querySelector('.modal-overlay');
+  //버튼
+  let modalToggle = document.querySelector('.b-srch'); 
+  //닫기버튼
+  let modalClose;
+ 
+  modalToggle.addEventListener('click', openModal);
+  
+  
+  function closeModal() {
+    modal.style.display = 'none';
+    modalOverlay.style.display = 'none';
+    document.body.style.overflow = "auto";
+    focusedElementBeforeModal.focus();
+  }
 
-  tsch_layer_popup.addEventListener("shown.bs.modal", () => {
-    tSchType2.focus();
-  });
 
-  $("a.btn.head_common_btn.btn_detail_search.btn-primary").on(
-    "click",
-    function (e) {
-      e.preventDefault();
-    }
-  );
+  function openModal(e){
+    e.preventDefault();
+    modalClose =  document.querySelector('.layer_pop_close'); 
+    console.log(modalClose);
+    document.body.style.overflow = "hidden";
+    focusedElementBeforeModal = document.activeElement;
+    console.log('==============================');
+    console.dir(focusedElementBeforeModal);
+    modal.addEventListener('keydown', trapTabKey);// key를 누르고 있을때
+    modalOverlay.addEventListener('click', closeModal);
+    modalClose.addEventListener('click', closeModal);
+    let btn_srch = modal.querySelector('.b-srch');
+    btn_srch.addEventListener('click', closeModal);
+    let focusableElementsString = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]'; //포커스가 갈 수 있는 엘레먼트
+    let focusableElements = modal.querySelectorAll(focusableElementsString);
+    focusableElements = Array.prototype.slice.call(focusableElements);
+    let firstTabStop = focusableElements[0];
+    let lastTabStop = focusableElements[focusableElements.length - 1];
+    modal.style.display = 'block';
+    modalOverlay.style.display = 'block';
+    firstTabStop.focus();
+    function trapTabKey(e) {
+      // Check for TAB key press
+      if (e.keyCode === 9) { //탭키 
+
+        // SHIFT + TAB
+        if (e.shiftKey) { 
+          if (document.activeElement === firstTabStop) {
+          e.preventDefault();
+          lastTabStop.focus();
+          }
+
+        // TAB
+        } else {
+          if (document.activeElement === lastTabStop) {
+          e.preventDefault();
+          firstTabStop.focus();
+          }
+        }
+      }
+
+      // ESCAPE  esc키
+      if (e.keyCode === 27) {
+        closeModal();
+      }
+    }//trapTabKey End
+    
+
+  } 
+  
+
+  
 };
 //네비게이터
 const doNav = () => {
@@ -157,9 +233,9 @@ const MVOTING_LAYOUT = {
     let link = _link;
     let nxtElm = false;
     if(link.nextElementSibling) nxtElm = link.nextElementSibling;
-    document.querySelector(".menu_detail").classList.remove("open");
-    //jQuery(".menu_detail:not(.open)").css("display", "none");
-    document.querySelector(".Page.main>header").classList.add("act");
+      //document.querySelector(".menu_detail").classList.remove("open");
+      //jQuery(".menu_detail:not(.open)").css("display", "none");
+      //document.querySelector(".Page.main>header").classList.add("act");
     if (delay) {
       setTimeout(function () {
         //li:mouseenter 이벤트로 자식요소 a를 return  / open_menu_detail 할때는  a링크

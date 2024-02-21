@@ -11,8 +11,24 @@
     .basic_tab_con{
       .agree_box{
               // scroll_box 
-        .scroll_box.term_txt{
+        .scroll_box.term_txt{padding:em(64px) em(40px) em(48px) em(40px); 
+          .tit1{font-size: em(32px); font-weight:600; line-height:1.5; text-align:center; color:#000000;}
+          .step_list{
+            >li{
+              &:before{display:none;}
+              h2{ font-size:24px; font-weight:600; color:#26282C;}
+              p{}
+              >.num_list{
+                >li{
+                  >.num_list{
+                    >li{
 
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }
