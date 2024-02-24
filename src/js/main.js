@@ -22,6 +22,7 @@ import bootstrapMin from "bootstrap/dist/js/bootstrap.min";
 // document.body.appendChild(component());
 
 $(function () {
+  console.log('test');
   MVOTING_LAYOUT.init();
   //carousel
   const carousel = new bootstrapMin.Carousel("#myCarousel");
