@@ -1,21 +1,23 @@
+// ------------------- // footer 시작 ------------------- 
 footer#footer.footer
-    h2.hidden 마무리 내용
-    .container.clearfix
+    h2.hide 마무리 내용
+    .container
         .foot_txt_box
             p.txt0 서울특별시 Seoul Metropolitan Government
             p.txt1
+                span.each TEL 
+                    span.big 02.120
                 span.each 04524 서울특별시 중구 세종대로 110
-                span.each Tel.(02)120
                 
                 
         
         .footer_util_box
             .footer_util_box_1
-                ul.foot_util_menu
-                    li
-                        a(href="/mvoting/setting/mypage/help/help.do?index=0") 이용약관
+                ul.foot_util_menu                    
                     li
                         a.privacy_policy_text.p_p_txt(href="/mvoting/setting/mypage/help/help.do?index=1") 개인정보처리방침
-                p.txt2Seoul Metropolitan Government All rights reserved.
-            a( href="/common/images/common/wa_certification_2023.pdf" , target="_blank", title="WA 품질인증 마크, 웹와치(WebWatch) 2023.11.08 ~ 2024.11.07_새창열림")
-                img(src=imgurl+"/common/wa_mark2023.png", alt="WA 품질인증 마크, 웹와치(WebWatch) 2023.11.08 ~ 2024.11.07")
+                    li
+                        a(href="/mvoting/setting/mypage/help/help.do?index=0") 이용약관
+                p.foot_txt_box Metropolitan Government All rights reserved.
+            a.webaccess( href="/common/images/common/wa_certification_2023.pdf" , target="_blank", title="WA 품질인증 마크, 웹와치(WebWatch) 2023.11.08 ~ 2024.11.07_새창열림")
+                img(src=imgurl+"common/wa_mark2023.png", alt="WA 품질인증 마크, 웹와치(WebWatch) 2023.11.08 ~ 2024.11.07")

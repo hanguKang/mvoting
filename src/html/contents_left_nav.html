@@ -1,0 +1,58 @@
+<!-- commonLeft::Start -->
+<div class="common_left" style="min-height: 802px;">
+  <a href="/mvoting/voting/hotissue/selectPageListHotissue.do" class="lm_home_link" title="메인으로 이동">메인</a>
+<!-- common_left_menu html 은  jquery 를 통해  모바일 메뉴 로 복사된다-->
+<!-- 1차 메뉴 data-dept2="true" 가 붙는다 -->	
+<!-- 선택된메뉴의  1차 메뉴 2차메뉴 li 태그에 active가 붙는다 -->
+<!-- 현재 페이지에 해당되는 1차, 2차 메뉴 li태그에 'active' 삽입 -->
+  <!-- common_left_menu -->
+  <ul class="common_left_menu" id="common_menu_left">
+    <li class="">
+      <a href="#" data-dep2="true" title="하위항목 열기">투표하기</a>
+      <ul class="common_left_dep2" style="display: none;">
+        <li class="">
+          <a href="/mvoting/voting/hotissue/selectPageListHotissue.do" data-dep2="true">핫이슈</a>
+        </li>
+        <li class="">
+          <a href="/mvoting/voting/policyvote/selectPageListPolicyvote.do?policy_vote_ty=001" data-dep2="true">정책반영</a>
+        </li>
+        <li class="">
+          <a href="/mvoting/voting/policyvote/selectPageListPolicyvote.do?policy_vote_ty=002" data-dep2="true">정책참고</a>
+        </li>
+        <li class="">
+          <a href="/mvoting/voting/ourselves/selectPageListOurselves.do" data-dep2="true">우리끼리</a>
+        </li>
+      </ul>
+    </li>
+    <li class="">
+      <a href="#" data-dep2="true" title="하위항목 열기">내투표함</a>
+      <ul class="common_left_dep2" style="display: none;">
+        <li class="">
+          <a href="/mvoting/myvote/takepart/selectPageListTakepart.do" data-dep2="true">참여투표</a>
+        </li>
+        <li class="">
+          <a href="/mvoting/myvote/mymake/selectPageListMymake.do" data-dep2="true">만든투표</a>
+        </li>
+        <li class="">
+          <a href="/mvoting/myvote/acceptvote/selectPageListAcceptvote.do" data-dep2="true">받은투표</a>
+        </li>
+      </ul>
+    </li>
+    <li class=""><a href="/mvoting/policy/selectPageListPolicy.do" data-dep2="false">정책반영결과</a></li>
+    <li class="active"><a href="/mvoting/notice/selectPageListNotice.do" data-dep2="false">공지사항</a></li>
+    <li class="">
+      <a href="#" data-dep2="true" title="하위항목 열기">마이페이지</a>
+      <ul class="common_left_dep2" style="display: none;">
+        <li class="">
+          <a href="/mvoting/setting/mypage/indvsetting/set1.do" data-dep2="true">개인정보 설정</a>
+        </li>
+        <li class="">
+          <a href="/mvoting/setting/mypage/help/help.do" data-dep2="true">서비스안내</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <!-- // common_left_menu -->
+</div>
+<!-- // common_left -->
+<!--// commonLeft::End -->

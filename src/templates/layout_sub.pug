@@ -3,17 +3,19 @@ html(lang="ko")
     head
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        link(rel="stylesheet", href="css/style.css")
+        link(rel="stylesheet", href="../css/style.css")
         block styles 
         block scripts
         title Document
     body 
         include ../partials/sub_head
-        include ../partials/header 
+        .Page.wrapper(class=page)
+            include ../partials/header 
 
-        block content 
+            block content 
+            
+            include ../partials/banner
+            include ../partials/footer
 
-        include ../partials/footer
-
-    script(src="js/main.js")
-    script(src="js/test.js", type="module")
+        script(src="../js/main.js" defer  )
+        script(src="../js/test.js", type="module")
