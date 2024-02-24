@@ -1,0 +1,54 @@
+@use '../utiles/var';
+@use '../utiles/var_colors';
+@use '../config/mixin';
+
+.modal-overlay{
+  position: fixed; top: 0px; left: 0px; width: 100vw; height: 100vh;
+  z-index: 9999;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.layer_pop_box {
+  display:none;
+  position: fixed; top: 0px; left: 0px; width: 100vw; height: 100vh;
+  z-index: 9999;
+  overflow: auto;
+  padding: 100px 50px;
+  text-align: center;
+  .layer_pop_start{$font-size:16px; font-size:$font-size; line-height:1.5;
+    position:absolute; top:50%; @include mixin.pos_y_50; @include mixin.pos_x_50; width:100%; max-width:em(640px); height:em(430px); 
+    .layer_pop_content{padding:em(40px) em(32px) em(32px) em(32px);  background-color:#fff; @include mixin.pos_y_50;
+      .layer_pop_header{padding:0; margin-bottom:em(24px); border-bottom:0 none;
+        h2.sub_tit2{$font-size:24px; font-size:$font-size; font-weight:600;}
+      }
+      .layer_pop_body{background-color:var_colors.$bbsBg; padding:em(32px);
+        ul.tbl_style_list{
+          li{display: flex; justify-content: start; align-items: stretch; margin-bottom:em(24px);
+            .cell.left{flex:0 0 em(30px); margin-right:em(40px);
+              h3.tit{}
+            }
+            .cell.right{flex:1 1 auto; 
+              .chk_each_box{
+                text-align:left;
+                .chk_each{margin-right:em(20px); letter-spacing: -1px;
+                  input[type="checkbox"]{position:relative; width:em(18px); height:em(18px); vertical-align: middle; border-color:#AAB0B8;
+                    &:checked{
+                      &:before{ position:absolute; width:em(18px); height:em(18px); content: ""; background:#fff url(var.$imgurl_ico+'ico_checkbox.png') no-repeat 0 0/contain;}
+                    }
+                  }
+                }
+              }
+            }
+          }
+            
+        }
+        .tsch_input{width:em(528px); height:em(48px); padding-left:em(20px); }
+        .common_btn_box{margin-top:em(58px);
+          .b-srch.common_btn.sch.btn_search2{height:auto; line-height:1.5;}
+        }
+      }
+      .btn.layer_pop_close{position:absolute; right:em(32px); top:em(40px); width:em(32px); height:em(32px); background:url(var.$imgurl_ico + 'ico_btn_close_popup.png') no-repeat center/auto; border:0 none;}
+    }
+  }
+}

@@ -2,24 +2,39 @@
 //폰트
 //width, height, padding, margin ...등을 사용
 @use '../config/mixin';
-
+@use '../utiles/var_colors';
 
 // input
-$formHeight         : 30px;
+$formHeight         : 50px;
 // button
-$btnHeight          : $formHeight;
+$btnHeight          : calc($formHeight - 6px);
 //font
-$fontSet            : "맑은고딕","malgun gothic","AppleGothic","돋움","dotum",Helvetica,Arial,sans-serif;
-//"Nanum Gothic",
-//h1~h6
-$headingFont        : "Noto Sans","맑은고딕","malgun gothic";
+$fontSet            : 'pretendard, "맑은고딕","malgun gothic", AppleGothic, "돋움", dotum, Helvetica,Arial,sans-serif';
+$defaultfontsize    : 16px;
+ //h1~h6
+$headingFont        : 'pretendard, "맑은고딕","malgun gothic", sans-serif';
 
 $imgurl:'../img/common/';
-@for $i from 1 through 8 {
-  .card_bg_type_#{$i} { 
-    @include mixin.bg-card( 'url('+#{$imgurl}+'card-bg-'+#{$i}+".png)" )
-  }
+$imgurl_ico:'../img/ico/';
 
+
+
+.round-sm{
+	border-radius: 4px;
 }
+.round-rg{
+	border-radius: 6px;
+}
+.round-lg{
+	border-radius: 16px;
+}
+.round-xlg{
+	border-radius: 22px;
+}
+
+.round-xxlg{
+	border-radius: 32px;
+}
+
 
 

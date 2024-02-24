@@ -1,0 +1,176 @@
+extends ../templates/layout_sub
+
+block content
+    // original : header_old.html(주석 : header::Start )이 들어갈 자리
+    // contents 
+    .contents
+      // -- container --
+      .container.s_container
+        // original : contents_left_nav.html( 주석 : commonLeft::Start )이 들어갈 자리  
+        // common_right
+        #real_contents.common_right
+          form#aform.bbs_form(method="get" action="/mvoting/notice/selectPageListNotice.do")
+            input(type="hidden",name="policy_reflct_seq")
+            div.sub_tit1_box
+              h2.sub_tit1 정책반영결과
+            // board_list_box 
+            .board_list_box
+              .sch_bar
+                select#search.sch_slt( title="구분값 선택" name="sch_type")
+                  option(value="title" selected="selected") 제목
+                  option(value="cnts") 내용			
+                .sch_input 					
+                  input#sch_text.sch_input(type="text" name="sch_text" title="검색어 입력" placeholder="검색어를 입력해 주세요." value="")
+                  a.sch_btn(href="#" onclick="fnSearch(); return false;")
+                    span.hide 검색하기
+
+              .s_outer 
+                .s_table
+                  //board시작
+                  ul.row_board_list.police_vote_list
+                    li.item.round-rg
+                      .tbl_box
+                        .cell.left
+                          a.img_box(href="#" data-policy-reflct-seq="")
+                            img(src=imgurl+"20240215/policy_pic_1.png" alt="2023 제8회 서울우수한옥 올해의 공감한옥 투표")
+                        .cell.right
+                          h3.tit
+                            a(href="#" data-policy-reflct-seq="") 2023 제8회 서울우수한옥 올해의 공감한옥 투표
+                          p.txt 2023 제8회 서울우수한옥 올해의 공감한옥 투표
+                          .util_area
+                            ul.ico_info_list
+                              li.user
+                                span.hide 투표인원
+                                | 1649
+                              li.reply
+                                span.hide 댓글수
+                                | 2
+                              li.lookup
+                                span.hide 조회수
+                                | 16
+                            .result_go_box
+                              span.status_mark.reflect 반영
+                              //  span.status_mark.reflect 반영
+                                span.status_mark.reference 참조
+                              a.direct_link.round_sm(href="" onclick="event.stopPropagation();" title="2023 제8회 서울우수한옥 올해의 공감한옥 투표") 바로가기
+                    li.item.round-rg
+                      .tbl_box
+                        .cell.left
+                          a.img_box(href="#" data-policy-reflct-seq="")
+                            img(src=imgurl+"20240215/policy_pic_1.png" alt="2023 제8회 서울우수한옥 올해의 공감한옥 투표")
+                        .cell.right
+                          h3.tit
+                            a(href="#" data-policy-reflct-seq="") 2023 제8회 서울우수한옥 올해의 공감한옥 투표
+                          p.txt 2023 제8회 서울우수한옥 올해의 공감한옥 투표
+                          .util_area
+                            ul.ico_info_list
+                              li.user
+                                span.hide 투표인원
+                                | 1649
+                              li.reply
+                                span.hide 댓글수
+                                | 2
+                              li.lookup
+                                span.hide 조회수
+                                | 16
+                            .result_go_box
+                              span.status_mark.reflect 반영
+                              //  span.status_mark.reflect 반영
+                                span.status_mark.reference 참조
+                              a.direct_link.round_sm(href="" onclick="event.stopPropagation();" title="2023 제8회 서울우수한옥 올해의 공감한옥 투표") 바로가기
+                    li.item.round-rg
+                      .tbl_box
+                        .cell.left
+                          a.img_box(href="#" data-policy-reflct-seq="")
+                            img(src=imgurl+"20240215/policy_pic_1.png" alt="2023 제8회 서울우수한옥 올해의 공감한옥 투표")
+                        .cell.right
+                          h3.tit
+                            a(href="#" data-policy-reflct-seq="") 2023 제8회 서울우수한옥 올해의 공감한옥 투표
+                          p.txt 2023 제8회 서울우수한옥 올해의 공감한옥 투표
+                          .util_area
+                            ul.ico_info_list
+                              li.user
+                                span.hide 투표인원
+                                | 1649
+                              li.reply
+                                span.hide 댓글수
+                                | 2
+                              li.lookup
+                                span.hide 조회수
+                                | 16
+                            .result_go_box
+                              span.status_mark.reflect 반영
+                              //  span.status_mark.reflect 반영
+                                span.status_mark.reference 참조
+                              a.direct_link.round_sm(href="" onclick="event.stopPropagation();" title="2023 제8회 서울우수한옥 올해의 공감한옥 투표") 바로가기
+                    li.item.round-rg
+                      .tbl_box
+                        .cell.left
+                          a.img_box(href="#" data-policy-reflct-seq="")
+                            img(src=imgurl+"20240215/policy_pic_1.png" alt="2023 제8회 서울우수한옥 올해의 공감한옥 투표")
+                        .cell.right
+                          h3.tit
+                            a(href="#" data-policy-reflct-seq="") 2023 제8회 서울우수한옥 올해의 공감한옥 투표
+                          p.txt 2023 제8회 서울우수한옥 올해의 공감한옥 투표
+                          .util_area
+                            ul.ico_info_list
+                              li.user
+                                span.hide 투표인원
+                                | 1649
+                              li.reply
+                                span.hide 댓글수
+                                | 2
+                              li.lookup
+                                span.hide 조회수
+                                | 16
+                            .result_go_box
+                              span.status_mark.reference 참고
+                              //  span.status_mark.reflect 반영
+                                span.status_mark.reference 참조
+                              a.direct_link.round_sm(href="" onclick="event.stopPropagation();" title="2023 제8회 서울우수한옥 올해의 공감한옥 투표") 바로가기
+                    li.item.round-rg
+                      .tbl_box
+                        .cell.left
+                          a.img_box(href="#" data-policy-reflct-seq="")
+                            img(src=imgurl+"20240215/policy_pic_1.png" alt="2023 제8회 서울우수한옥 올해의 공감한옥 투표")
+                        .cell.right
+                          h3.tit
+                            a(href="#" data-policy-reflct-seq="") 2023 제8회 서울우수한옥 올해의 공감한옥 투표
+                          p.txt 2023 제8회 서울우수한옥 올해의 공감한옥 투표
+                          .util_area
+                            ul.ico_info_list
+                              li.user
+                                span.hide 투표인원
+                                | 1649
+                              li.reply
+                                span.hide 댓글수
+                                | 2
+                              li.lookup
+                                span.hide 조회수
+                                | 16
+                            .result_go_box
+                              span.status_mark.reference 일부
+                              //  span.status_mark.reflect 반영
+                                span.status_mark.reference 참조
+                              a.direct_link.round_sm(href="" onclick="event.stopPropagation();" title="2023 제8회 서울우수한옥 올해의 공감한옥 투표") 바로가기 
+                // // .s_table End
+                // pagination 
+                .pagination
+                  a.page_arrow.l2.page_item(href="#", onclick="fnGoPage('1'); return false;")
+                    span.hide 처음 페이지로 이동
+                  a.page_arrow.l1.page_item(href="#", onclick="return false;")
+                    span.hide 이전 5페이지로 이동
+                  a.page_item.active(href="#", onclick="fnGoPage('1'); return false;") 1 
+                  a.page_item(href="#", onclick="fnGoPage('2'); return false;") 2
+                  a.page_item(href="#", onclick="fnGoPage('3'); return false;") 3
+                  a.page_arrow.r1.page_item(href="#", onclick="return false;") 
+                    span.hide 다음 5페이지로 이동
+                  a.page_arrow.r2.page_item(href="#", onclick="fnGoPage('3'); return false;")
+                    span.hide 마지막 페이지로 이동
+                  input#currentPage(type="hidden", name="currentPage", value="1")
+                // //.pagination End
+              // //.s_table_outer End
+            // board_list_box End
+          // // common_right End 
+        // // container  End 
+      // contents

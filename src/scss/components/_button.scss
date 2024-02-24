@@ -1,21 +1,23 @@
+@use '../utiles/var';
+
 $btn:"[class^=b-]";
 #{$btn}{
 	text-indent:0;
 	display:inline-block;
-	min-height:$formHeight;
-	padding: ($formHeight - 2 - $defaultfontsize) / 2 10px;
+	height: em(var.$btnHeight);
+	padding: calc(( $btnHeight - $defaultfontsize ) / 4) 12px;
 	font-size:$defaultfontsize;
-	line-height:1;
+	line-height: em(var.$btnHeight);
 	text-align:center;
 	color:#fff;
 	background-color:$btnbgcolor;
 	border:none;
 	border-radius:0;
 	vertical-align:middle;
-	@include breakpoint($md){
-		min-width:88px;
-		// padding: ($formHeight - 2 - $defaultfontsize) / 2 0;
-	}
+	// @include breakpoint($md){
+	// 	min-width:88px;
+	// 	// padding: ($formHeight - 2 - $defaultfontsize) / 2 0;
+	// }
 	&:hover,
 	&:focus{
 		text-decoration:underline;
@@ -26,25 +28,24 @@ $btn:"[class^=b-]";
 		// font-weight:300;
 	}
 	&.lg{
-		padding:12px 30px;
+		padding:8px 16px;
+		line-height: em(var.$btnHeight - 16px ) //패딩 상하를 뺌
 		// font-size:18px;
 	}
 	&.sm{
 		padding:5px;
-		min-height:inherit;
+		line-height: em(var.$btnHeight - 10px ) //패딩 상하를 뺌
 	}
 	&.green{
 		background-color:#22b24c !important;
 	}
 	&.w{
-		@include breakpoint($md){
-			width:140px;
-		}
+		// @include breakpoint($md){
+		// 	width:140px;
+		// }
 	}
 }
-.round-sm{
-	border-radius: 3px;
-}
+
 
 #{$btn}.t{padding-left:5px;padding-right:5px;min-width:0;border-radius:5px;white-space:nowrap;}
 #{$btn}.b-appcancel{background-color:#0059a9;}
@@ -164,10 +165,10 @@ $btn:"[class^=b-]";
 		margin-bottom:-10px;
 	}
 	
-	@include breakpoint($md){
-		padding-left:15px;
-		padding-right:15px;
-	}
+	// @include breakpoint($md){
+	// 	padding-left:15px;
+	// 	padding-right:15px;
+	// }
 	&:after {
 		content: '';
 		font-family:'FontAwesome';
@@ -175,10 +176,10 @@ $btn:"[class^=b-]";
 		margin-left:5px;
 	}
 	&.sm{
-		@include breakpoint($md){
-			padding-left:5px;
-			padding-right:5px;
-		}
+		// @include breakpoint($md){
+		// 	padding-left:5px;
+		// 	padding-right:5px;
+		// }
 	}
 	.table &{
 		min-height: inherit;
@@ -192,10 +193,10 @@ $btn:"[class^=b-]";
 		padding-right:10px;
 		border:1px solid $bdcolor;
 		color:#000;
-	@include breakpoint($md){
-		padding-left:29px;
-		padding-right:29px;
-	}
+	// @include breakpoint($md){
+	// 	padding-left:29px;
+	// 	padding-right:29px;
+	// }
 	&:after {
 		content: '';
 		font-family:'LineAwesome';
@@ -240,10 +241,10 @@ $btn:"[class^=b-]";
 	p>&{
 		margin-top:-10px;
 		margin-bottom:-10px;
-		@include breakpoint($sm){ 
-			margin-top: 0;
-			margin-bottom: 0;
-		}
+		// @include breakpoint($sm){ 
+		// 	margin-top: 0;
+		// 	margin-bottom: 0;
+		// }
 	}
 }
 i#{$btn}.b-sitego2{padding:0;min-height:inherit;}

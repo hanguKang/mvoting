@@ -1,0 +1,181 @@
+@use '../utiles/var_colors';
+@use '../utiles/var';
+@use '../config/mixin';
+
+.container{$font-size:1rem; font-size:1rem; line-height:1.5;
+  .container_wrap{
+    .sub_tit1_box{display:flex; justify-content: center; align-items: center; height: em(83px); border-bottom:1px solid var_colors.$bdcolor;
+      .sub_tit1{ 
+        .btn_help{
+          position: relative; left:em(-6px);
+          width: em(32px);
+          height: em(32px);
+          border-radius: em(16px);
+          line-height: em(32px);
+          z-index: 2;
+          vertical-align: middle;
+          z-index: 3;
+          background:var_colors.$primary_bg url(var.$imgurl_ico+'ico_exclamation_mark.png') no-repeat 50% 50%/auto;
+          .help_box{
+            position: absolute;
+            left: calc(100% + 5px);
+            top: -100%;
+            width: 350px;
+            border: 1px solid var_colors.$bdcolor;
+            padding: 8px 10px;
+            font-size: 14px;
+            line-height: 1.4;
+            background-color: #fff;
+            text-align: left;
+            text-align: justify;
+            box-shadow: 6px 6px 11px rgba(0,152,158,0.26);
+            color: #333;
+            border-radius: 5px;
+          }
+        }
+      }
+    }
+    #main-vote-box{padding-bottom:em(80px); background-color:var_colors.$page_bg; 
+      .tab_content{ margin:0 auto; max-width:em(1400px);
+        .vote_list{display:flex; flex-wrap:wrap; justify-content: space-between; align-items: start;
+          .item{position:relative; flex:0 0 em(680px); display:flex; justify-content: start; align-items: stretch; margin-top:em(40px); height:em(272px); background-color:#fff;
+            .img_box{position:relative; display:block; width:em(320px); height:em(272px); 
+              .inner{flex:0 0 em(320px);height:em(272px);
+                @for $idx from 1 through 6 {
+                  .card_bg_type_#{$idx}{ padding:em(24px); height:em(272px);
+                    background:url(var.$imgurl+'card-bg-'+$idx+'.png') no-repeat 0 0/auto;
+                  }
+                }
+                span{ $font-size:14px; font-size:em($font-size); line-height:1.5; padding:em(6px, $font-size) em(12px, $font-size); height:auto; letter-spacing:-1px; margin-right:em(8px, $font-size ); 
+                  &.btn-blue { }
+                  &.btn-purple{background-color:var_colors.$btn_bg_purple;}
+                  &.btn-red { background:var_colors.$btn_bg_red;}
+                }
+              }//innder End
+              .inner_layer{display:none; position:absolute; left:0; top:0; width: 100%; height:100%; justify-content: center; align-items: center; background-color:rgba(0,0,0,0.5);color:#fff; $font-size:20px; font-size:em($font-size); line-height:1.5; font-weight:400;  border-radius:em(16px, $font-size) 0 0 em(16px, $font-size);
+                &.type_finish{display:flex; }
+              }
+              
+            }
+            .card_txt{display:flex; flex-direction:column; justify-content: space-between; align-items: start; box-sizing:border-box; padding:em(24px) em(32px); width:em(360px);height:em(272px);
+              .card_top{display:flex; flex-direction:column; max-width:100%; justify-content: space-between; align-items: stretch; height:em(172px);
+                .txt_box{
+                  .tit{font-weight:600; line-height:1.4; margin-bottom:em(12px); color:var_colors.$primary_color; @include mixin.ellipsis; }
+                  .txt{
+                    a{
+                      $font-size:18px; font-size:$font-size; font-weight:600; max-height:em( calc( $font-size*1.5*2), $font-size ); @include mixin.ellipsis(2); margin-bottom:em(16px, $font-size);
+                    }
+                  }
+                  .date_bx{line-height:1.5;
+                    .date{
+                      .day{}
+                    }
+                  }
+                }
+                .util_area {display:flex; justify-content: space-between; align-items: center; margin-top:auto; 
+                  .ico_info_list{display:flex; justify-content: start; align-items: center;
+                    .board_info{margin-right:em(16px); padding-left:em(22px);
+                      &.usr_cnt{background:url(var.$imgurl_ico+'ico_bbs_user.png') no-repeat 0 50%/auto;}
+                      &.reply{background:url(var.$imgurl_ico+'ico_bbs_reply.png') no-repeat 0 50%/auto;}
+                      &.lookup{background:url(var.$imgurl_ico+'ico_bbs_cnt.png') no-repeat 0 50%/auto;}
+                    }
+                  }
+                  .fl_box{
+                    .share_btn.btn_share{width: em(32px);height: em(32px);background: url(var.$imgurl_ico+'ico_sns.png') no-repeat 0 0/auto;}
+                  }
+                }
+              }// .card_top End
+              .hash_area{
+                .vote_hash_mark{$font-size:14px; font-size:$font-size; line-height:1.5;  display: inline-block; padding:em(4px, $font-size) em(8px, $font-size) ; background-color:var_colors.$btn_bg_gray;
+                  max-width: em(120px, $font-size);
+                  margin-right: em(8px, $font-size);
+                  @include mixin.ellipsis;
+                }
+              }
+            } // .card_txt End
+            // card 버튼들
+            .over_txt_box{flex:1 0 auto; display: flex; flex-direction:column; justify-content: space-around; align-items:stretch; padding:em(24px);
+              .inner{ display:flex; justify-content: center; align-items: center; color:#fff; width:em(288px); height:em(104px);
+                &.vs_left{background-color:var_colors.$primary_bg;}
+                &.vs_right{background-color:var_colors.$btn_bg_dark_gray;}
+              }
+            }
+            //sns 팝업
+            .share_layer_box.share_box{ display:none; position:absolute; z-index: 5; left:0; top:0; padding: em(24px) em(32px) ;width:100%; height:100%; background-color:rgba(0,0,0,0.4);text-align: center;
+              &:after{
+                content: '';
+                display: inline-block;
+                height: 100%;
+                vertical-align: middle;
+              }
+              .inner{display: inline-block;
+                position: relative;
+                width: 100%; height:100%;
+                vertical-align: middle;
+                &:after{
+                  content: '';
+                  display: inline-block;
+                  height: 100%;
+                  vertical-align: middle;
+                }
+                .list.m_sns_share{position:absolute; padding:em(12px) em(24px); right:em(64px); bottom: em(calc($font-size *1.5) + calc($font-size*1.4)); background-color:#ffffff;
+                  &.left{right:auto; left:em(50px); }
+                  .sns_item{display:inline-block; vertical-align: middle; width:em(32px); height:em(32px);
+                    a{ display:block; width:em(32px); height:em(32px);}
+                    &:after{
+                      content: '';
+                      display: inline-block;
+                      height: 100%;
+                      vertical-align: middle;
+                    }
+                    &.btn_facebook{background:url(var.$imgurl_ico+'ico_share_facebook.png') no-repeat 50% 0/auto;
+                      a{}
+                    }
+                    &.twit.btn_twitter{background:url(var.$imgurl_ico+'ico_share_x.png') no-repeat 50% 0/auto;
+                      a{}
+                    }
+                    &.qr{background:url(var.$imgurl_ico+'ico_share_qr.png') no-repeat 50% 0/auto;
+                      a{}
+                    }
+                    &.url.btn_urlcopy{background:url(var.$imgurl_ico+'ico_share_url.png') no-repeat 50% 0/auto;
+                      a{}
+                    }
+                  }
+                    
+                }
+                button.share__btn{position:absolute; right:0; bottom: em(calc($font-size *1.5) + calc($font-size*1.7)); width:em(48px); height:em(48px); background:url($imgurl_ico+'ico_share_btn_on.png') no-repeat 0 0/auto; 
+                  &.left{right:auto; left:em(260px);}
+                }
+                button.share_layer_close{position:absolute; top:0; right: 0; width:em(22px); height:em(22px); background:url(var.$imgurl_ico+'ico_btn_close.png') no-repeat 0 0/contain; }
+              
+              }
+            }
+          }
+        }// .vote_list End
+        .common_btn_box.ta_c{margin-top: em(48px); height: em(88px); background-color:#fff; text-align:center;
+          &:after{
+            content: '';
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+          }
+          .common_btn.more.btn_more{display: inline-block; vertical-align:middle; width:98%; height:98%; line-height: em(88px); }
+          .common_btn.regist.v_regist{
+            display: none;
+            position: fixed;
+            right: 15px;
+            bottom: 40px;
+            z-index: 10;
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            border-radius: 50%;
+            font-size: 18px;
+          }
+        }
+      }// .tab_contetn End
+      
+    }
+  }//container_wrap End
+}//container End
+
