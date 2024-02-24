@@ -72,10 +72,10 @@ const MVOTING_LAYOUT = {
     // nav > ul > li
     document
       .querySelector(".Page .main_menu>nav>ul>li")
-      .mouseenter(function () {
+      .mouseenter(function (e) {
         //console.log('123456');
         let delay = true;
-        MVOTING_LAYOUT.hover_link = $(this).children("a");
+        MVOTING_LAYOUT.hover_link = e.currentTarget.children.filter( eml => if(eml.tagName == 'A'));
         MVOTING_LAYOUT.menu_detail_idx = $(MVOTING_LAYOUT.hover_link)
           .parent("li")
           .index();
