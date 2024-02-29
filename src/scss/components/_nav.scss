@@ -31,6 +31,7 @@ header{
                         &:nth-child(#{$idx}){ background: url( var.$imgurl_ico + "ico_header_"+$idx+".png") no-repeat 0 0/contain;
                             &:has(>.nav_list_dp2){
                                 &.active{
+                                    background: url( var.$imgurl_ico + "ico_header_"+$idx+"_on.png") no-repeat 0 0/contain;
                                 }
                             }
                         }

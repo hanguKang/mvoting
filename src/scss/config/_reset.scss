@@ -48,6 +48,7 @@ body{
 .clear {clear:both;}
 .br {display:block;}
 .sft_font{transform: rotate(-0.03deg);}
+.ico{display: inline-block; vertical-align: middle;}
 table {display:table;width:100%;border-collapse:collapse;border-spacing:0;table-layout:fixed;}
 
 .term_txt{$font-size:16px;
@@ -56,8 +57,8 @@ table {display:table;width:100%;border-collapse:collapse;border-spacing:0;table-
   ol {list-style-type: decimal;}
   li::marker {font-weight: bold;} //목록의 맨 앞에 점이나 동그라미 
   ol {counter-reset: list 0;
-    >li{margin-top:$font-size;
-      &:before {content: counter(list, decimal) ". ";counter-increment: list;} 
+    >li{margin-top:$font-size; position:relative;
+      &:before {position:absolute; left:-20px; top:0; content: counter(list, decimal) ". ";counter-increment: list;} 
     }
   }
   

@@ -56,7 +56,7 @@
                 text-align: center;
                 border-collapse: collapse;
                 table-layout: fixed;
-                .thd{background-color:#5e7182;height:em(78px);
+                .thd{background-color: var_colors.$viewbdtopcolor;height:em(78px);
                   .thd_tr{$font-size: 20px; font-size:em(20px); font-weight:600;
                     th{color:#ffffff;}
                     >:first-child{ border-radius:em(8px, $font-size) 0 0 em(8px, $font-size); }
