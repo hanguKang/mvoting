@@ -3,13 +3,17 @@
   border-radius: 16px;
   box-shadow: box-shadow.$box-shadow-card;
 }
+@mixin bgSet($repeat:no-repeat,$position:center, $size:auto ){
+  background-repeat:$repeat;  background-position:$position; background-size:$size; 
+}
 @mixin afterBefore($aftBef : ('_width':auto, '_height':auto,'_border':0 none, '_border-radius':50%, '_padding':0, '_bg-color':#ccc, '_left':auto,'_right':auto )){
+  content:'';
   position:absolute; 
   top:50%; 
   transform:translateY(-50%);
   left:map-get($map: $aftBef, $key:'_left');
   right:map-get($map: $aftBef, $key:'_right');
-  display:block; content:''; 
+  display:block; 
   width:map-get($map: $aftBef, $key:'_width'); 
   height:map-get($map:$aftBef, $key:'_height'); 
   border:map-get($map: $aftBef, $key:'_border'); 

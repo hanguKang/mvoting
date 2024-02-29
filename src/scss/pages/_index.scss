@@ -1,10 +1,11 @@
 @use '../utiles/var_colors';
 @use '../utiles/var';
 @use '../config/mixin';
+@use 'sass:color';
 
 .container{$font-size:1rem; font-size:1rem; line-height:1.5;
   .container_wrap{
-    .sub_tit1_box{display:flex; justify-content: center; align-items: center; height: em(83px); border-bottom:1px solid var_colors.$bdcolor;
+    .sub_tit1_box{position:relative; display:flex; justify-content: center; align-items: stretch; margin:0 auto; height: em(83px); border-bottom:1px solid var_colors.$bdcolor;
       .sub_tit1{ 
         .btn_help{
           position: relative; left:em(-6px);
@@ -35,24 +36,58 @@
         }
       }
     }
+    .common_btn_box.ta_c{margin-top:em(20px); margin-bottom: em(80px); height: em(88px); background-color:#fff; text-align:center;
+      &:after{
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+      } 
+      .common_btn.more{display:inline-block; $font-size:20px; font-size: $font-size; font-weight:600; display: inline-block; vertical-align:middle; width:98%; height:98%; line-height: em(88px, $font-size); 
+        &:before{content:''; display: inline-block; vertical-align: middle; height:100%;}
+        .ico{
+          &.plus{display: inline-block; width:em(12px); height:(12px); @include mixin.bgSet; background-image:url(var.$imgurl_ico+'ico_more.png'); vertical-align:middle;}
+        }
+        span{vertical-align: middle;}      
+      }
+      .common_btn.regist.v_regist{$font-size:20px; font-size: $font-size;  font-weight:600;
+        display: none;
+        position: fixed;
+        right: em(15px, $font-size);
+        bottom: em(40px, $font-size);
+        z-index: 10;
+        width: em(80px, $font-size);
+        height: em(80px, $font-size);
+        line-height: em(80px, $font-size);
+        border-radius: 50%;
+      }
+    }
     #main-vote-box{padding-bottom:em(80px); background-color:var_colors.$page_bg; 
-      .tab_content{ margin:0 auto; max-width:em(1400px);
+      .tab_content{ margin:0 auto; padding-top:em(35px); max-width:em(1400px);
+        .total_sch_about_txt{$font-size:20px; font-size:$font-size; text-align:center; padding:em(24px, $font-size) 0; border:2px solid var_colors.$primary_color; background-color:#fff;
+          .keyword{color: var_colors.$primary_color;}
+        }
+        .total_sch_tit{ 
+          $font-size:24px; line-height:1.5; font-weight:500;
+          font-size: $font-size;  
+          margin: em(40px, $font-size) 0 em(28px, $font-size); 
+          color:var_colors.$primary_color; 
+          .num{color:#000;}
+        }
         .vote_list{display:flex; flex-wrap:wrap; justify-content: space-between; align-items: start;
-          .item{position:relative; flex:0 0 em(680px); display:flex; justify-content: start; align-items: stretch; margin-top:em(40px); height:em(272px); background-color:#fff;
+          .item{position:relative; flex:0 0 em(680px); display:flex; justify-content: start; align-items: stretch; margin-bottom:em(40px); height:em(272px); background-color:#fff;
             .img_box{position:relative; display:block; width:em(320px); height:em(272px); 
-              .inner{flex:0 0 em(320px);height:em(272px);
-                @for $idx from 1 through 6 {
-                  .card_bg_type_#{$idx}{ padding:em(24px); height:em(272px);
-                    background:url(var.$imgurl+'card-bg-'+$idx+'.png') no-repeat 0 0/auto;
-                  }
+              .inner{flex:0 0 em(320px);height:em(272px); overflow:hidden;
+                .card_img {width:100%; height:auto;}
+                .mark_area{position:absolute; left:0; top:0; z-index:1; padding:em(24px); height:em(272px);
                 }
-                span{ $font-size:14px; font-size:em($font-size); line-height:1.5; padding:em(6px, $font-size) em(12px, $font-size); height:auto; letter-spacing:-1px; margin-right:em(8px, $font-size ); 
-                  &.btn-blue { }
-                  &.btn-purple{background-color:var_colors.$btn_bg_purple;}
-                  &.btn-red { background:var_colors.$btn_bg_red;}
-                }
+                // @for $idx from 1 through 6 {
+                //   .card_bg_type_#{$idx}{ padding:em(24px); height:em(272px);
+                //     background:url(var.$imgurl+'card-bg-'+$idx+'.png') no-repeat 0 0/auto;
+                //   }
+                // }
               }//innder End
-              .inner_layer{display:none; position:absolute; left:0; top:0; width: 100%; height:100%; justify-content: center; align-items: center; background-color:rgba(0,0,0,0.5);color:#fff; $font-size:20px; font-size:em($font-size); line-height:1.5; font-weight:400;  border-radius:em(16px, $font-size) 0 0 em(16px, $font-size);
+              .inner_layer{display:none; position:absolute; z-index:10; left:0; top:0; width: 100%; height:100%; justify-content: center; align-items: center; background-color:rgba(0,0,0,0.5);color:#fff; $font-size:20px; font-size:em($font-size); line-height:1.5; font-weight:400;  border-radius:em(16px, $font-size) 0 0 em(16px, $font-size);
                 &.type_finish{display:flex; }
               }
               
@@ -66,9 +101,11 @@
                       $font-size:18px; font-size:$font-size; font-weight:600; max-height:em( calc( $font-size*1.5*2), $font-size ); @include mixin.ellipsis(2); margin-bottom:em(16px, $font-size);
                     }
                   }
-                  .date_bx{line-height:1.5;
+                  .date_box{line-height:1.5;
                     .date{
-                      .day{}
+                      .dday{
+                        &.done{color:var_colors.$color_orange;}
+                      }
                     }
                   }
                 }
@@ -91,13 +128,47 @@
                   margin-right: em(8px, $font-size);
                   @include mixin.ellipsis;
                 }
+                &.hash_yes_no{
+                  .vote_hash_mark{background-color:color.adjust(#0047EB, $lightness: 10%); color:#fff;}
+                }
               }
             } // .card_txt End
-            // card 버튼들
-            .over_txt_box{flex:1 0 auto; display: flex; flex-direction:column; justify-content: space-around; align-items:stretch; padding:em(24px);
-              .inner{ display:flex; justify-content: center; align-items: center; color:#fff; width:em(288px); height:em(104px);
+            // card 내부 큰 버튼들 
+            .over_txt_box{flex:1 0 auto; display: flex; flex-direction:column; justify-content: space-around; align-items:stretch; position:relative; padding:em(24px);
+              .inner{ overflow:hidden; position:relative; display:flex; justify-content: center; align-items: center; color:#fff; width:em(288px); height:em(104px); background-color:var_colors.$color_blue; background-repeat: no-repeat; background-position: center center; background-size:auto;
+                &:after{content:''; position:absolute; left:0; top:0; width:100%; height:100%; background-color:rgba(0,0,0,0.5); 
+                }
+                &:hover:after{
+                  background-color:rgba(0,0,0,0);
+                }
+                .abs{position:absolute; z-index:1100; }
                 &.vs_left{background-color:var_colors.$primary_bg;}
                 &.vs_right{background-color:var_colors.$btn_bg_dark_gray;}
+              }
+              .ico_vs{ @include mixin.pos_x_50; z-index:1000; width:em(36px); top:50%; transform:translateX(-50%) translateY(-50%); height:em(36px); background:url(var.$imgurl_ico+'ico_vs.png') no-repeat 0 0/auto; }
+            }
+            // card 내부 큰 버튼들 배경 이미지 변경
+            &.type_yes{
+              .over_txt_box{
+                .inner{
+                  &.vs_left{}
+                  &.vs_right{}
+                }
+              }
+            }
+            &.type_interest{
+              .over_txt_box{
+                .inner{
+                  &.vs_left{}
+                  &.vs_right{}
+                }
+              }
+            }
+            &.type_complex{
+              .over_txt_box{
+                .inner{
+
+                }
               }
             }
             //sns 팝업
@@ -152,26 +223,9 @@
             }
           }
         }// .vote_list End
-        .common_btn_box.ta_c{margin-top: em(48px); height: em(88px); background-color:#fff; text-align:center;
-          &:after{
-            content: '';
-            display: inline-block;
-            height: 100%;
-            vertical-align: middle;
-          }
-          .common_btn.more.btn_more{display: inline-block; vertical-align:middle; width:98%; height:98%; line-height: em(88px); }
-          .common_btn.regist.v_regist{
-            display: none;
-            position: fixed;
-            right: 15px;
-            bottom: 40px;
-            z-index: 10;
-            width: 80px;
-            height: 80px;
-            line-height: 80px;
-            border-radius: 50%;
-            font-size: 18px;
-          }
+        //투표 없음
+        .vote_none{text-align: center;
+          p{margin:em(40px) 0 em(25px) 0;}
         }
       }// .tab_contetn End
       

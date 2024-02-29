@@ -33,8 +33,8 @@ const routes = {
     watch: "src/**/*.pug",
   },
   img: {
-    src: "src/img/**/*",
-    dest: "build/img",
+    src: "src/images/**/*",
+    dest: "build/images",
   },
   scss: {
     src: "src/scss/style.scss",
@@ -164,7 +164,7 @@ const styles = () =>
         browsers: ["last 2 versions"],
       })
     )
-    .pipe(minifyCss())
+    //.pipe(minifyCss())    
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(routes.scss.dest));
 

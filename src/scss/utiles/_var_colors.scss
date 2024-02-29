@@ -11,7 +11,7 @@ $cellhovercolor		: #f4f4f4;
 
 // board view color
 $viewbdColor    : #dddddd;
-$viewbdtopcolor : #494b50;
+$viewbdtopcolor : #5e7182;
 $viewheadBgcolor : #f4f4f4;
 $viewheadcolor : #333333; 
 
@@ -20,7 +20,7 @@ $color_black        : #000;
 $color_white        : #fff;
 $color_deepgray     : #333;
 $color_gray         : #6f7680;
-$color_orange       : #e73100;
+$color_orange       : #d62e00;
 $color_blue         : $primary_color;
 $color_cobalt       : #02728D;
 $color_red          : #c10101;
@@ -36,6 +36,8 @@ $sitecolor : $primary_color;
 $color_default: #ffffff;
 $bbsBg : #F7F7F8;
 $btn_tab_color: #26282C;
+
+$input_bg : #EBEEF0;
 
 /* font color */
 .fc_black    {color : $color_black}

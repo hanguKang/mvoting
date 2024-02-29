@@ -1,0 +1,356 @@
+#main-vote-box.board_view
+  .srch_list_wrap.tab_content
+    // board_view_top
+    .view_box_wrp.round-lg.box-shadow-card
+      .board_view_top
+        .mark_area
+          .each
+            span.vote_type_mark.popular
+              span.b-sm.ico.btn-blue.round-xlg 인기투표
+            span.vote_type_mark.book
+              span.b-sm.ico.btn-purple.round-xlg 정책참고
+          .each
+        .board_view_top_up
+          h3.tit.title_vote 서울시보건환경연구원 3대 주요뉴스 투표하고 커피쿠폰 받아가세요!
+          ul.sns_share_util
+            li.sns_share_util_item
+              a.btn_facebook.btn_sns(href="#", title="새창열림")
+                span.hide 페이스북으로 공유하기
+            li.twit.sns_share_util_item
+              a.btn_twitter.btn_sns(href="#", title="새창열림")
+                span.hide 트위터로 공유하기
+            li.qr.sns_share_util_item
+              a.btn_qr.btn_sns(href="#", data-layeropen="qr", data-vote-no="")
+                span.hide QR코드로 공유하기
+            li.url.sns_share_util_item
+              a.btn_urlcopy.btn_sns(href="#", data-vote-no="")
+                span.hide URL 복사하기
+        .board_view_top_down
+          ul.info_list
+            li.info_list_item
+              span.label 작성자
+              .info_data 서울시보건환경연구원
+            li.info_list_item
+              span.label 투표 기간
+              .info_data
+                span.date 2024.02.07 ~ 2024.02.23
+                span.dday (D-2)
+          .count_area
+            span.round_mark.vote_cnt
+              span.ico 
+              | 투표 수
+              span.num 1,679
+            span.round_mark.reply
+              span.ico 
+              | 댓글 수
+              span.num 4
+        //  // board_view_top End
+      // board_view_con
+      .board_view_con
+        // board_view_util
+        //-
+          .board_view_util
+            //  각 'simple', 'link' 태그 안의 mark가 1개도 없을 경우 각 'simple', 'link' 태그 삭제 (mark 만 삭제 x) 
+            .hash_area
+            .right 
+              .share_area
+                button.sns_share_util_btn.btn_v_share(type="button")
+                  span.hide SNS 공유 유틸창 
+                    span.acc_txt 열기
+        // vote_detail 
+        // 상세 내용 
+        .vote_detail
+          // 이미지 슬라이드 > 기존 selectVoeDjsp
+              div(data-focus-prev="focus01-close" data-focus-next="focus01-owl-prev" data-focus="focus01")
+          // 이미지 하나인 경우 메인이미지 
+            <div class="top_img_box">
+              <a href="#" id="main_image_pop" data-vote-no="85039">
+                <img src="/upload/vote/img/20240124/1706086572208GGYYXJQTIP6GZ6PQ2901YPOGQ.jpg" alt="서울형 육아휴직 장려금 사업 참여자 설문조사">
+              </a>
+            </div>
+          // editor_view_box 
+          div(data-focus-prev="focus01-close", data-focus-next="focus01-owl-prev", data-focus="focus01")
+          .editor_view_box.vote_point_box
+            h4.sub_tit3 투표취지
+            h5.sub_tit4 서울시보건환경연구원에서 한 해동안 수행한 연구성과 및 업무실적 9개 중 3개를 골라주세요!
+            .editor_view.text_point 
+              p.txt_line 서울시보건환경연구원은 깨끗하고 쾌적한 삶의 질 향상을 위해 보건과 환경분야의 연구검사를 수행하고 있습니다. 
+              p.txt_line 안전한 환경 조성을 위해 연구원에서 진행한 다양한 업무 중 시민 여러분께서 연구원의 주요 뉴스를 직접 골라주세요.
+              p.txt_line 참여하신 분 중 20분을 추첨하여 커피 음료 상품권을 드립니다.
+              //질문작성자 정보
+              .editor_view_info 
+                ul.editor_view_info_list 
+                  li.editor_view_info_item 참여내용 : 연구원의 9개의 주요 뉴스 중 3개의 주요 뉴스에 투표해주세요
+                  li.editor_view_info_item 참여기간 : 2024. 2. 7.(수) ~ 2.23(금)
+                  li.editor_view_info_item 이벤트 경품 : 커피쿠폰 20매
+                  li.editor_view_info_item 당첨자 발표 : 2.29(목)
+              p.editor_view_caution 
+                span.hide 주요 사항
+                | 개인정보(휴대폰번호) 수집 및 이용, 제3자 제공에 동의하는 분에 한해 추첨을 통해 커피 기프티콘 증정 
+            .link_url_right
+              a.round_mark.url.round-sm(href="#", target="_blank", title="새창") 자세히보기
+                span.ico 
+    //투표 선택 상자
+    .main_vote_area
+      form#voteForm(method="post", action="#")
+        input(type="hidden", name="vote_no", value="85258")
+        input(type="hidden", name="othbc_trget", value="004")
+        input(type="hidden", name="vote_gubun", value="000")
+        input(type="hidden", name="re_vote_confirm", value="")
+        input(type="hidden", name="lifyea", value="")
+        input(type="hidden", name="sexdstn", value="")
+        input(type="hidden", name="u_local", value="")
+        input(type="hidden", name="adres_code", value="")
+        input(type="hidden", name="vote_pwd", value="")
+        // 리스트 페이지 번호 
+        input(type="hidden", name="lpn", value="1")
+        // 리스트 페이지 scroll 위치
+        input(type="hidden", name="lst", value="200")
+        // 정책참조,결정투표 값 
+        input(type="hidden", name="policy_vote_ty", value="")
+        // vote_dep1_con_box 
+        .vote_dep1_con_box
+          //  vote_dep1_con 
+          .vote_dep1_con.vote_join_list
+            // vote_item_tab 
+            // vote_item_con_box 
+            .vote_item_con_box
+              // vote_item 기본 체크형 
+              .vote_item.qestn-box(data-qestn-seq="")
+                p.vote_ref_txt.max_select 
+                  strong ( *표시는 필수 정보 사항입니다. ) 
+                  span.star_mark *
+                  | 최소
+                  em.min 3
+                  |개 및 최대
+                  em.max 3
+                  |개를 반드시 선택해주십시오.
+                h5.vote_item_tit.thd.round-md
+                  span 연구원의 주요 뉴스 9개 중 연구원을 빛낸 3개의 뉴스에 투표해주세요!
+                ul.vote_select_list
+                  li.answer-box.round-md.box-shadow-card( data-answer-seq="" )
+                    div.slt_area
+                      a.img_view_item.vote_box_photo( href="#", title="이미지 크게보기" )
+                        .img_box
+                          .inner
+                            img(src=imgurl+"upload/vote/vote_check_item.png", alt="업로드 묘사")
+                        .vote_wrp
+                          p.txt.vote_box_text 방사능검사실, 농산물검사실 등 신규 실험환경 조성과 24시간 감염병 대응 근무자를 위한 후생복지 공간 개선 등 최신의 연구시설 신규 조성
+                            input(type="hidden", name="", value="")
+                            span.nw_ico
+                          span.b-more.round-rg 더보기 
+                            span.ico.plus
+                    span.chk_each.notxt
+                      input#answer_1_1(type="checkbox", title="",  name="", value="", data-etcyn="")
+                      label(for="answer_1_1")
+                        span.vchkbox
+                  li.answer-box.round-md.box-shadow-card( data-answer-seq="" )
+                    div.slt_area
+                      a.img_view_item.vote_box_photo( href="#", title="이미지 크게보기" )
+                        .img_box
+                          .inner
+                            img(src=imgurl+"upload/vote/vote_check_item.png", alt="업로드 묘사")
+                        .vote_wrp
+                          p.txt.vote_box_text 방사능검사실, 농산물검사실 등 신규 실험환경 조성과 24시간 감염병 대응 근무자를 위한 후생복지 공간 개선 등 최신의 연구시설 신규 조성
+                            input(type="hidden", name="", value="")
+                            span.nw_ico
+                    span.chk_each.notxt
+                      input#answer_1_2(type="checkbox", title="",  name="", value="", data-etcyn="")
+                      label(for="answer_1_2")
+                        span.vchkbox
+                  li.answer-box.round-md.box-shadow-card( data-answer-seq="" )
+                    div.slt_area
+                      a.img_view_item.vote_box_photo( href="#", title="이미지 크게보기" )                        
+                        .vote_wrp
+                          p.txt.vote_box_text 방사능검사실, 농산물검사실 등 신규 실험환경 조성과 24시간 감염병 대응 근무자를 위한 후생복지 공간 개선 등 최신의 연구시설 신규 조성
+                            input(type="hidden", name="", value="")
+                            span.nw_ico
+                          span.b-more.round-rg 더보기 
+                            span.ico.plus
+                    span.chk_each.notxt
+                      input#answer_1_3(type="checkbox", title="",  name="", value="", data-etcyn="")
+                      label(for="answer_1_3")
+                        span.vchkbox
+                  li.answer-box.round-md.box-shadow-card( data-answer-seq="" )
+                    div.slt_area
+                      a.img_view_item.vote_box_photo( href="#", title="이미지 크게보기" )                        
+                        .vote_wrp
+                          p.txt.vote_box_text 답변 상세가 없는 경우
+                            input(type="hidden", name="", value="")
+                            span.nw_ico
+                    span.chk_each.notxt
+                      input#answer_1_4(type="checkbox", title="",  name="", value="", data-etcyn="")
+                      label(for="answer_1_4")
+                        span.vchkbox
+                  li.answer-box.round-md.box-shadow-card( data-answer-seq="" )
+                    div.slt_area
+                      a.img_view_item.vote_box_photo( href="#", title="이미지 크게보기" )                        
+                        .vote_wrp
+                          p.txt.vote_box_text 기타
+                            input(type="hidden", name="", value="")
+                            span.nw_ico
+                    span.chk_each.notxt
+                      input#answer_1_5(type="checkbox", title="",  name="", value="", data-etcyn="")
+                      label(for="answer_1_5")
+                        span.vchkbox
+                    .slt_txtarea(onclick="event.stopPropagation(); return false;")
+                      input.etc-area.round-xxxlg(type="text", name="etc_answer_1_5", placeholder="내용을 입력해주세요.", maxlength="200")
+              .vote_item.qestn-box(data-qestn-seq="")
+                p.vote_ref_txt.max_select 
+                  strong ( *표시는 필수 정보 사항입니다. ) 
+                  span.star_mark *
+                  | 최소
+                  em.min 1
+                  |개 및 최대
+                  em.max 1
+                  |개를 반드시 선택해주십시오.
+                h5.vote_item_tit.thd.round-md
+                  span 개인정보(휴대폰 번호) 수집 및 이용에 동의하는 분에 한하여 모바일 상품권을 드립니다.
+                ul.vote_select_list
+                  li.answer-box.no_photo.round-md.box-shadow-card( data-answer-seq="")
+                    div.slt_area
+                        p.txt.vote_box_text.no 네, 동의합니다.
+                          input(type="hidden", name="answer_etc_yn_2_1", value="N")
+                    span.chk_each.notxt
+                      input#answer_2_1(type="radio", title="네, 동의합니다.", name="answer_2", value="1", data-etcyn="N" checked)
+                      label(for="answer_2_1")
+                        span.vchkbox
+                  li.answer-box.no_photo.round-md.box-shadow-card( data-answer-seq="1")
+                    div.slt_area
+                        p.txt.vote_box_text.no 아니오, 동의하지 않습니다.(이벤트 추첨 대상에서 제외됩니다.)
+                          input(type="hidden", name="answer_etc_yn_2_2", value="N")
+                    span.chk_each.notxt
+                      input#answer_2_2( type="radio", title="아니오, 동의하지 않습니다.", name="answer_2", value="2", data-etcyn="N" )
+                      label(for="answer_2_2")
+                        span.vchkbox
+              .vote_item.qestn-box( data-qestn-seq="3")
+                h5.vote_item_tit.thd.round-md
+                  span 설명을 작성해주세요.
+                .vote_input_box.reply_txt_box.round-md.box-shadow-card
+                  textarea( cols="30", rows="5", title="항목 내용 작성", name="sbjct_answer_3"                      )
+                  p.word_count
+                    span.cnum.count_ta 0
+                    | / 1000자
+              
+      // // main_vote_area End
+    // form voteForm end 
+    // common_btn_box 
+    #btn_list_box.common_btn_box.ta_c.bg_none
+      a#list-btn.b-.xlg.round-xxlg.common_btn.list2( href="#" ) 
+        span 목록
+      a#vote-btn-check.b-.xlg.round-xxlg.common_btn( href="#" )
+        span 투표이력 확인
+      a#vote-btn.b-.xlg.vote.round-xxlg.common_btn(href="#")
+        span 투표하기
+    .view_box_wrp.round-lg.box-shadow-card
+      //user_hash_area 
+      .user_hash_area
+        h4.sub_tit3 투표관련 해시태그
+        .user_hash_list
+          a.vote_hash_mark.user.round-rg(href="#") #서울시보건환경연구원
+          a.vote_hash_mark.user.round-rg(href="#") #이벤트
+          a.vote_hash_mark.user.round-rg(href="#") #3대주요뉴스 투표
+      // comment_area
+      // 댓글시작 
+      .comment_area.vote_reply_area            
+        // 댓글 폼
+        form#replyForm(method="post", action="#")
+          // 개인정보필터링 시작
+          input(type="hidden", name="returnUrl", value="")
+          input(type="hidden", name="hostIP", value="")
+          input(type="hidden", name="hostUrl", value="")
+          input(type="hidden", name="userIP", value="")
+          // 개인정보필터링 종료
+          input(type="hidden", name="vote_no", value="")
+          input(type="hidden", name="replyCurrentPage")
+          // comment_input_box 
+          // 댓글박스 
+          .comment_input_box
+            span.writer 
+            div.textarea_box.reply_txt_box
+              textarea(cols="30", rows="10", title="댓글 입력", placeholder="다른 사람의 권리를 침해하거나 명예를 훼손하는 게시물은 관리자에 의해 제재를 받을 수 있습니다. 타인에게 불쾌감을 주는 단어들은 표시가 제한됩니다.", name="cmnt_cn")
+              p.word_count
+                span.cnum.count_ta 0
+                | / 1000자
+                a#reply-submit-btn.b-.regist_btn.round-xlg(href="#")
+                  span 등록
+              
+          // // comment_input_box 
+          // comment_list 
+          ul.comment_list.reply_area.reply_list
+            li.reply-wrap(data-cmnt-no="")
+              .info_area
+                .usr_box
+                  span.writer 감행수송파
+                  ul.info_list
+                    li 2024.02.15
+                    li 21:18:19
+                .util_area
+                  a.b-.md.revise.round-rg( href="#")
+                    span.ico.revise
+                    span 수정
+                  a.b-.md.del.round-rg( href="#")
+                    span.ico.del
+                    span 삭제
+                  a.b-.md.btn.report.btn_notify.round-rg( href="#")
+                    span.ico.notify
+                    span 신고
+                  a.b-.md.btn.recommend.btn_like.round-rg( href="#")
+                    span.ico.like
+                    span 추천 0
+              p.txt.reply_text.round-lg 강서지소 같은경우에는 내용이 조금은 부족하다보여짐. 그냥 새롭게 만들어주자 라는 취지인듯한데 현재의 사진과 향후의 사진이 이렇다하는것만 있지;;; 일반 시민으로써 관심이 가거나 주변에 있지 않으면 해당내용에 대해서 자세히 이해는 어려울듯함. 제일먼저 얼마나 연약한 시설인지를 일깨워줘야 ;;; 연구원들의 이전해야 하는 내용들이 결국은 시설이 나쁘다라는점도 강조를 해주셔야 할듯한데 이렇게 봐서는 ;;;
+              .reply_txt_box(style="display: none")
+                textarea.reply-textarea-cnt( placeholder="다른 사람의 권리를 침해하거나 명예를 훼손하는 게시물은 관리자에 의해 제재를 받을 수 있습니다. 타인에게 불쾌감을 주는 단어들은 표시가 제한됩니다." ) 강서지소 같은경우에는 내용이 조금은 부족하다보여짐. 그냥 새롭게 만들어주자 라는 취지인듯한데 현재의 사진과 향후의 사진이 이렇다하는것만 있지;;; 일반 시민으로써 관심이 가거나 주변에 있지 않으면 해당내용에 대해서 자세히 이해는 어려울듯함. 제일먼저 얼마나 연약한 시설인지를 일깨워줘야 ;;; 연구원들의 이전해야 하는 내용들이 결국은 시설이 나쁘다라는점도 강조를 해주셔야 할듯한데 이렇게 봐서는 ;;;
+                span.word_count
+                  span.cnum.count_ta
+                    em 0
+                  | / 1000자
+              
+            li.reply-wrap( data-cmnt-no="" )
+              .info_area
+                .usr_box
+                  span.writer 크리오
+                  ul.info_list
+                    li 2024.02.15
+                    li 21:18:19
+                .util_area
+                  a.b-.md.btn.report.btn_notify( href="#")
+                    span.ico.notify
+                    span 신고
+                  a.b-.md.btn.recommend.btn_like( href="#")
+                    span.ico.liek 
+                    span 추천 0
+              p.txt.reply_text.round-lg 셈세히 확인할려고 노력했습니다
+              .reply_txt_box(style="display: none")
+                textarea.reply-textarea-cnt( placeholder="다른 사람의 권리를 침해하거나 명예를 훼손하는 게시물은 관리자에 의해 제재를 받을 수 있습니다. 타인에게 불쾌감을 주는 단어들은 표시가 제한됩니다.") 섬세히 확인할려고 노력했습니다
+                span.word_count
+                span.cnum.count_ta
+                em 0
+                | / 1000자
+            li.reply-wrap(data-cmnt-no="")
+              .info_area
+                .usr_box
+                  span.writer 협oi
+                  ul.info_list
+                    li 2024.02.15
+                    li 21:18:19
+                .util_area
+                  a.b-.md.btn.report.btn_notify( href="#")
+                    span.ico.notify 
+                    span 신고
+                  a.b-.md.btn.recommend.btn_like( href="#")
+                    span.ico.like 
+                    span 추천 0
+              p.txt.reply_text.round-lg 투표했ㅇ습니다~
+              .reply_txt_box(style="display: none")
+                textarea.reply-textarea-cnt( placeholder="다른 사람의 권리를 침해하거나 명예를 훼손하는 게시물은 관리자에 의해 제재를 받을 수 있습니다. 타인에게 불쾌감을 주는 단어들은 표시가 제한됩니다.") 투표했ㅇ습니다~
+                span.word_count
+                  span.cnum.count_ta
+                    em 0
+                  | / 1000자
+            li.end.text_finish( style="display:none;") 마지막 댓글입니다.
+          // // comment_list 
+    .common_btn_box.ta_c.box-shadow-card
+      a.btn_add.common_btn.more( href="#", data-page="") 
+        span.ico.plus
+        span 더보기
