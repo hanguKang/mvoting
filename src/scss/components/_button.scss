@@ -1,13 +1,19 @@
 @use '../utiles/var';
+@use '../utiles/var_colors';
 
 $btn:"[class^=b-]";
-#{$btn}{
+span#{$btn}{ $font-size:14px; font-size:em($font-size); line-height:1.5; padding:em(6px, $font-size) em(12px, $font-size); height:auto; letter-spacing:-1px; margin-right:em(8px, $font-size ); 
+	&.btn-blue { }
+	&.btn-purple{background-color:var_colors.$btn_bg_purple;}
+	&.btn-red { background:var_colors.$btn_bg_red;}
+}
+#{$btn}{$font-size:16px;
 	text-indent:0;
 	display:inline-block;
 	height: em(var.$btnHeight);
 	padding: calc(( $btnHeight - $defaultfontsize ) / 4) 12px;
 	font-size:$defaultfontsize;
-	line-height: em(var.$btnHeight);
+	line-height: 1.5;
 	text-align:center;
 	color:#fff;
 	background-color:$btnbgcolor;
@@ -18,13 +24,20 @@ $btn:"[class^=b-]";
 	// 	min-width:88px;
 	// 	// padding: ($formHeight - 2 - $defaultfontsize) / 2 0;
 	// }
+	&:before{
+		display: inline-block;
+		content: '';
+		height:100%;
+		vertical-align:middle;
+	}
 	&:hover,
 	&:focus{
 		text-decoration:underline;
 	}
-	&.xl{
-		padding:12px 0;
+	&.xlg{
+		padding:16px 0;
 		min-width:140px;
+		height:em(64px,$font-size);
 		// font-weight:300;
 	}
 	&.lg{
@@ -149,7 +162,7 @@ $btn:"[class^=b-]";
 		content: '';
 		width:15px;
 		height:15px;
-		background:url(/static/portal/img/common/ico-lageview.png) 0 0 no-repeat;
+		//background:url(/static/portal/img/common/ico-lageview.png) 0 0 no-repeat;
 		background-size:15px;
 		margin-right:10px;
 		display:inline-block;		
@@ -299,7 +312,7 @@ i#{$btn}.b-sitego2{padding:0;min-height:inherit;}
 	@extend .b-lg;
 	background-color:#fff;
 	color:$btnbgcolor;
-	background: url(/static/ucms/img/ico-arrRight.png) 152px center no-repeat;
+	//background: url(/static/ucms/img/ico-arrRight.png) 152px center no-repeat;
 	width:180px;
 	border:1px solid #000;
 	text-align:left;
@@ -324,7 +337,7 @@ i#{$btn}.b-sitego2{padding:0;min-height:inherit;}
 		content: '';
 		width:8px;
 		height:14px;
-		background: url('/static/ucms/img/ico-arrRight.png') right center no-repeat;
+		//background: url('/static/ucms/img/ico-arrRight.png') right center no-repeat;
 		position:absolute;
 		right:20px;
 		top:0;
@@ -335,7 +348,7 @@ i#{$btn}.b-sitego2{padding:0;min-height:inherit;}
 }
 .url-link{
 	margin:20px 0;
-	background:#e7ebec url(/static/ucms/img/ico-doc.png) 20px center no-repeat;
+	//background:#e7ebec url(/static/ucms/img/ico-doc.png) 20px center no-repeat;
 	line-height:1;
 	padding:12px 50px 12px 45px;
 	color:$btnbgcolor;
@@ -352,7 +365,7 @@ i#{$btn}.b-sitego2{padding:0;min-height:inherit;}
 		top:13px;
 		width:8px;
 		height:14px;
-		background: url(/static/ucms/img/ico-arrRight.png) 0 0 no-repeat;
+		//background: url(/static/ucms/img/ico-arrRight.png) 0 0 no-repeat;
 	}
 	&.blank:after,
 	&[target=_blank]:after{
@@ -377,7 +390,7 @@ i#{$btn}.b-sitego2{padding:0;min-height:inherit;}
 	&.ico-fax:before{content:'';font-family:'FontAwesome';margin-right:3px;}
 }
 .go{
-	background: url(/static/portal/img/common/ico-sitego.png) 0 0 no-repeat;
+	//background: url(/static/portal/img/common/ico-sitego.png) 0 0 no-repeat;
 	background-size:17px;
 	width:17px;
 	height:17px;
@@ -414,7 +427,7 @@ i#{$btn}.b-sitego2{padding:0;min-height:inherit;}
 	&:before {
 		margin-right:10px;
 		content: '';
-		background:url(/static/portal/img/common/ico-img.png) 0 0 no-repeat;
+		//background:url(/static/portal/img/common/ico-img.png) 0 0 no-repeat;
 		background-size:14px;
 		display:inline-block;
 		width:14px;height:14px;
@@ -426,7 +439,7 @@ i#{$btn}.b-sitego2{padding:0;min-height:inherit;}
 	background:none;
 	color:inherit;
 	padding:0;
-	text-decoration:underline;
+	text-decoration:underline; 
 	display:inline;
 	&:after {
 		content: '';

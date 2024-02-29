@@ -52,3 +52,95 @@
     }
   }
 }
+
+.layer_pop_box {$font-size:16px; font-size:$font-size; line-height:1.5;
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  overflow: auto;
+  padding: em(100px) em(50px);
+  background-color: rgba(0,0,0,0.5);
+  text-align: center;
+  &:after {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
+  .layer_pop {$font-size:16px; font-size:$font-size; 
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    max-width: em(640px);
+    padding: em(48px) em(32px);
+    background-color: #fff;
+    text-align: left;
+    vertical-align: middle;
+    .sub_tit2{$font-size:24px; font-size:$font-size; font-weight:600; margin-bottom:em(24px, $font-size);}
+    //---------------------------------- 팝업 배너 
+    .vote_pop_contents {
+      .vote_pop_slider_box{
+        .vote_pop_slider.owl-carousel.owl-theme.owl-loaded{position: relative;
+          .owl-nav{
+            [class*=owl-] {
+              position: absolute;
+              left:-28px; 
+              top: 50%;
+              z-index: 1;
+              overflow: hidden;
+              width: em(56px);
+              height: em(56px);
+              margin-top: -26px;
+              background: url(var.$imgurl_ico + 'banner_arrow_left.png') center no-repeat !important;
+              text-indent: -9999px;
+              &.owl-next {
+                left: auto;
+                right:-28px;
+                background: url(var.$imgurl_ico + 'banner_arrow_right.png') center no-repeat !important;
+              }
+            }
+          }
+        }
+      }
+    }// .vote_pop_contents End
+    .vote_pop_txt{
+      .vote_pop_tit{$font-size:20px; font-size:$font-size; font-weight:600;}
+      .vote_pop_txt {$font-size:16px; font-size:$font-size; color:#484B51;
+        p {}
+      }
+    }// 팝업 배너 끝
+
+    //--------------------------------- 팝업 신고하기
+    .report_item_list{margin-bottom:em(32px, $font-size);
+      li{margin-bottom:em(16px, $font-size);
+        .radio_each{$font-size:16px; font-size:$font-size; display: flex; justify-content: start; align-items: center; letter-spacing: -2px; color:#484B51;
+          input[type="radio"]{position:relative; width:em(32px, $font-size); margin-right:em(12px,$font-size); height:em(32px, $font-size); border-color:#AAB0B8; vertical-align: top;
+            &:checked{
+              &+label{
+                .up{color:var_colors.$primary_color; font-weight:600;}
+              }
+              &:before{ position:absolute; width:em(32px, $font-size); height:em(32px); content: ""; background:#fff url(var.$imgurl_ico+'ico_radio_big.png') no-repeat 0 0/contain;}
+            }
+          }
+        }
+      }
+    } 
+    //하단 설명
+    .style_deco_box1 {
+      padding: em(24px,$font-size);
+      background-color: var_colors.$input_bg;
+    }
+    //팝업 닫기
+    .layer_pop_close{position:absolute; right:em(40px); top:em(40px); width:em(32px); height:em(32px); @include mixin.bgSet; background-image:url(var.$imgurl_ico+'ico_btn_close_popup.png');}
+  }
+  .common_btn_box.ta_c{margin-top:em(24px); text-align: center; display: flex; justify-content: center; align-items: center;
+    .common_btn{margin:0 em(8px, $font-size);height:em(52px); font-weight:600; display: flex; justify-content: center; align-items: center;
+      &.cancel_btn{background-color:#fff; color:var_colors.$primary_color; border:2px solid var_colors.$primary_color;}
+      &.confirm_btn{}
+    }
+  }
+}

@@ -14,8 +14,9 @@ $defaultfontsize    : 16px;
  //h1~h6
 $headingFont        : 'pretendard, "맑은고딕","malgun gothic", sans-serif';
 
-$imgurl:'../img/common/';
-$imgurl_ico:'../img/ico/';
+$imgurl:'../images/common/';
+$imgurl_ico:'../images/ico/';
+$imgurl_date:'../images/20240215/';
 
 
 
@@ -23,6 +24,9 @@ $imgurl_ico:'../img/ico/';
 	border-radius: 4px;
 }
 .round-rg{
+	border-radius: 6px;
+}
+.round-md{
 	border-radius: 6px;
 }
 .round-lg{
@@ -34,6 +38,10 @@ $imgurl_ico:'../img/ico/';
 
 .round-xxlg{
 	border-radius: 32px;
+}
+
+.round-xxxlg{
+	border-radius: 50px;
 }
 
 

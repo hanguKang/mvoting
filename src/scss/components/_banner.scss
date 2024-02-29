@@ -1,0 +1,30 @@
+@use '../utiles/var_colors';
+@use '../utiles/var';
+@use '../config/mixin';
+
+.banner_seoul{padding-bottom: em(80px); background-color:#F7F7F8;  
+  .banner_box{text-align:center;}
+}
+//hot issue > 페이지 상단 배너
+
+[data-focus="focus01"]{
+  .vote_pop_slider.owl-theme.owl-carousel {$font-size:16px; font-size:$font-size;
+    .owl-item {
+      img{max-width:100%; }
+    }
+    .owl-nav {
+      [class*=owl-] {
+        width:em(56px); height:em(56px); left:em(-28px); 
+        background: url(var.$imgurl_ico + 'banner_arrow_left.png') center no-repeat !important;
+        box-shadow:0 4px 24px 0 rgba(0,0,0,0.08); 
+        &.owl-next{
+          width:em(56px); height:em(56px); right:em(-28px); 
+          background: url(var.$imgurl_ico + 'banner_arrow_right.png') center no-repeat !important;
+          box-shadow:0 4px 24px 0 rgba(0,0,0,0.08);
+        }
+      }
+    }
+  }
+}
+
+
