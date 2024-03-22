@@ -129,17 +129,17 @@
               }
             }
             #searchForm{ position:static; flex:0 0 calc(100%  - em(98px,$font-size)); margin-right:auto; 
-              .head_sch_box{flex:0 0 calc(100% - em(100px, $font-size)); background:none;  width:auto;
-                .inner{flex:1 0 auto; position:static;
-                  input.head_sch_input{margin-left:0; width:100%;}
+              .head_sch_box{flex:0 0 calc(100% - em(50px, $font-size)); background:none;  width:auto;
+                .inner{flex:1 0 auto; position:static; padding:0;
+                  input.head_sch_input{margin-left:0; width:100%; padding:0;}
                   .head_common_btn{display: none;
                     .ico_srch{display: none; }
                   }
                 }
               }
-              .btn_box{flex:0 0 em(98px, $font-size); 
+              .btn_box{flex:0 0 em(98px, $font-size);
                 span{display: none;}
-                .b-srch{background-color:transparent; color:var_colors.$primary_bg; font-weight:600; text-decoration:underline; 
+                .b-srch{ font-weight:600; text-decoration:underline;  padding:0; background-color:transparent; color:var_colors.$primary_bg;
                   &:before{display: none;}
                 }
               }

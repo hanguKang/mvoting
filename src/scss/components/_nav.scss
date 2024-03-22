@@ -39,7 +39,6 @@ header{
                             }
                         }
                     }
-                   
                     
                 }
             
@@ -64,7 +63,7 @@ header{
             }
         }
         .m_gnb_wrap{position:fixed; left:0; top:0; width:100%; height:100%; background-color:#fff; z-index:9999;
-            display: block;
+            display: none;
             .mobile{display: block;}
             .nav_head{ background-color:var_colors.$primary_bg; 
                 .m_gnb_logo{padding:em(12px,$font-size) em(20px,$font-size); height:em(56px, $font-size); border-bottom:1px solid #003cc7;}
