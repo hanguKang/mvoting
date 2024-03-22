@@ -4,7 +4,7 @@ block content
 		// original : header_old.html(주석 : header::Start )이 들어갈 자리
 		// contents 
 		.contents
-			// -- container -->
+			// container
 			.container.s_container
 				// original : contents_left_nav.html( 주석 : commonLeft::Start )이 들어갈 자리  
 				// common_right
@@ -235,8 +235,12 @@ block content
 										span.hide 마지막 페이지로 이동
 									input#currentPage(type="hidden", name="currentPage", value="1")
 								// pagination End
+								.center_box
+									.common_btn_box.ta_r
+										a.common_btn.list.round-xxxlg(href="/mvoting/useinqry/insertFormUseInqry.do", onclick="fnGoList(); return false;") 등록
 							// .s_outer End
 						// board_list_box End
+
 				// // common_right End 
 			// // container  End 
 		// contents

@@ -1,0 +1,111 @@
+extends ../templates/layout_sub
+
+block content
+  // contents 
+  .contents
+    // container 
+    .container.clearfix
+      // common_right
+      #real_contents.common_right
+        form#aform.bbs(role="form", method="post", action="/mvoting/setting/mypage/ctz/insertCtz.do"  enctype="multipart/form-data")
+          input#vote_no(type="hidden", name="vote_no")
+          input#ctzurl(type="hidden", name="ctzurl" )
+          // sub_tit1_box 
+          .sub_tit1_box
+            h2.sub_tit1 시민참여단
+          // // sub_tit1_box 
+          .s_outer
+            // cwb_container 
+            .cwb_container.vote_create_each
+              // center_white_box
+              .center_white_box.full.box-shadow-card.round-lg
+                .form_row
+                  .cell.label
+                    label(for="o_sort") 구분
+                  .cell
+                    select#o_sort.form_slt(name="oper_se") <%=CommboUtil.getComboStr(ctzSeComboStr, "CODE", "CODE_NM", param.getString("oper_se"), "C")%>									
+                .form_row
+                  .cell.label
+                    label(for="o_year") 년/월
+                  .cell <%=DateUtil.getToday("yyyy") %>.<%=DateUtil.getToday("MM") %>
+                #url_row.form_row
+                  .cell.label
+                    label(for="o_url") URL
+                  .cell
+                    input#o_url.form_input(type="text", name="url", placeholder="ex) https://mvoting.seoul.go.kr/" )
+                #vote_row.form_row
+                  .cell.label
+                    label(for="sort") 투표 선택
+                  .cell
+                    input#o_vote.form_input(type="text", name="vote", placeholder="투표를 선택하세요." readonly="readonly")
+                  .cell.btn
+                    a.b-.lg.form_btn.round-rg(href="#", onclick="search_vote(); return false;",  data-layeropen="votelist") 투표 선택
+                    // layer_pop_box 
+                    #votelist_layer_popup.layer_pop_box.voteslt(data-layernum="votelist")
+                      // layer_pop 
+                      .layer_pop
+                        h2.sub_tit2 
+                          span 투표 목록
+                        // board_list 
+                        .s_table.round-md
+                          table.board_list.m_label_style
+                            caption 번호, 투표 제목, 투표 기간, 유형, 상태, 참여자가 나타나있고 반영될 투표를 선택할 수 있는 투표 목록
+                            colgroup
+                              col(style="width:10%;")
+                              col(style="width:auto;")
+                              col(style="width:15%;")
+                              col(style="width:10%;")
+                              col(style="width:10%;")
+                              col(style="width:10%;")
+                              col(style="width:15%;")
+                            thead.thd
+                              tr.thd_tr.item
+                                th(scope="col") No
+                                th(scope="col") 투표 제목
+                                th(scope="col") 투표 기간
+                                th(scope="col") 유형
+                                th(scope="col") 상태
+                                th(scope="col") 참여자
+                                th(scope="col") 반영투표<br>선택
+                            tbody#voteListArea.tbd
+                              tr.tbd_tr.item
+                                td
+                                  span.m_lbl_txt2 No
+                                  | 1
+                                
+                                td
+                                  span.m_lbl_txt2 투표 제목
+                                  | test
+                                td
+                                  span.m_lbl_txt2 투표 기간
+                                  | 2021-10-27 ~
+                                  span.none_767
+                                    br
+                                  | 2021-11-27
+                                td
+                                  span.m_lbl_txt2 유형
+                                  | 비공개(소셜, 휴대폰)
+                                td
+                                  span.m_lbl_txt2 상태
+                                  | 마감
+                                td
+                                  span.m_lbl_txt2 참여자
+                                  | 2
+                                td
+                                  span.m_lbl_txt2 반영투표 선택
+                                  button.tbl_in_btn(type="button", onclick="addTarget(63205,'test', 'https://mvoting.seoul.go.kr/63205' ); return false;") 선택
+                              tr.tbd_tr.item
+                                td(colspan="7") 등록된 투표가 없습니다.
+                        // // board_list 
+                        button.layer_pop_close(onclick="fnHideDataLayer('votelist_layer_popup'); return false;")
+                          span.hide 레이어 창 닫기
+                      // // layer_pop END
+                    // // layer_pop_box END
+            // // cwb_container END
+            .common_btn_box.ta_c
+              a.common_btn.cancel.round-xxlg(href='/mvoting/setting/mypage/ctz/selectPageListCtz.do?oper_se=<%=param.getString("oper_se") %>') 목록
+              a.common_btn.regist.round-xxlg(href="#"  onclick="fnGoInsert(); return false;") 등록
+        //#afrom END
+      // // common_right END
+    // // container END
+  // // contents END

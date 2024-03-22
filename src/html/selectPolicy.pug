@@ -1,0 +1,70 @@
+extends ../templates/layout_sub
+
+block content
+  // contents 
+  .contents
+    // container 
+    .container.clearfix
+      // common_right 
+      #real_contents.common_right
+        form#aform(method="post", action="")
+          input#policy_reflct_seq(type="hidden", name="policy_reflct_seq", value="${resultMap.POLICY_REFLCT_SEQ}")
+          input#vote_no(type="hidden", name="vote_no", value="${resultMap.VOTE_NO}")
+          input#currentPage(type="hidden", name="currentPage", value="${param.currentPage }")
+          input#sch_text(type="hidden", name="sch_text", value="${param.sch_text }")
+          input#sch_type(type="hidden", name="sch_type", value="${param.sch_type }")
+          // 파일다운로드에 사용 
+          input(type="hidden", name="file_id", id="file_id", value="")
+        .sub_tit1_box
+          h2.sub_tit1 정책반영결과
+        .s_outer
+          // board_view 
+          .board_view
+            //board_view_wrap
+            .board_view_wrap.question.box-shadow-card.round-lg
+              // board_view_top 
+              .board_view_top
+                h3.tit.title_sj ${resultMap.SJ}
+                ul.info_list
+                  li
+                    span.label 작성자
+                    | 엠보팅 프레임
+                  li
+                    span.label 등록일
+                    | ${resultMap.REGIST_DT}
+                  li
+                    span.label 조회수
+                    | ${resultMap.INQIRE_CO}
+                  li
+                    span.label 반영율
+                    span.fc_partial ${resultMap.RFLRT_TXT}
+                    // 
+                      span.fc_reflect 전체반영
+                      span.fc_reference 단순참고 
+                    span.per ${resultMap.RFLRT_PER}
+              // // board_view_top 
+              // board_view_con 
+              .board_view_con
+                .board_view_info.round-md
+                  span.label 투표명
+                  .right_cell
+                    a(href="#", onclick="fnGoVote(); return false;") ${resultMap.VOTE_SJ}
+                .editor_view <%=resultMap.getStringOrgn("CN") %>
+              // // board_view_con END
+            // // board_view_wrap END
+            .common_btn_box.ta_c
+              a.common_btn.list.round-xxxlg(href="#", onclick="fnGoList(); return false;") 목록
+            //이전글 다음글
+            .board_view_navi.box-shadow-card.round-lg
+              // 이전글 선택할때 
+              span.prev_box
+                a.each(href="#")
+                  span.label 이전
+                  p.tit 이전글이 없습니다.  이전글이 없습니다. 이전글이 없습니다. 이전글이 없습니다. 이전글이 없습니다. 이전글이 없습니다. 이전글이 없습니다. 이전글이 없습니다. 이전글이 없습니다. 이전글이 없습니다. 이전글이 없습니다. 이전글이 없습니다. 이전글이 없습니다. 이전글이 없습니다. 이전글이 없습니다. 이전글이 없습니다. 이전글이 없습니다. 이전글이 없습니다. 
+              a.common_btn.list.ico_list(href="#", onclick="fnGoList(); return false;") 
+                span.hide 목록
+              // 다음글 선택할때 
+              span.next_box
+                a.each(href="#")
+                  p.tit 다음글이 없습니다. 다음글이 없습니다. 다음글이 없습니다. 다음글이 없습니다. 다음글이 없습니다. 다음글이 없습니다. 다음글이 없습니다. 다음글이 없습니다. 다음글이 없습니다. 다음글이 없습니다. 다음글이 없습니다. 다음글이 없습니다. 다음글이 없습니다. 다음글이 없습니다. 다음글이 없습니다. 다음글이 없습니다. 다음글이 없습니다. 다음글이 없습니다. 다음글이 없습니다. 
+                  span.label 다음

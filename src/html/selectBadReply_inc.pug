@@ -1,0 +1,34 @@
+.s_outer
+  .board_view
+    .srch_list_wrap.tab_content
+      .view_box_wrp.round-lg.box-shadow-card
+        h4.sub_tit3 신고된 댓글 
+        .comment_area.vote_reply_area            
+          // 댓글 폼
+          form#aform(method="post", action="#")
+            input(type="hidden", name="cmnt_no", value='<%=param.getString("cmnt_no") %>')
+            input(type="hidden", name="sttemnt_resn", value='<%=resultMap.getString("STTEMNT_RESN") %>')
+            // comment_list 
+            ul.comment_list.reply_area.reply_list
+              li.reply-wrap(data-cmnt-no="")
+                .info_area
+                  .usr_box
+                    span.writer <%=resultMap.getString("USER_NCNM")%>
+                    ul.info_list
+                      li <%=resultMap.getString("REGIST_DT")%>
+                  .util_area
+                    a.b-.md.btn.report.btn_notify.round-rg( href="#")
+                      span.ico.notify
+                      span 신고
+                    a.b-.md.btn.recommend.btn_like.round-rg( href="#")
+                      span.ico.like
+                      span 추천 0
+                p.txt.reply_text.round-lg <%=resultMap.getString("CMNT_CN")%>
+      .report_info_box
+        h4.tit 신고된 투표를 삭제하시겠습니까?
+        p.txt1 <%=resultMap.getString("STTEMNT_RESN_STR_TITLE") %>
+        p.txt2 <%=resultMap.getString("STTEMNT_RESN_STR_CONTENT") %>
+      .common_btn_box.ta_c
+        a#no-btn.b-.lg.common_btn.vote.round-xxlg(href="#") 아니오
+        a#yes-btn.b-.lg.common_btn.list2.ok.round-xxlg(href="#") 예
+      

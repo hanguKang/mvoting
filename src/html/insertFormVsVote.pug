@@ -1,0 +1,251 @@
+extends ../templates/layout_sub
+
+block content
+
+    .contents
+      // container 
+      .container
+        // common_right 
+        #real_contents.common_right.w_tab_content.vote2
+          // sub_tit1_box
+          .sub_tit1_box
+            h2.sub_tit1 투표만들기
+          .s_outer
+            // // sub_tit1_box 
+            ul.basic_tab.tab_2p
+              li
+                a(href="#", onclick ="fnGoUrl('1'); return false;" title="선택됨") 일반투표
+              li.active
+                a(href="#",  onclick ="fnGoUrl('2'); return false;") VS형
+            // 이미지 업로드용 파일 폼 
+            form#fileForm.hide(method="post", action="#", enctype="multipart/form-data")
+              label
+                input( type="file", name="upload", style="display:none")
+            form#aform(method="post" action="#")
+              input(type="hidden", name="begin_dt" )
+              input(type="hidden", name="end_dt" )
+              input(type="hidden", name="vote_ty", value="<%=Const.voteTyN %>")
+              input(type="hidden", name="qestn_co" )
+              input(type="hidden", id="popup_doc_id", name="popup_doc_id", value="${resultVoteInfoMap.POPUP_DOC_ID}" )
+              input(type="hidden", name="vote_sttus" )
+              input(type="hidden", name="vote_no", value="${resultVoteInfoMap.VOTE_NO}")
+              input#totAnsCnt(type="hidden", name="totAnsCnt", value="2" )
+              .center_box
+                //vote_create_each
+                .vote_create_each
+                  // center_white_box
+                  .center_white_box.full.box-shadow-card.round-md
+                    .form_row
+                      .cell
+                        textarea.form_textarea.vs_tit.round-rg(name="vote_sj", cols="30", rows="5", title="제목 입력", placeholder="제목을 입력해 주세요. (최대 200자)" maxlength="200" onKeyUp="lengthCounter(this);")
+                        span.txt_length
+                          b 0
+                          | / 
+                          span.maxlength_val 200
+                    .form_row.vs_box_area
+                      .cell.vs_attach_img.vs_box
+                        .input_box
+                          input.form_input.round-rg(type="text", name="answer", title="답변 입력", placeholder="답변을 입력해 주세요. (최대 200자)", maxlength="200", onKeyUp="lengthCounter(this);")
+                          span.txt_length
+                            b 0
+                            | / 
+                            span.maxlength_val 200
+                          input(type="hidden", name="ans_doc_id")
+                        .repre_img_box.vs_photo_box
+                          a.inner_txt_box.vs_photo(href="#")
+                            .txt_box
+                              p.txt1 대표 이미지
+                              p.txt2 최대 10MB 첨부 가능
+                          .att_view_img_box(style="display:block;")
+                            img(src=imgurl+"common/wa_mark2023.png", alt="대표 이미지")
+                            a.attach_img_del_btn.btn_img_delete(href="#")
+                              span.hide 등록된 이미지 삭제
+                      .cell.vs
+                        span.vcreate_vs_txt 
+                          span.hide VS
+                      .cell.vs_attach_img.vs_box
+                        .input_box
+                          input.form_input.round-rg(type="text", name="answer", title="답변 입력", placeholder="답변을 입력해 주세요. (최대 200자) ", maxlength="200", onKeyUp="lengthCounter(this);")
+                          span.txt_length
+                            b 0
+                            | / 
+                            span.maxlength_val 200
+                          input(type="hidden", name="ans_doc_id")
+                        .repre_img_box.vs_photo_box
+                          a.inner_txt_box.vs_photo(href="#")
+                            .txt_box
+                              p.txt1 대표 이미지
+                              p.txt2 최대 10MB 첨부 가능
+                          .att_view_img_box(style="display:none;")
+                            img(src="../../common/images/common/default_img.png", alt="대표 이미지")
+                            a.attach_img_del_btn.btn_img_delete(href="#")
+                              span.hide 등록된 이미지 삭제
+                    .form_row
+                      .cell
+                        input.form_input.round-rg(type="text", name="link_url", title="자세히보기 URL 입력", placeholder="자세히보기 URL을 입력해 주세요. (ex. www.seoul.go.kr)", maxlength="200", onKeyUp="lengthCounter(this);")
+                        span.txt_length.input
+                          b 0
+                          | / 
+                          span.maxlength_val 200
+                  // // center_white_box 
+                // //vote_creat_each End - 상단 VS이미지 요소
+
+                // vote_create_each 
+                .vote_create_each
+                  // center_white_box 
+                  .center_white_box.full.pd3.box-shadow-card.round-md
+                    .form_row
+                      .cell.label 투표기간
+                      .cell
+                        .date_slt_box
+                          a.cal_btn.icon_calendar.start.calender_start(href="#", title="투표 시작일 선택")
+                            span.hide 캘린더 열기
+                          input(type="hidden", name="start_ymd", value="<%=begin_dt%>")
+                          .input_box 
+                            span.hide 투표기간 시작 날짜
+                            input#start_yymmdd.ymd.cal_input.calender_start(type="text", title="투표 시작 년.월.일 입력", placeholder="년.월.일", value="<%=begin_dt %>", maxlength="10", readonly )
+                          select#date_start_h01.form_slt(title="투표 시작 시 선택")
+                            option 시
+                          span.lbl_txt 시
+                          select#date_start_m01.form_slt(title="투표 시작 분 선택")
+                            option 분
+                          span.lbl_txt 분
+                        span.date_slt_wave ~
+                        .date_slt_box
+                          a.cal_btn.icon_calendar.end.calender_end(href="#", title="투표 종료일 선택")
+                            span.hide 캘린더 열기
+                          input(type="hidden", name="end_ymd", value="<%=end_dt %>")
+                          .input_box.end
+                            input#end_yymmdd.ymd.cal_input.calender_end(type="text", title="투표 종료 년.월.일 입력", placeholder="년.월.일", value="<%=end_dt %>", maxlength="10", readonly )
+                          select#date_end_h01.form_slt(title="투표 종료 시 선택")
+                            option(value="") 시
+                          span.lbl_txt 시
+                          select#date_end_m01.form_slt(title="투표 종료 시 선택")
+                            option 분
+                          span.lbl_txt 분
+                        .cell.date_slt_box
+                          p.ref_bull_txt 투표 기간 설정은 최대 31일까지 가능합니다.
+                  // // center_white_box End
+                // // vote_create_each End
+
+                // vote_create_each 
+                .vote_create_each
+                  // center_white_box 
+                  .center_white_box.full.pd3_row1.box-shadow-card.round-md
+                    .form_row
+                      .cell.label 재투표 가능 여부
+                      .cell
+                        span.radio_each
+                          input#vote_gubun_000(type="radio", name="vote_gubun", value="000")
+                          label(for="vote_gubun_000")
+                            span.vradio
+                            | 불가능
+                        span.radio_each
+                          input#vote_gubun_001(type="radio", name="vote_gubun", value="001")
+                          label(for="vote_gubun_001")
+                            span.vradio
+                            | 가능
+                  // // center_white_box End
+                // // vote_create_each End
+                
+                // vote_create_each 
+                .vote_create_each
+                  // center_white_box 
+                  .center_white_box.full.pd3_row1.box-shadow-card.round-md
+                    .form_row
+                      .cell.label 댓글
+                      .cell
+                        span.radio_each
+                          input#replyOn(type="radio", name="answer_yn", value="Y")
+                          label( for="replyOn")
+                            span.vradio
+                            | 받음                  
+                        span.radio_each
+                          input#replyOff(type="radio", name="answer_yn", value="N")
+                          label(for="replyOff")
+                            span.vradio
+                            | 안받음
+                  // // center_white_box End
+                // // vote_create_each End
+                
+                // vote_create_each 
+                .vote_create_each
+                  // center_white_box 
+                  .center_white_box.full.pd3_row1.box-shadow-card.round-md
+                    .form_row
+                      .cell.label 결과노출
+                      .cell
+                        span.radio_each
+                          input#resultOpenJoin(type="radio", name="progrs_middl_result", value="${voteResultShowR}")
+                          label(for="resultOpenJoin")
+                            span.vradio
+                            | 참여시 결과노출
+                        span.radio_each
+                          input#resultOpenFin(type="radio", name="progrs_middl_result", value="${voteResultShowE}")
+                          label(for="resultOpenFin")
+                            span.vradio
+                            | 마감 후 결과노출
+                        span.radio_each
+                          input#resultOpenNot(type="radio", name="progrs_middl_result", value="${voteResultShowN}")
+                          label(for="resultOpenNot")
+                            span.vradio
+                            | 결과노출 안함
+                  // // center_white_box End
+
+                // vote_create_each 
+                .vote_create_each
+                  // center_white_box 
+                  .center_white_box.full.pd3_row1.box-shadow-card.round-md
+                    .form_row
+                      .cell.label 공개범위
+                      .cell
+                        span.radio_each
+                          input#openAll(type="radio", name="othbc_trget", value="${othbcTrgetAll}")
+                          label(for="openAll")
+                            span.vradio
+                            | 전체공개
+                        span.radio_each
+                          input#openNot(type="radio", name="othbc_trget", value="${othbcTrgetNoALL}")
+                          label(for="openNot")
+                            span.vradio
+                            | 비공개 
+                        .pwd_confirm_box.open_pw_box(style="display:none;")
+                          input.form_input(type="password", name="vote_password", title="숫자 4자리 비밀번호 입력", value="${resultVoteInfoMap.VOTE_PASSWORD}", placeholder="숫자 4자리 비밀번호", maxlength="4" )
+                          input.form_input(type="password", name="vote_password_confirm", title="비밀번호 재입력", value="", placeholder="비밀번호 확인", maxlength="4")                  
+                  // // center_white_box End
+                // // vote_create_each End
+
+                // vote_create_each 
+                .vote_create_each
+                  // center_white_box 
+                  .center_white_box.full.pd3.box-shadow-card.round-md
+                    .form_row
+                      .cell.label
+                        label(for="vote_make_tag") 태그
+                      .cell.tag
+                        .tag_add_box
+                          input#vote_make_tag.form_input.input_tag(type="text", title="태그 입력", placeholder="태그를 입력해 주세요.", maxlength="50")
+                          a.form_btn.pnm.add_tag(href="#")
+                            span.hide 태그 추가
+                        .added_tag_list
+                          a.vote_hash_mark.user(href="#" onclick="event.stopPropagation(); fnHashTagDelete(this); return false;")
+                            input(type="hidden" name="tag_nm" value="<%=tagNmList.get(i)%>")
+                            | #해시태그 1
+                          a.vote_hash_mark.user(href="#" onclick="event.stopPropagation(); fnHashTagDelete(this); return false;")
+                            input(type="hidden" name="tag_nm" value="<%=tagNmList.get(i)%>")
+                            | #해시태그 2
+                          a.vote_hash_mark.user(href="#" onclick="event.stopPropagation(); fnHashTagDelete(this); return false;")
+                            input(type="hidden" name="tag_nm" value="<%=tagNmList.get(i)%>")
+                            | #해시태그 3
+                  // // center_white_box End
+                // // vote_create_each End
+                .common_btn_box.ta_c
+                  a.common_btn.round-xxxlg(href="#", onclick="fnSubmit('temp');return false;") 
+                    span 임시 저장
+                  a.common_btn.round-xxxlg(href="#", onclick="fnDeleteImSi();return false;") 
+                    span 임시 저장 삭제
+                  a.common_btn.more.round-xxxlg(href="#", onclick="fnSubmit('make');return false;") 
+                    span 투표 만들기          
+            // // common_right 
+        // // container 
+      // // contents 

@@ -74,11 +74,13 @@ dl.skip_navi
 // -------------------- // heeader 시작 ----------------------
 header.header
     .outer_container
-        .container.clearfix.px-0
+        .container.clearfix
             .header_top          
                 h1.head_logo
                     a(href="/", title="홈으로 이동")
-                        img(src= imgurl+"logo.png", alt="mvoting M엠보팅")
+                        img.normal.web(src= imgurl +"logo.png", alt="mvoting M엠보팅")
+                        img.fixed.web(src= imgurl +"logo_fix_1.png", alt="mvoting M엠보팅")
+                        img.mobile(src= imgurl +"logo_m.png", alt="mvoting M엠보팅")
                     // head_util_menu
                 form#searchForm(method="get")
                     input#sch_vote_ty_yn(type="hidden", name="sch_vote_ty_yn", value="")
@@ -104,8 +106,9 @@ header.header
                             a.head_common_btn(href="submit")
                                 span.ico_srch
                                     span.hide 검색하기
-                    p.btn_box 
-                        a.b-srch.lg.btn.head_common_btn.btn-primary.round-lg.fc_white(href="#") 상세검색 +
+                    p.btn_box
+                        a.b-srch.lg.btn.head_common_btn.btn-primary.round-lg.fc_white(href="#") 상세검색 
+                            span +
                     //layer_popup 팝업
                     .modal-overlay(style="display:none;")
                     #tsch_layer_popup.layer_pop_box(data-layernum="1", tabindex="-1", role="dialog", aria-hidden="true")
@@ -185,12 +188,12 @@ header.header
                     input(type="hidden", id="pos_y", name="pos_y")
                     input(type="hidden", id="pos_x", name="pos_x")
                 
-                
-                a.gps_btn.mobile(href="#", onclick="gps_search(); return false")
-                    span.hide 모바일 주 메뉴 열기
-                    span.top
-                    span.mid
-                    span.btm
+                //
+                    a.gps_btn.web.mobile(href="#", onclick="gps_search(); return false")
+                        span.hide 모바일 주 메뉴 열기
+                        span.top
+                        span.mid
+                        span.btm
                 
             // //.header_top End            
             ul.m_dep2_menu.tab_4p.mobile
@@ -204,61 +207,62 @@ header.header
                     a(href="/mvoting/voting/policyvote/selectPageListPolicyvote.do?policy_vote_ty=002") 정책참고
             .right_bg
             .m_gnb_wrap.mobile
-                h2.m_gnb_logo
-                    a( href="/", title="홈으로")
-                        img( src= imgurl+"logo.png", alt="mvoting M엠보팅")
-                .inner
-                    ul.m_gnb_util_menu.mobile
-                        li.login
-                            a(href="/mvoting/login/login.do") 로그인
-                        li.join
-                            a(href="/mvoting/join/general/joinChoice.do") 회원가입
-                    // m_gnb 내부 태그는 쿼리로 들어감.
-                    ul.m_gnb.mobile
-                        li
-                            a(href="./html/bbs_common.html", data-dep2="false") 이용문의
-                        li.active
-                            a(href="#", data-dep2="true", title="하위항목 닫기") 투표하기
-                            ul.m_sub_gnb
-                                li.active
-                                    a(href="/mvoting/voting/hotissue/selectPageListHotissue.do", data-dep2="true") 핫이슈
-                                li
-                                    a(href="/mvoting/voting/policyvote/selectPageListPolicyvote.do?policy_vote_ty=001", data-dep2="true") 정책반영
-                                li
-                                    a(href="/mvoting/voting/policyvote/selectPageListPolicyvote.do?policy_vote_ty=002", data-dep2="true") 정책참고
-                                li
-                                    a(href="/mvoting/voting/ourselves/selectPageListOurselves.do", data-dep2="true") 우리끼리
+                div.nav_head
+                    h2.m_gnb_logo
+                        a( href="/", title="홈으로")
+                            img( src= imgurl+"logo_m_nav.png", alt="mvoting M엠보팅")
+                    .inner
+                        ul.m_gnb_util_menu.mobile
+                            li.login
+                                a(href="/mvoting/login/login.do") 로그인
+                            li.join
+                                a(href="/mvoting/join/general/joinChoice.do") 회원가입
+                // m_gnb 내부 태그는 쿼리로 들어감.
+                ul.m_gnb.mobile
+                    li.active
+                        a(href="#", data-dep2="true", title="하위항목 닫기") 투표하기
+                        ul.m_sub_gnb
+                            li.active
+                                a(href="/mvoting/voting/hotissue/selectPageListHotissue.do", data-dep2="true") 핫이슈
+                            li
+                                a(href="/mvoting/voting/policyvote/selectPageListPolicyvote.do?policy_vote_ty=001", data-dep2="true") 정책반영
+                            li
+                                a(href="/mvoting/voting/policyvote/selectPageListPolicyvote.do?policy_vote_ty=002", data-dep2="true") 정책참고
+                            li
+                                a(href="/mvoting/voting/ourselves/selectPageListOurselves.do", data-dep2="true") 우리끼리
+                    li
+                        a(href="#", data-dep2="true", title="하위항목 열기") 내투표함
+                        ul.m_sub_gnb
+                            li
+                                a(href="/mvoting/myvote/takepart/selectPageListTakepart.do", data-dep2="true") 참여투표                            
+                            li
+                                a(href="/mvoting/myvote/mymake/selectPageListMymake.do", data-dep2="true") 만든투표                           
+                            li
+                                a(href="/mvoting/myvote/acceptvote/selectPageListAcceptvote.do", data-dep2="true") 받은투표                            
 
-                        li
-                            a(href="#", data-dep2="true", title="하위항목 열기") 내투표함
-                            ul.m_sub_gnb
-                                li
-                                    a(href="/mvoting/myvote/takepart/selectPageListTakepart.do", data-dep2="true") 참여투표                            
-                                li
-                                    a(href="/mvoting/myvote/mymake/selectPageListMymake.do", data-dep2="true") 만든투표                           
-                                li
-                                    a(href="/mvoting/myvote/acceptvote/selectPageListAcceptvote.do", data-dep2="true") 받은투표                            
+                    li
+                        a(href="/mvoting/policy/selectPageListPolicy.do", data-dep2="false") 정책반영결과
 
-                        li
-                            a(href="/mvoting/policy/selectPageListPolicy.do", data-dep2="false") 정책반영결과
-
-                        li
-                            a(href="./html/selectPageListNotice.html", data-dep2="false") 공지사항
-
-                        li
-                            a(href="#" data-dep2="true", title="하위항목 열기") 마이페이지
-                            ul.m_sub_gnb
-                                li
-                                    a(href="/mvoting/setting/mypage/indvsetting/set1.do", data-dep2="true") 개인정보 설정
-                                li
-                                    a(href="/mvoting/setting/mypage/help/help.do", data-dep2="true") 서비스안내
-
+                    li
+                        a(href="./html/selectPageListNotice.html", data-dep2="false") 공지사항
+                    li
+                        a(href="./html/bbs_common.html", data-dep2="false") 이용문의
+                    li
+                        a(href="./html/bbs_common.html", data-dep2="false") 투표만들기
+                    li
+                        a(href="#" data-dep2="true", title="하위항목 열기") 마이페이지
+                        ul.m_sub_gnb
+                            li
+                                a(href="/mvoting/setting/mypage/indvsetting/set1.do", data-dep2="true") 개인정보 설정
+                            li
+                                a(href="/mvoting/setting/mypage/help/help.do", data-dep2="true") 서비스안내
+                    
                 button.m_gnb_close(type="button")
                     span.hide 모바일 주 메뉴 닫기
                 // // m_gnb end
 
 
-            .header_btm 
+            .header_btm.web 
                 .common_left.main_menu
                     // common_left_menu html 은  jquery 를 통해  모바일 메뉴 로 복사된
                     // 1차 메뉴 data-dept2="true" 가 붙는다 
@@ -299,7 +303,12 @@ header.header
                             li.nav_item.round-rg(data-action="addClass")
                                 a.link(href="./html/selectPageListNotice.html", data-dep2="false") 
                                     span.txt  공지사항
-
+                            li.nav_item.round-rg(data-action="addClass")
+                                a.link(href="/mvoting/useinqry/selectPageListUseInqry.do", data-dep2="false") 
+                                    span.txt  이용문의
+                            li.nav_item.round-rg(data-action="addClass")
+                                a.link(href="/mvoting/makevote/insertFormObjectiveVote.do", data-dep2="false") 
+                                    span.txt  투표만들기
                             li.nav_item.round-rg(data-action="addClass")
                                 a.link(href="#", data-dep2="true", title="하위항목 열기") 
                                     span.txt  마이페이지
@@ -308,13 +317,6 @@ header.header
                                         a(href="#", data-dep2="true") 개인정보 설정
                                     li(data-action="addClass")
                                         a(href="#", data-dep2="true") 서비스안내
-                            li.nav_item.round-rg(data-action="addClass")
-                                a.link(href="/mvoting/useinqry/selectPageListUseInqry.do", data-dep2="false") 
-                                    span.txt  이용문의
-
-                            li.nav_item.round-rg(data-action="addClass")
-                                a.link(href="/mvoting/makevote/insertFormObjectiveVote.do", data-dep2="false") 
-                                    span.txt  투표만들기
                 // // common_left_menu End
         // -//container  
 // //header End    

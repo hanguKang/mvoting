@@ -1,0 +1,91 @@
+extends ../templates/layout_sub
+
+block content
+  // contents 
+  .contents
+    // container 
+    .container.clearfix
+      // common_right 
+      #real_contents.common_right
+        form#sform(name="aform", method="post")
+          input(type="hidden", name="order_type", value='<%=param.getString("order_type")%>')
+          // 리스트 페이지 번호 
+          input(type="hidden", name="lpn", value='<%=param.getString("lpn")%>')
+          // 리스트 페이지 scroll 위치 
+          input(type="hidden", name="lst", value='<%=param.getString("lst")%>')
+          //  정책반영 001 / 정책참고 002 
+          input(type="hidden", name="policy_vote_ty", value='<%=param.getString("policy_vote_ty")%>')
+          // sub_tit1_box 
+          .sub_tit1_box
+            h2.sub_tit1 정책반영
+          .s_outer
+            .sub_each.cwb_container.box-shadow-card.round-md
+              .center_white_box.ico_box
+                h3.sub_tit3 투표취지
+                p.editor_view 111 
+            .sub_each.cwb_container.box-shadow-card.round-md
+              #noauth-box-info.center_white_box.ico_box
+                .bd_top_txt_box.mbsize2.join_top_txt_box.txt_lft
+                  p.ref_bull_txt 
+                    span.ico.star 투표통계를 위한 선택 입력 사항 입니다.
+                  p.ref_bull_txt 
+                    span.ico.star 미 입력 시 투표에 제약이 있을 수 있습니다.
+                  p.ref_bull_txt 
+                    span.ico.star 만 14세 미만은 투표하실 수 없습니다.
+                .form_row.service
+                  .cell.label
+                    label(for="u_year") 생년
+                  .cell
+                    select#u_year.form_slt(name="sellifyea")
+                      option(value="") 선택하세요.
+                      //
+                        <%
+                          int curYear = Integer.parseInt(DateUtil.getToday("yyyy")) - 15;
+                          for(int i = curYear; i >= curYear - 85; i--){
+                        %>
+                            <option value="<%=i%>"><%=i %></option>
+                        <%
+                          }
+                        %>
+                .form_row.service
+                  .cell.label 성별
+                  .cell
+                    span.radio_each
+                      input#male(type="radio", name="sexdstn", value="M")
+                      label(for="male") 
+                        span.vradio
+                        | 남자
+                    span.radio_each
+                      input#female(type="radio", name="sexdstn", value="F")
+                      label(for="female") 
+                        span.vradio
+                        | 여자
+                .form_row.service
+                  .cell.label 지역
+                  .cell.f_shrink
+                    span.radio_each
+                      input#seoul(type="radio", name="u_local", value="Y")
+                      label(for="seoul") 
+                        span.vradio
+                        | 서울
+                    span.radio_each
+                      input#seoul_other(type="radio", name="u_local", value="N")
+                      label(for="seoul_other") 
+                        span.vradio
+                        | 서울 이외 
+                  .cell.f_shrink                   
+                    .mt_15.join_select.u_local
+                      select.form_slt.mr_5.gu-list(name="", title="구 선택")
+                        option(value="") 구 선택
+                      select.form_slt.dong-list(name="adres_code", title="동 선택")
+                        option(value="") 동 선택
+            .btn_dc.dc02_asso.common_btn_box.ta_c
+              a.common_btn.cancel.round-xxlg(href="/mvoting/join/general/joinChoice.do") 취소
+              a#next.common_btn.ok.round-xxlg(href="#") 투표하기
+            // // sub_each END
+
+          // // .onoff_box END
+        // //form END
+      // // common_right  END
+    // // container END
+  // // contents END

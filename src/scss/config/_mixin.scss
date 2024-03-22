@@ -45,3 +45,14 @@
     -webkit-line-clamp: $line;
   }
 }
+
+@mixin maxWidth($width){
+	@media screen and (max-width:$width){
+        @content;
+    }
+}
+@mixin minWidth($width){
+	@media screen and (min-width:$width){
+        @content;
+    }   
+}

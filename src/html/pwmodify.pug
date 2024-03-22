@@ -1,0 +1,52 @@
+extends ../templates/layout_sub
+
+block content
+  // contents
+  .contents
+    // container
+    .container.clearfix
+      // common_right
+      #real_contents.common_right
+        // sub_tit1_box
+        .sub_tit1_box
+          h2.sub_tit1 비밀번호 변경
+        // // sub_tit1_box
+        .s_outer 
+          // login_wrap
+          .login_wrap
+            p.login_top_txt 
+              span.spn_box.star 안전한 비밀번호로 내 정보를 보호하세요. 
+              span.spn_box.star 이전에 사용한 적 없는 비밀번호가 안전합니다.
+              span.spn_box.star 영문, 숫자, 특수문자를 조합한 8~20글자로 입력해 주세요.
+            // cwb_container
+            form#aform(name="aform", action ="/mvoting/login/login.do", method="post")
+              input#hide_moblphonNo(type="hidden", name="hide_moblphonNo" )
+              input#hide_smsCrtfcNo(type="hidden", name="hide_smsCrtfcNo" )
+              // cwb_container 
+              .cwb_container.size2.box-shadow-card.round-md
+                h3.sub_tit2 비밀번호 변경 
+                .center_white_box.common_usr.ico_box
+                  .form_row.frm_r_1
+                    .cell.label.sm
+                      label(for="pre_pw") 이전 비밀번호
+                    .cell
+                      input#pre_pw.form_input.ico.pwd(type="password", placeholder="이전 비밀번호를 입력하세요.")
+                  .form_row.frm_r_1
+                    .cell.label.sm
+                      label(for="pre_pw") 새 비밀번호
+                    .cell
+                      input#new_pw.form_input.ico.pwd(type="password", placeholder="비밀번호를 입력하세요.")
+                  .form_row.frm_r_1
+                    .cell.label.sm
+                      label(for="pre_pw") 새 비밀번호 확인
+                    .cell
+                      input#new_pw_re.form_input.ico.pwd(type="password", placeholder="비밀번호를 재 입력하세요.")
+              // // cwb_container END
+              .common_btn_box.ta_c
+                a.common_btn.cancel.round-xxxlg(href="/mvoting/setting/mypage/indvsetting/set1.do") 취소
+                a#next.common_btn.ok.round-xxxlg(href="#") 확인
+            // // cwb_container
+          // // login_wrap
+      // // common_right
+    // // container
+  // // contents 

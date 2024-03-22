@@ -1,0 +1,139 @@
+extends ../templates/layout_sub
+
+block content
+  // contents 
+  .contents
+    // .container
+    .container.s_container
+      // original : contents_left_nav.html( 주석 : commonLeft::Start )이 들어갈 자리  
+      // common_right
+      #real_contents.common_right
+        .sub_tit1_box
+          .sub_tit1 서비스 안내
+        .s_outer
+          ul.basic_tab.tab_2p.onoff.m_tab
+            li.active.on
+              a( href="#", title="선택됨") 계정 설정
+            li
+              a( href="#") 회원 추가 정보 설정
+          // basic_tab_con_box 
+          .basic_tab_con_box.none_bg
+            // basic_tab_con 
+            .basic_tab_con
+              form#aform(method="post", action="/mvoting/setting/mypage/indvsetting/set1.do")
+                input(type="hidden", name="refer_url", value="/mvoting/setting/mypage/indvsetting/set1.do")
+                input(type="hidden", name="add_info_yn", value='<%=dataMap.getString("ADD_INFO_YN")%>')
+                input(type="hidden", name="acnt_info_yn", value='<%=dataMap.getString("ACNT_INFO_YN")%>' )
+                input(type="hidden", name="lifyea", value="")
+                input(type="hidden", name="sexdstn", value="") 
+                input(type="hidden", name="u_local", value="" )
+                input(type="hidden", name="adres_code", value="" )
+                input#hidden_userNcnm(type="hidden", name="hidden_userNcnm", value='<%=dataMap.getString("USER_NCNM") %>')
+                input(type="hidden", name="infoUItype", value='<%=param.getString("infoUItype")%>')
+                // cwb_container 
+                // 2019-11-19 'full' 클래스 추가 
+                .cwb_container.full.box-shadow-card.round-rg
+                  // sns_certi_list2 
+                  .center_white_box
+                  // 2019-11-19 'mw700' 클래스 추가 
+                  .form_row.mw700.service.up
+                    .cell.label
+                      label(for="userNcnm")
+                        span.star_mark *
+                        | 닉네임 입력
+                    .cell.inp
+                      input#userNcnm.form_input(type="text", name="userNcnm", title="닉네임 입력", placeholder="닉네임을 입력하세요.", value='<%=dataMap.getString("USER_NCNM") %>')
+                      p#nik_chk_y.ref_bull_txt.form_in.wsp(style="display:none") 사용 가능한 닉네임 입니다.
+                      p#nik_chk_n.ref_bull_txt.form_in.wsp(style="display:none") 이미 사용중 입니다. 다른 닉네임을 입력 해 주세요.
+                    .cell.btn
+                      a#checkNcnm.form_btn.round-sm(href="#") 닉네임 중복확인
+                .common_btn_box.ta_c
+                  a#btnNickOk.b-.xlg.common_btn.ok.confirm.round-xxxlg(href="#") 확인
+            // // basic_tab_con END
+            // basic_tab_con 
+            .basic_tab_con
+              // cwb_container 
+              .cwb_container.box-shadow-card.round-rg
+                // center_white_box 
+                #noauth-box-info.center_white_box.common_usr.ico_box
+                  .bd_top_txt_box.mbsize2
+                    p.ref_bull_txt ) 표시는 주의사항입니다.
+                    p.ref_bull_txt 투표 통계를 위해 정보를 입력해 주세요.
+                    p.ref_bull_txt 만 14세 미만은 투표하실 수 없습니다.
+                  .form_row
+                    .cell.label
+                      label(for="u_year") 생년
+                    .cell
+                      select#u_year.form_slt(name="lifyea")
+                        option(value="") 선택하세요.
+                        //
+                          <%
+                            int curYear = Integer.parseInt(DateUtil.getToday("yyyy")) - 15;
+                            for(int i = curYear; i >= curYear - 85; i--){
+                          %>
+                              <option value="<%=i%>"><%=i %>
+                          <%
+                            }
+                          %>
+                  .form_row
+                    .cell.label 성별
+                    .cell
+                      span.radio_each
+                        input#male(type="radio", name="sexdstn", value="M")
+                        label(for="male") 
+                          span.vradio
+                          | 남자
+                      span.radio_each
+                        input#female(type="radio", name="sexdstn", value="F")
+                        label(for="female") 
+                          span.vradio
+                          | 여자
+                  .form_row
+                    .cell.label 지역
+                    .cell
+                      span.radio_each
+                        input#seoul(type="radio", name="u_local", value="Y")
+                        label(for="seoul") 
+                          span.vradio
+                          | 서울
+                      span.radio_each
+                        input#seoul_other(type="radio", name="u_local", value="N")
+                        label(for="seoul_other") 
+                          span.vradio
+                          | 서울 이외
+                    .cell
+                      .mt_15.join_select.u_local
+                        select.form_slt.mr_5.gu-list(title="구 선택")
+                          option(value="") 구 선택
+                        select.form_slt.dong-list(name="adres_code", title="동 선택")
+                          option(value="") 동 선택
+                // // center_white_box
+              .common_btn_box.ta_c.m_row2
+                //
+                  <%
+                    if(snsYn.equals("N")){
+                  %>
+                    <a href="#" class="common_btn cancel" onclick="fnMypagePwModifyForm(); return false;">비밀번호 변경</a>
+                  <%
+                    } else {
+                      /* 2019.11.04 확인이 안되는 div 태그 이전 버전에도 div태그만 있었음. (닫는 태그는 없었음. 닫는태그 추가함)*/
+                  %>
+                    .btn_dc dc03_myset"> </div>
+                  <%
+                    }
+                  %>
+                a.common_btn.cancel.round-xxlg(href="#", onclick="fnMypagePwModifyForm(); return false;") 비밀번호 변경
+                a.common_btn.cancel.round-xxlg(href="#", onclick="fnMypageLeaveForm(); return false;") 회원탈퇴
+                a.common_btn.cancel.round-xxlg(href="<%=Const.doHome%>") 취소
+                a#btnOk.common_btn.ok.round-xxlg(href="#") 탈퇴
+              ul.bull_list.sq.mtsize1.wide
+                li 문자 인증 및 회원정보 입력 시 모든 투표를 행사 할 수 있으며 투표 발제를 할 수 있습니다.
+                li 추가 문자인증 또는 소셜인증은 미 가입된 계정만 연동이 가능합니다.
+                li 투표참여 이력이 1회 이상 있는 계정은 준회원으로 회원연동이 불가합니다.
+              // // cwb_container END 
+            // // basic_tab_con  END
+          // // basic_tab_con_box  END 
+        // // s_outer END         
+      // // common_right     END     
+    // // container   END     
+  // // contents END

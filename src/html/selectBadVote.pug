@@ -1,0 +1,18 @@
+extends ../templates/layout_sub
+
+block content
+		// contents
+		.contents
+			// container
+			.container.clearfix
+					.container_wrap
+						.sub_tit1_box
+							.center_box
+								h2.sub_tit1 신고 투표
+								.my_vote_list 
+									a.rgt_box.round-xxlg(href="#")
+										span.ico 
+										| 내가 참여한 투표 모아보기
+								// //220621 툴팁 버튼추가
+						// 분기투표인경우 다른 페이지를 보여준다. 
+						include selectBadVote_inc     

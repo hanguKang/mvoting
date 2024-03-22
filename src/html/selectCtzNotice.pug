@@ -1,0 +1,69 @@
+extends ../templates/layout_sub
+
+block content
+  // contents 
+  .contents
+    // container 
+    .container.clearfix
+      // common_right
+      #real_contents.common_right
+        form#aform(method="post", action="")
+          input#file_id(type="hidden", name="file_id", value="" )
+          input#ctz_notice_se(type="hidden", name="ctz_notice_se", value='<%=resultMap.getString("CTZ_NOTICE_SE") %>' )
+          input#sch_text(type="hidden", name="sch_text", value="${param.sch_text }" )
+          input#sch_type(type="hidden", name="sch_type", value="${param.sch_type }" )
+          input#notice_num(type="hidden", name="notice_num")
+        .sub_tit1_box
+          h2.sub_tit1 공지사항
+        .s_outer
+          // board_view
+          .board_view
+            //board_view_wrap
+            .board_view_wrap.box-shadow-card.round-lg
+              // board_view_top
+              .board_view_top
+                h3.tit.title_sj ${resultMap.NOTICE_SJ}
+                ul.info_list
+                  li
+                    span.label 등록부서
+                    | <%=resultMap.getString("CTZ_NOTICE_NM") %>
+                  li
+                    span.label 등록일 
+                    | <%=resultMap.getString("REGIST_YMD") %>
+                  li
+                    span.label 조회수 
+                    | <%=String.format("%,d", resultMap.getInt("RDCNT")) %>
+              // // board_view_top END
+              
+              // board_view_con 
+              .board_view_con
+                .editor_view <%=resultMap.getStringOrgn("NOTICE_CN") %>
+                .board_view_file.round-md
+                  span.label 첨부파일
+                  .right_cell
+                    ul.file_list.inlineblock
+                      li
+                        a(href="#", onclick="fnFileDown('${resultMap.FILE_ID}'); return false;", title="파일 다운로드") &nbsp; ${resultMap.FILE_NM}
+              // // board_view_con END
+            // //board_view_wrap END
+            .common_btn_box.ta_c
+              a.common_btn.list.round-xxxlg(href="#", onclick="fnGoList(); return false;") 목록
+            //이전글 다음글
+            .board_view_navi.box-shadow-card.round-lg
+              // 이전글 선택할때 
+              span.prev_box
+                a.each(href="#")
+                  span.label 이전
+                  p.tit 이전글이 없습니다.
+              a.common_btn.list.ico_list(href="#", onclick="fnGoList(); return false;") 
+                span.hide 목록
+              // 다음글 선택할때 
+              span.next_box
+                a.each(href="#")
+                  p.tit 다음글이 없습니다.
+                  span.label 다음
+            
+          // // board_view END
+      // // common_right END
+    // // container END
+  // // contents END

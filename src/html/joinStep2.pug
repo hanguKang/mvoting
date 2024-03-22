@@ -1,0 +1,141 @@
+extends ../templates/layout_sub
+
+block content
+  // contents 
+  .contents
+    // container 
+    .container.clearfix
+      // common_right 
+      #real_contents.common_right
+        form#aform(name="aform", method="post")
+          input#userAgree1(type="hidden", name="userAgree1")
+          input#userAgree2(type="hidden", name="userAgree2")
+          input#hide_moblphonNo(type="hidden", name="hide_moblphonNo", value="asdf")
+          input#hide_smsCrtfcNo(type="hidden", name="hide_smsCrtfcNo", value="")
+          // sub_tit1_box 
+          .sub_tit1_box
+            h2.sub_tit1 회원가입
+          // // sub_tit1_box 
+          // join_step 
+          ol.join_step
+            li.round-md
+              img(src="../images/ico/ico_login_step_1_off.png", alt="")
+              .step_txt.icon
+                span.step_txt1 STEP .01
+                p.step_txt2 약관동의 본인인증
+            li.active.round-md
+              img(src="../images/ico/ico_login_step_2_on.png", alt="정보작성 아이콘")
+              .step_txt.icon
+                span.step_txt1 STEP .02
+                p.step_txt2 정보작성
+            li.round-md
+              img(src="../images/ico/ico_login_step_3_off.png", alt="가입완료 아이콘")
+              .step_txt.icon
+                span.step_txt1 STEP .03
+                p.step_txt2 가입완료
+          .s_outer
+            .sub_each.cwb_container.box-shadow-card.round-md
+              .join_top_txt_box
+                p.ref_bull_txt 
+                  span.ico.star 필수 입력 사항입니다.
+              .center_white_box.mb_20.ico_box
+                .form_row.service.up
+                  .cell.label
+                    label(for="login_id") 
+                      span.star_mark *
+                    | 로그인 ID
+                  .cell.inp.no_margin
+                    input#login_id.form_input.ico(type="text", name="login_id", placeholder="로그인 ID를 입력하세요.")
+                    p.ref_bull_txt.form_in 영문과 숫자를 조합한 5~20 글자를 입력해주세요.
+                  .cell.btn
+                    a#checkId.form_btn.round-sm(href="#") ID 중복확인
+                .form_row.service
+                  .cell.label
+                    label(for="userNcnm")
+                      span.star_mark *
+                      | 닉네임 입력
+                  .cell.inp.no_margin
+                    input#userNcnm.form_input(type="text", name="userNcnm", title="닉네임 입력", placeholder="닉네임을 입력하세요.")
+                  .cell.btn
+                    a#checkNcnm.form_btn.round-sm(href="#") 닉네임 중복확인
+                .form_row.service.up
+                  .cell.label
+                    label(for="password")
+                      span.star_mark * 
+                      | 비밀번호 입력
+                  .cell.r_blank.inp.no_margin
+                    input#password.form_input(type="password", name="password", placeholder="비밀번호를 입력하세요.")
+                    p.ref_bull_txt.form_in 영문, 숫자, 특수문자를 조합한 8~20 글자로 입력해주세요.
+                .form_row.service
+                  .cell.label
+                    label(for="passwordRe")
+                      span.star_mark * 
+                      | 비밀번호 확인
+                  .cell.r_blank.inp.no_margin
+                    input#passwordRe(type="password", class="form_input", placeholder="비밀번호를 재입력하세요.")
+            .sub_each.cwb_container.box-shadow-card.round-md
+              #noauth-box-info.center_white_box.ico_box
+                .bd_top_txt_box.mbsize2.join_top_txt_box.txt_lft
+                  p.ref_bull_txt 
+                    span.ico.star 투표통계를 위한 선택 입력 사항 입니다.
+                  p.ref_bull_txt 
+                    span.ico.star 미 입력 시 투표에 제약이 있을 수 있습니다.
+                  p.ref_bull_txt 
+                    span.ico.star 만 14세 미만은 투표하실 수 없습니다.
+                .form_row.service
+                  .cell.label
+                    label(for="u_year") 생년
+                  .cell
+                    select#u_year.form_slt(name="sellifyea")
+                      option(value="") 선택하세요.
+                      //
+                        <%
+                          int curYear = Integer.parseInt(DateUtil.getToday("yyyy")) - 15;
+                          for(int i = curYear; i >= curYear - 85; i--){
+                        %>
+                            <option value="<%=i%>"><%=i %></option>
+                        <%
+                          }
+                        %>
+                .form_row.service
+                  .cell.label 성별
+                  .cell
+                    span.radio_each
+                      input#male(type="radio", name="sexdstn", value="M")
+                      label(for="male") 
+                        span.vradio
+                        | 남자
+                    span.radio_each
+                      input#female(type="radio", name="sexdstn", value="F")
+                      label(for="female") 
+                        span.vradio
+                        | 여자
+                .form_row.service
+                  .cell.label 지역
+                  .cell.f_shrink
+                    span.radio_each
+                      input#seoul(type="radio", name="u_local", value="Y")
+                      label(for="seoul") 
+                        span.vradio
+                        | 서울
+                    span.radio_each
+                      input#seoul_other(type="radio", name="u_local", value="N")
+                      label(for="seoul_other") 
+                        span.vradio
+                        | 서울 이외 
+                  .cell.f_shrink                   
+                    .mt_15.join_select.u_local
+                      select.form_slt.mr_5.gu-list(name="", title="구 선택")
+                        option(value="") 구 선택
+                      select.form_slt.dong-list(name="adres_code", title="동 선택")
+                        option(value="") 동 선택
+            .btn_dc.dc02_asso.common_btn_box.ta_c
+              a.common_btn.cancel.round-xxlg(href="/mvoting/join/general/joinChoice.do") 취소
+              a#next.common_btn.ok.round-xxlg(href="#") 투표하기
+            // // sub_each END
+
+          // // .onoff_box END
+        // //form END
+      // // common_right  END
+    // // container END
+  // // contents END

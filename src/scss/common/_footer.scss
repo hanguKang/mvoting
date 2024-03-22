@@ -30,5 +30,21 @@
         }
       }
     }
-  }
+    @include mixin.maxWidth(720px){
+      $font-size:16px; font-size:$font-size;
+      display:block;
+      .foot_txt_box{font-weight:300; 
+        .txt1{margin-top:em(8px);
+          .each{$font-size:14px; font-size:$font-size; margin-bottom:em(16px, $font-size);
+            .big{margin:0 em(16px,$font-size) 0 em(8px,$font-size); font-size:em(20px);}
+          }
+        }
+      }
+      .footer_util_box{margin-top:em(16px,$font-size);
+        .webaccess{
+          img{display: none;}
+        }
+      }
+    }
+  }// .container End
 }

@@ -1,0 +1,86 @@
+extends ../templates/layout_sub
+
+block content
+  // contents 
+  .contents
+    // container 
+    .container.clearfix
+      // common_right 
+      #real_contents.common_right
+        form#aform(method="post", action="")
+          input#board_num(type="hidden", name="board_num", value="${resultMap.USE_INQRY_SEQ_NO}")
+          input#currentPage(type="hidden", name="currentPage", value="${param.currentPage }")
+          input#sch_text(type="hidden", name="sch_text", value="${param.sch_text }")
+          input#sch_type(type="hidden", name="sch_type", value="${param.sch_type }")
+          // 파일다운로드에 사용 
+          input(type="hidden", name="file_id", id="file_id", value="")
+        .sub_tit1_box
+          h2.sub_tit1 이용문의
+        .s_outer
+          // board_view 
+          .board_view
+            //board_view_wrap
+            .board_view_wrap.question.box-shadow-card.round-lg
+              // board_view_top 
+              .board_view_top
+                h3.tit.title_sj [공지사항]
+                ul.info_list
+                  li
+                    span.label 등록일
+                    | ${resultMap.REGIST_YMD}
+                  li
+                    span.label 조회수
+                    | ${resultMap.INQIRE_CO}
+              // // board_view_top 
+              // board_view_con 
+              .board_view_con
+                .editor_view(style="word-break:break-all;") <%=resultMap.getStringOrgn("QESTN_CN") %>
+                .board_view_file.round-md
+                    span.label 첨부파일
+                    .right_cell
+                      ul.file_list.inlineblock
+                        li
+                          a(href="#", onclick="fnFileDown('${resultMap.FILE_ID}'); return false;", title="파일 다운로드") &nbsp; ${resultMap.FILE_NM}
+              // // board_view_con END
+            // // board_view_wrap END
+            //board_view_wrap
+            .board_view_wrap.answer.box-shadow-card.round-lg
+              // board_answer_box 
+              .board_answer_box
+                // board_view_top 
+                .board_view_top
+                  h3.tit [답변] ${resultMap.ANSWER_SJ}
+                  ul.info_list
+                    li
+                      span.label 작성자
+                      | ${resultMap.USER_NM}
+                    li
+                      span.label 등록일
+                      | ${resultMap.ANSWER_YMD}
+                // // board_view_top END 
+                
+                // board_view_con 
+                .board_view_con
+                  .editor_view(style="word-break:break-all;") <%=resultMap.getStringOrgn("ANSWER_CN") %>
+                  .board_view_file.round-md
+                    span.label 첨부파일
+                    .right_cell
+                      ul.file_list.inlineblock
+                        li
+                          a(href="#", onclick="fnFileDown('${resultMap.FILE_ID}'); return false;", title="파일 다운로드") &nbsp; ${resultMap.FILE_NM}
+                      span.veiwstory-btn-box
+                        a(href="javascript:void(0);", onclick="previewAjax('<%=Const.siteDomain%>${resultMap.FILE_PARTN_COURS}${resultMap.FILE_ID}.${resultMap.FILE_EXTSN_NM }','${resultMap.FILE_NM}')", title="새창열림")
+                          img(src="https://viewstory.net/resources/preview/image/common/view_icon.png", alt="바로보기")
+                        a(href="javascript:void(0);" onclick="preListen('<%=Const.siteDomain%>${resultMap.FILE_PARTN_COURS}${resultMap.FILE_ID}.${resultMap.FILE_EXTSN_NM }','${resultMap.FILE_NM}')", title="새창열림")
+                          img(src="https://viewstory.net/resources/preview/image/common/speaker_icon.png", alt="바로듣기")
+                // // board_view_con END 
+              // // board_answer_box ENd
+            // //board_view_wrap END
+            .common_btn_box.ta_c
+              a.common_btn.list.round-xxxlg(href="#", onclick="fnGoList(); return false;") 목록
+              a.common_btn.modify.round-xxxlg(href="#", onclick="fnGoUpdateForm('${resultMap.USE_INQRY_SEQ_NO}'); return false;") 수정
+        // // board_view END
+      // // common_right END
+    // // container END
+  // // contents END
+

@@ -1,0 +1,38 @@
+extends ../templates/layout_sub
+
+block content
+  // contents
+  .contents
+    // container
+    .container.clearfix
+      // common_right
+      #real_contents.common_right
+        // sub_tit1_box
+        .sub_tit1_box
+          h2.sub_tit1 회원 탈퇴
+        // // sub_tit1_box
+        .s_outer
+          // cwb_container
+          .cwb_container.size2.box-shadow-card.round-md
+            .center_white_box.common_usr.ico_box
+              .deco_area
+                .logo
+                  img(src=imgurl+"ico/ico_logo_sm_blue.png", alt="엠보팅")
+              .form_row
+                .cell.label.sm
+                  label(for="new_pw") 비밀번호
+                .cell
+                  input#new_pw.form_input.ico.pwd(type="password", name="password", placeholder="비밀번호를 입력하세요.")
+              .form_row
+                .cell.label.sm
+                  label(for="new_pw_re") 비밀번호 재확인
+                .cell
+                  input#new_pw_re.form_input.ico.pwd(type="password", name="passwordRe",placeholder="비밀번호를 재입력하세요.")
+          .common_btn_box.ta_c
+            a#btnCancel.common_btn.cancel.round-xxxlg(href="#") 취소
+            a#btnOk.common_btn.ok.round-xxxlg(href="#") 탈퇴            
+          ul.bull_list.sq.mtsize1
+            li(style="color:red;") 탈퇴 시 엠보팅 일부 정보가 삭제되며, 1년 이내 재 가입 할 수 없습니다.
+            li(style="color:red;") 탈퇴 후 1년 간 같은 계정(핸드폰 번호, 소셜 ID)으로 가입 할 수 없습니다.
+            li(style="color:red;") 1년 간 해당 계정(핸드폰 번호, 소셜 ID)으로는 투표를 할 수 없습니다.
+
