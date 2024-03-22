@@ -7,7 +7,7 @@
     &:focus{top: 0; }
   }
 }
-.Page{$font-size:16px; font-size:$font-size; padding-top: em(24px, $font-size); font-family: var.$fontSet;
+.Page{overflow:hidden; $font-size:16px; font-size:$font-size; padding-top: em(24px, $font-size); font-family: var.$fontSet;
   // .seoul-common-gnb{height: rem(30px);font-weight:400;font-size: rem(14px); 
   //   .seoul-gnb-plugin{margin:0 auto; max-width: rem(1400px);
   //     .seoul-gnb-holder{display: flex;justify-content: space-between;
