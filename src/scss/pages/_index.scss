@@ -36,7 +36,7 @@
         }
 
         @include mixin.maxWidth(720px){
-          position:absolute; left:16px; top:50%; transform:translateY(-50%); 
+          margin-left:16px; 
           .btn_help{
             width: em(22px, $font-size);
             height: em(22px, $font-size);
@@ -73,7 +73,7 @@
               }
             }
             .img_box{$font-size:16px; font-size:$font-size; flex:0 0 calc(100% - em(360px, $font-size)); position:relative; display:block;  
-              .inner{flex:0 0 em(320px, $font-size);height:em(272px, $font-size); overflow:hidden;
+              .inner{position:relative;flex:0 0 em(320px, $font-size);height:em(272px, $font-size); overflow:hidden;
                 .card_img {width:100%; height:auto;}
                 .mark_area{position:absolute; left:0; top:0; z-index:1; padding:em(24px, $font-size); height:em(272px, $font-size);}
                 // @for $idx from 1 through 6 {
@@ -81,6 +81,12 @@
                 //     background:url(var.$imgurl+'card-bg-'+$idx+'.png') no-repeat 0 0/auto;
                 //   }
                 // }
+                .block_chain {$font-size:13px; font-size:$font-size; position:absolute; left:auto; right:em(24px, $font-size); bottom:em(24px, $font-size); z-index:1; padding:em(8px, $font-size) em(4px, $font-size) em(8px, $font-size) em(18px, $font-size); box-sizing:border-box; width:em(144px, $font-size); height:em(32px, $font-size); background-color:var_colors.$page_bg; border-radius:em(16px,$font-size); 
+                  .ico{ position:absolute;  top:50%; transform:translateY(-50%); background-repeat:no-repeat; background-size:auto; background-position:50%; 
+                    &.block{left:em(4px, $font-size); width:em(32px, $font-size); height:em(32px, $font-size); background-image:url(var.$imgurl_ico + 'ico_block_chain.png');}
+                    &.arrow{right:em(8px, $font-size); width:em(4.5px, $font-size); height:em(9px, $font-size);background-image:url(var.$imgurl_ico + 'ico_arrow_block.png');}
+                  }
+                }
               }//innder End
               .inner_layer{display:none; position:absolute; z-index:10; left:0; top:0; width: 100%; height:100%; justify-content: center; align-items: center; background-color:rgba(0,0,0,0.5);color:#fff; $font-size:20px; font-size:em($font-size); line-height:1.5; font-weight:400;  border-radius:em(16px, $font-size) 0 0 em(16px, $font-size);
                 &.type_finish{display:flex; }
@@ -90,7 +96,7 @@
             .card_txt{$font-size:16px; font-size:$font-size; flex:0 0 em(360px, $font-size); display:flex; flex-direction:column; justify-content: space-between; align-items: stretch; box-sizing:border-box; padding:em(24px) em(32px, $font-size); height:em(272px);
               .card_top{display:flex; flex-direction:column; max-width:100%; justify-content: space-between; align-items: stretch; height:em(172px);
                 .txt_box{
-                  .tit{font-weight:600; line-height:1.4; margin-bottom:em(12px); color:var_colors.$primary_color; @include mixin.ellipsis; }
+                  .tit{font-weight:600; line-height:1.4; margin-bottom:em(12px); color:var_colors.$primary_color; overflow:hidden; text-overflow:ellipsis; -webkit-box-orient: vertical; -webkit-line-clamp: 1; height: calc($font-size * 1.4)  ; display: -webkit-box ; }
                   .txt{margin-bottom:em(16px, $font-size);
                     a{
                       $font-size:18px; font-size:$font-size; font-weight:600; height:em( calc( $font-size*1.5*2), $font-size ); @include mixin.ellipsis(2); 

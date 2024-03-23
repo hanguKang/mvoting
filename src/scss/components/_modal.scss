@@ -85,7 +85,7 @@
   bottom: 0;
   z-index: 9999;
   overflow: auto;
-  padding: em(100px) em(50px);
+  padding: em(100px, $font-size) em(50px, $font-size);
   background-color: rgba(0,0,0,0.5);
   text-align: center;
   &:after {
@@ -118,8 +118,8 @@
     display: inline-block;
     position: relative;
     width: 100%;
-    max-width: em(640px);
-    padding: em(48px) em(32px);
+    max-width: em(640px, $font-size);
+    padding: em(48px, $font-size) em(32px, $font-size);
     background-color: #fff;
     text-align: left;
     vertical-align: middle;
@@ -137,9 +137,9 @@
               top: 50%;
               z-index: 10;
               overflow: hidden;
-              width: em(36px);
-              height: em(36px);
-              margin-top: -26px;
+              width: em(36px, $font-size);
+              height: em(36px, $font-size);
+              margin-top: em(-26px, $font-size);
               background: url(var.$imgurl_ico + 'ico_banner_btn_prev.png') center no-repeat !important;
               text-indent: -9999px;
               &[class ^="owl-next"] {
@@ -178,6 +178,22 @@
       &.confirm_btn{}
     }
   }
+}
+@include mixin.maxWidth(720px){
+    .layer_pop_box{position:fixed;
+      $font-size:16px; font-size:$font-size;
+      padding:40% em(16px, $font-size);
+      .layer_pop{padding:em(16px,$font-size); position:fixed; width:calc(100% - em(32px,$font-size));left:em(16px, $font-size); right:em(16px, $font-size);
+        .layer_pop_close{right:em(16px, $font-size); top:em(16px, $font-size);}
+      }
+      .common_btn_box.ta_c{
+        $font-size:16px; font-size:$font-size;
+        .common_btn{height:em(48px,$font-size); 
+          &.cancel_btn{}
+          &.confirm_btn{}
+        }
+      }
+    }
 }
 
 

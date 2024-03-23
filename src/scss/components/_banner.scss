@@ -2,8 +2,13 @@
 @use '../utiles/var';
 @use '../config/mixin';
 
-.banner_seoul{padding-bottom: em(80px); background-color:#F7F7F8;  
+.banner_seoul{
+  $font-size:16px; font-size:$font-size;
+  padding-bottom: em(60px,$font-size); background-color:#F7F7F8;  
   .banner_box{text-align:center;}
+  @include mixin.maxWidth(720px){
+    $font-size:16px; font-size:$font-size; padding-bottom:em(32px, $font-size);
+  }
 }
 //hot issue > 페이지 상단 배너
 

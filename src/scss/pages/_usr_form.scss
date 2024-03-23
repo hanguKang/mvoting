@@ -11,6 +11,12 @@
       @include mixin.afterBefore(('_width':16px, '_height':16px,'_border':0 none, '_border-radius':50%, '_padding':0, '_bg-color':transparent, '_left':0)); background:url(var.$imgurl_ico + 'ico_star.png') no-repeat 0 0/auto auto; top:50%; transform:translateY(-50%);
     }
   }
+  @include mixin.maxWidth(720px){
+    padding:em(16px, $font-size); margin-bottom: em(24px, $font-size);
+    .spn_box{
+      width:auto;
+    }
+  }
 }
 .cwb_container{ $font-size:18px; font-size: $font-size; box-sizing:border-box; padding:em(56px,$font-size); margin:0 auto; width:100%; max-width:em(1400px, $font-size);  background-color:#fff; 
   &.bg_none{background-color:transparent;}
@@ -36,9 +42,7 @@
   .deco_area{
     .logo{}
   }
-							
-  .sub_tit2{$font-size:32px; font-size: $font-size; font-weight:500; text-align:center; text-shadow:0 0 1px #000000; margin-bottom:em(24px, $font-size); }
-  .sub_tit3{$font-size:22px; font-size: $font-size; font-weight:500; text-align:center; text-shadow:0 0 1px #000000; margin-bottom:em(24px, $font-size); }
+						
   .form_input{$font-size:16px; font-size: $font-size; box-sizing:border-box; padding-left:em(40px, $font-size); width:100%; height:em(48px, $font-size); border:1px solid var_colors.$bdcolor;
     &:focus{z-index:1; outline-color:var_colors.$primary_bg;}
   }
@@ -57,15 +61,45 @@
     .form_row{margin-bottom:em(24px, $font-size);}
     .cell{
       &.input_box{flex:0 0 em(400px, $font-size);}
-    &.txt_box{flex:1 0 auto; text-align:right; 
-      &.btn {padding:0; height:em(48px, $font-size); text-align:right;
-        .form_btn {display:inline-block; width:em(120px, $font-size); height:em(48px, $font-size); background-color:#576C80; color:#fff; text-align:center; line-height:em(48px, $font-size); border-radius:2px;}
+      &.txt_box{flex:1 0 auto; text-align:right; 
+        &.btn {padding:0; height:em(48px, $font-size); text-align:right;
+          .form_btn {display:inline-block; width:em(120px, $font-size); height:em(48px, $font-size); background-color:#576C80; color:#fff; text-align:center; line-height:em(48px, $font-size); border-radius:2px;}
+        }
+        .count{color:var_colors.$color_red; font-weight:600;}
       }
-      .count{color:var_colors.$color_red; font-weight:600;}
+    } 
+  }
+
+  @include mixin.maxWidth(720px){
+    $font-size:16px; font-size:16px;
+    padding:em(16px, $font-size); margin-bottom: em(24px, $font-size);
+    .form_row {
+      .cell{
+        input[type=text]:not(.cal_input) {
+          padding-right: 0px;
+        }
+      }
     }
-  }
-  }
-}
+    
+
+    .ico_box{
+      .form_row{}
+      .cell{
+        &.input_box{}
+        &.txt_box{ 
+          &.btn {
+            .form_btn {width:100%; }
+          }
+          .count{}
+        }
+      } 
+    }
+
+
+
+
+  }// 720 .cwb_container mobile END
+}//.cwb_container END
 
 .deco_area{$font-size:16px; font-size:$font-size; margin-bottom:em(48px, $font-size); text-align: center;
 }
@@ -73,6 +107,13 @@
   &.none_space{text-align:left; width:auto;}
   &.wide{width:em(540px, $font-size); }
   li{margin-bottom:em(16px, $font-size);}
+
+  @include mixin.maxWidth(720px){
+    box-sizing:border-box; padding:0 em(16px, $font-size); width:100%;
+    li{
+      &:before{top:12px;}
+    }
+  }
 }
 
 .sub_each{ $font-size:16px; font-size:$font-size; margin-bottom:em(24px, $font-size);
@@ -81,10 +122,16 @@
 //휴면계정
 .certi_list.two.sms_bg{$font-size:16px; font-size:$font-size; text-align: center; margin-top:em(40px, $font-size);;
   li{
-    .b-.lg{$font-size:20px; font-size:20px; font-weight:600; width:em(184px, $font-size); height:em(64px, $font-size);}
+    .b-.lg{$font-size:18px; font-size:$font-size; font-weight:600; width:em(184px, $font-size); height:em(64px, $font-size);}
+
+  }
+  @include mixin.maxWidth(720px){
+    li{
+      .b-.lg{$font-size:18px; font-size:$font-size; font-weight:600; width:em(184px, $font-size); height:em(48px, $font-size);}
+    }
   }
 }
 .certi_num {$font-size:20px; font-size:$font-size; margin-top:em(24px, $font-size); text-align: center; 
   span{font-weight:600; }
 }
-.certi_txt{ text-align: center; }
+.certi_txt{ text-align: center; padding:0 16px;}

@@ -525,6 +525,10 @@ i#{$btn}.b-sitego2{padding:0;min-height:inherit;}
 	@include mixin.maxWidth(1260px){
 		
 	}// 1260 ENd
+	@include mixin.maxWidth(720px){
+		.common_btn{$font-size:18px; font-size:$font-size; font-weight:600; display: inline-block; margin:0 em(8px,$font-size); width:45%; height:em(48px,$font-size); 
+		}
+	}// 1260 ENd
 }
 
 //댓글 버튼 

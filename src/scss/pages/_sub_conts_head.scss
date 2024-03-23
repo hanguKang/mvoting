@@ -19,6 +19,9 @@
       }
       
     }
+    @include mixin.maxWidth(720px){
+      .basic_tab{height:em(48px, $font-size); overflow:hidden; border-radius:4px;}
+    }
   }
   
   .center_box{position:relative; margin:0 auto; width:100%; max-width:em(1400px);
@@ -73,7 +76,22 @@
     }
 
     //반응형
-    @include mixin.maxWidth(720px){
+    
+  }// center_box END
+  @include mixin.maxWidth(720px){
+    $font-size:16px; font-size:$font-size;
+    height:auto;
+    &.my{display: block; text-align: left;
+      .center_box{display: block; height:auto;
+        &:last-child{display: block; padding-bottom:1px;
+          .basic_tab{margin-bottom:em(16px, $font-size);}
+        }
+      }
+    }
+    .center_box{ height:auto;
+      $font-size:16px; font-size:$font-size; text-align:left;
+      &:before{display:none;}
+      .sub_tit1{}
       .my_vote_list{left:auto; right:0; border:0 none;
         .rgt_box{ border:0 none;
           .ico{background: url(var.$imgurl_ico+"ico_check_m.png") no-repeat center center/auto; }
@@ -81,5 +99,6 @@
       }
       .vote_view_order{display: none; }      
     }
-  }// center_box END
+  }
+  
 }

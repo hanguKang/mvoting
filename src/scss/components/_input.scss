@@ -64,6 +64,11 @@
     //   background: white;
     // }
   &:focus{background-image: url(var.$imgurl_ico+'ico_slct_arrow_up.png');}
+
+  @include mixin.maxWidth(720px){
+    width:100%;
+  }
+
 }
 
 
@@ -156,6 +161,9 @@
   
 }//.form_row End 
 
+
+
+
 //글자입력
 .form_input {$font-size:16px; font-size:$font-size; width: 100%; height: em(48px, $font-size); padding:em(16px, $font-size) em(24px, $font-size); border:1px solid var_colors.$bdcolor; 
   &.ico{padding:0; padding-left:em(40px, $font-size); 
@@ -175,4 +183,56 @@
     } 
 
   }
+
+}
+
+@include mixin.maxWidth(720px){
+  .form_row{$font-size:16px; font-size:16px;
+    display: block;
+    .cell{
+      input[type="text"]:not(.cal_input) {padding-right: 0;}
+      &.input_box{}
+      &.btn.txt_box{width:100%; margin-top:em(8px, $font-size);
+        a.form_btn{width:100%;}
+      }
+      &.txt_box{}
+      &.up{align-items: start;
+        .cell{
+          &.label{ line-height:2.5; }
+          .ref_bull_txt{ margin-top:em(12px, $font-size); padding-left:0; 
+          }
+        }
+      }
+      //글자수 제한
+      .txt_length{position: static; display: block; text-align:right; margin:em(8px, $font-size) em(8px,$font-size) 0 0; color:#26282C;
+        &.input{bottom:em(12px, $font-size);} 
+        b{color:var_colors.$primary_color; font-weight:600; }
+        .maxlength_val{}
+      }
+    }
+
+    &.service{
+      .cell{
+        &.label{ flex:0 0 em(120px, $font-size); 
+          .star_mark{margin-right:em(4px,$font-size); color:var_colors.$color_orange; vertical-align: middle;}
+        }
+        // .cell요소가 2개가 되었던 3개가 되었던 .inpu요소는 2개일 때 또는 3개일 때 고정된 값을 뺀 나머지 값을 모두 갖게 된다. 
+        &.inp{flex:1 0 auto; margin:0;
+          &.no_margin{flex:0 0 calc(100% - em(284px,$font-size)); margin:0;}
+          .form_input{width:100%;}
+          .form_in{position:relative; margin-top:em(16px, $font-size); margin-bottom:em(8px, $font-size); padding-left:14px;
+            &:before{ position:absolute; left: 0px; top:9px; transform:translateY(-50%); 
+              content:''; display: inline-block; margin-right:em(8px,$font-size); width:em(16px, $font-size); height:em(16px, $font-size); background:url(var.$imgurl_ico+'ico_star.png') no-repeat 0 0/ auto; vertical-align: middle;
+            }
+          }
+        }
+        &.btn{padding:0; flex:0 0 100%; display: block; margin-top:em(8px, $font-size); width:100%;
+          .form_btn{width: 100%;  max-width: 100%; }
+          &.ccount{text-align:right; margin-top:em(8px, $font-size);}
+        }
+      }
+    }
+    .radio_each{flex:0 0 50%; width:50%; margin:8px 0 ;}
+  }
+  .form_input {$font-size:16px; font-size:$font-size; height: auto; padding:em(8px, $font-size) em(8px, $font-size);}
 }

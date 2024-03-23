@@ -114,13 +114,68 @@
               .add_tag{display: inline-block; margin-left:em(10px, $font-size); width:em(48px, $font-size); height:em(48px, $font-size); background:url(var.$imgurl_ico+'ico_vote_btn_more.png') no-repeat center/auto; vertical-align: middle;}
             }
             .added_tag_list{margin-top:em(32px, $font-size);
-              .vote_hash_mark{display: inline-block; padding:em(8px, $font-size) em(44px,$font-size) em(8px,$font-size) em(16px,$font-size); margin-right:em(12px, $font-size); background:var_colors.$input_bg url(var.$imgurl_ico+'ico_vote_hash_close.png') no-repeat 90% 50%/auto; }
+              .vote_hash_mark{display: inline-block; padding:em(8px, $font-size) em(44px,$font-size) em(8px,$font-size) em(16px,$font-size); margin-right:em(12px, $font-size); margin-bottom:em(12px, $font-size); background:var_colors.$input_bg url(var.$imgurl_ico+'ico_vote_hash_close.png') no-repeat 90% 50%/auto; }
             }
           }
+
+          @include mixin.maxWidth(720px){
+            &.tag{
+              .tag_add_box{width:100%;
+                
+                .form_input{width:calc(100% - 64px); }
+                .add_tag{width:em(40px, $font-size); height:em(40px, $font-size);}
+              }
+              .added_tag_list{
+                .vote_hash_mark{}
+              }
+            }
+            
+          }
+
         }
       } // .form_row End #2
     } // .center_white_box.full #2 End
     
   }// .vote_create_each End
   
-}
+
+  @include mixin.maxWidth(720px){
+    $font-size:16px; font-size:$font-size;
+    .center_box{}
+    .vote_create_each{
+      .center_white_box.full{ padding:em(16px, $font-size); }
+
+      //투표기간
+      .date_slt_box{font-weight:600; display: flex ; justify-content: start; align-items: center; 
+        &:before{display:none;}
+        >*{display:inline-block; vertical-align: middle; }
+        .cal_btn {
+          width: em(36px,$font-size);
+          height:em(36px,$font-size);
+          background: url(var.$imgurl_ico+'ico_cal.png') no-repeat center/auto;
+        }
+        .input_box {margin-top:em(8px, $font-size); margin-left:em(4px, $font-size);  
+          input.ymd {width: em(100px, $font-size); height: em(30px, $font-size);} ;
+        }
+        .form_slt{ margin:0 em(4px,$font-size); width:em(94px,$font-size); height:em(32px,$font-size);}
+        &.cell{ margin-top:em(16px, $font-size); $font-size:14px;  font-size:$font-size; font-weight:500; display: block; color:#696E76;
+          &:before{content:'※';  color:var_colors.$color_dark_orange;}
+        }
+      }
+      .cell:has(.radio_each){
+        display: flex; flex-wrap:wrap;
+        &:before{display:none;}
+        .radio_each{flex:0 0 50%;  margin:em(8px, $font-size) 0; display: flex; align-items:center;
+          &:before{display:none;}
+        }
+      }
+      .cell{
+        &.tag{
+          .tag_add_box{
+            .input_tag{width:calc(100% - 64px); vertical-align: middle;}
+          }
+        }
+      }
+    }
+  }
+}//s_outer END

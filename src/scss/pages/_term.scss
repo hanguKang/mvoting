@@ -1,10 +1,13 @@
 @use '../utiles/var_colors';
+@use '../utiles/var';
+@use '../config/mixin';
+
 .btn_help .help_box {display:none;}
 .s_outer{$font-size:16px; line-height:1.5;
   ul.basic_tab.tab_2p{display: flex; justify-content: center; align-items:center;
-    li{margin:0 em(20px); padding:0 em(50px); padding-bottom:em(30px);  border-bottom:6px solid transparent;
+    li{margin:0 em(20px,$font-size); padding:0 em(50px,$font-size); padding-bottom:em(30px,$font-size);  border-bottom:6px solid transparent;
       &.active{border-bottom:6px solid var_colors.$primary_bg; }
-      a{font-size:$font-size + 4; font-weight:600; color:var_colors.$btn_tab_color; } 
+      a{display:block; height:100%; font-size:$font-size + 4; font-weight:600; color:var_colors.$btn_tab_color; text-align:center;} 
     }
   }
   // basic_tab_con_box 
@@ -96,6 +99,16 @@
            } 
            .mt-2{margin-top: em( calc($font-size * 1.5 ), $font-size);}
         }//.scroll_box.term_txt End 
+      }
+    }
+  }
+
+  @include mixin.maxWidth(720px){
+    ul.basic_tab.tab_2p{display: flex; justify-content: center; align-items:center;
+      li{flex:0 0 50%; margin:0; padding:0; padding-bottom:em(10px, $font-size); text-align: center; 
+        a{
+          .br01{display:block;}
+        }
       }
     }
   }

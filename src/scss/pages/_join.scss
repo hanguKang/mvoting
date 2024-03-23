@@ -63,4 +63,50 @@ $font-size:16px;
 
 }
 
+@include mixin.maxWidth(720px){
+  .join_step {$font-size:16px; font-size:$font-size; box-sizing:border-box; width:auto; align-items: stretch; height:auto; padding:em(16px, $font-size);
+    li{flex:0 0 flx_equ_spc( 100%, 3, 8px ); display: flex; flex-direction:column; justify-content: start; align-items: start; padding:em(12px, $font-size);
+      img{display:none; margin-bottom:em(8px, $font-size);}
+      &.active{
+        border-color:var_colors.$primary_bg;
+      }
+    } 
+  }
+  .join_top_txt_box{position:relative; margin:0 auto;  margin-bottom:em(16px,$font-size); width:100%;  max-width: em(1400px, $font-size); text-align:left; padding-left:em(10px,$font-size);
+    &.space{padding:0 28px;}
+    .ico{
+      &.star{$font-size:16px; font-size:16px; position:relative; padding-left:em(4px, $font-size); 
+        &:before{position:absolute; left:em(-12px,$font-size); top:em(4px,$font-size); transform:translateY(0);}
+      }
+    }
+  }
+  .chk_wrap{ flex-wrap:wrap; margin-right:em(8px, $font-size);
+    .box-shadow-card{flex-wrap:wrap; justify-content: start; $font-size:16px; font-size:$font-size; padding:em(12px, $font-size); height:auto;
+      &.all{ }
+    }
+    .chk_each{flex:0 0 100%;  display: flex; align-items: center;
+      &:before{display:none;}
+      input[type="checkbox"] {width:em(24px, $font-size); height:em(24px, $font-size);
+        &:checked{
+          &:before{width:em(24px, $font-size); height:em(24px, $font-size); background-position:center;}
+        }
+      }
+      .label_join{$font-size:16px; font-size:$font-size; margin-left:em(8px, $font-size); letter-spacing: -2px;
+        .v_blue{margin-left:em(10px, $font-size); color:var_colors.$primary_bg; font-style:normal;}
+      }
 
+      & + a{flex:0 0 auto; margin-top:8px; margin-left:30px; display:block; height:em(24px, $font-size); }
+    }
+    
+  }
+
+  .sub_txt{t
+    .em0{}
+    .em1{}
+    +.common_btn{
+      &.login{$font-size:18px; font-size:$font-size;display: block; margin:0 auto; width:80%; height:em(48px, $font-size); margin-bottom:em(24px, $font-size); text-align:center;}
+      +.main{$font-size:18px; font-size:$font-size;display: block; margin:0 auto; width:80%; height:em(48px, $font-size);  text-align:center; background-color:#ffffff; color: var_colors.$primary_bg; border:2px solid var_colors.$primary_bg;}
+    }
+  
+  }
+}
