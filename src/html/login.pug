@@ -1,0 +1,74 @@
+extends ../templates/layout_sub
+
+block content
+  // contents
+  .contents
+    // container
+    .container.clearfix
+      // common_right
+      #real_contents.common_right
+        // sub_tit1_box
+        .sub_tit1_box
+          h2.sub_tit1 로그인
+        // // sub_tit1_box
+        .s_outer 
+          // login_wrap
+          .login_wrap
+            p.login_top_txt 전화번호 아이디와 비밀번호를 입력하시고 로그인 해주시기 바랍니다, 
+              span.none_767
+                br
+                | 비밀번호는 주기적으로 변경관리 하시기 바라며, 타인에게 노출되지 않도록 주의하시기 바랍니다.
+            // cwb_container
+            form#aform.cwb_container.size3.login.box-shadow-card.round-md(name="aform", action ="/mvoting/login/login.do", method="post")
+              input(type="hidden", name="refer_url", value='<%=param.getString("refer_url", param.getString("ru"))%>')
+              input(type="hidden", name="ru", value='<%=param.getString("ru")%>')
+              .center_white_box.common_usr.ico_box
+                h3.sub_tit2 로그인하세요. 
+                input#moblphonNo.form_input.ico.usr(type="text",   name="moblphonNo", title="전화번호 또는 아이디 입력", placeholder="전화번호 또는 아이디를 입력하세요.")
+                input#password.form_input.ico.pwd(type="password",  name="password",  title="비밀번호 입력", placeholder="비밀번호를 입력하세요." onKeyDown="javascript:if (event.keyCode == 13) { fnLogin(); }" )
+                .login_util_area.chk_each_box
+                  span.chk_each
+                    input#id_save(type="checkbox", name="idSave")
+                    label(for="id_save")
+                      span.vchkbox 아이디 저장
+                  a#btn_fnd_pwd.pwd_find_link(href="#") 비밀번호 찾기
+                button#btn_login.b-.lxg.common_btn.login.round-xxxlg(type="button") 로그인
+                .join_btn_box
+                  a.b-.lxg.common_btn.join.round-xxxlg(href="#", onclick="fnJoinChoiceForm(); return false;") 회원가입
+              //
+                .combi_certi_con
+                  a.combi_certi_box(href="#", onclick="return false;")
+                    .logo_box.simin_crtfc(data-appyn="<%=appYn %>")
+                      img(src="../../../common/images/sub/certi_login_tit_01.png", alt="")                
+                    .certi_txt_box
+                      span(data-layeropen="guide") 가이드보기
+                      em 안내 
+                        b
+                        | 02-3479-4460
+                  p.certi_txt2 서울패스인증은 서울시에서 제공하는 "서울시민카드"앱을 통하여 본인인증이 가능합니다.
+              //
+                ul.sns_certi_list.mt
+                  li 
+                    a(href="#", onclick="fnFaceBookLogin(); return false;", title="새창열림") 페이스북으로
+                      span.br
+                        br 
+                        | 로그인
+                  li.naver
+                    a(href="#", onclick="fnNaverLogin(); return false;" title="새창열림") 네이버로
+                      span.br
+                        br 
+                        | 로그인
+                  li.kakao
+                    a(href="#", onclick="fnKakaoLogin(); return false;" title="새창열림") 카카오로
+                      span.br
+                        br 
+                        | 로그인
+                ul.bull_list.sq
+                  li SNS아이디로 보다 편리하게 회원가입 및 로그인을 하실 수 있습니다.
+                  li 문자인증을 하지 않을 시에는 투표에 제약이 있습니다.
+              
+            // // cwb_container
+          // // login_wrap
+      // // common_right
+    // // container
+  // // contents 

@@ -3,9 +3,8 @@ import { random } from "./util";
 
 import { Nav } from "./nav";
 import _ from "lodash";
-import $ from "jquery";
+//import $ from "jquery";
 import bootstrapMin from "bootstrap/dist/js/bootstrap.min";
-
 
 // const rOne = random(10);
 // const rTwo = random(20);
@@ -36,9 +35,64 @@ $(function () {
   //nav
   doNav();
 
+  //banner
+  doBanner();
+
   console.log(123456);
 });
 
+const doBanner = ()=>{
+  if($('.owl-carousel')){
+    let owl = $('.owl-carousel').owlCarousel({
+      items:1, //화면표시 슬라이더 갯수
+      margin:0, 
+      loop:true,
+      center:true,
+      mouseDrag:true, 
+      touchDrag:true,
+      dots : true,
+      autoplay : true, // 자동 슬라이드 여부
+      autoplayTimeout : 3000, // 자동 슬라이드 시간 (예제는 3초)
+      // responsive:{
+      //   721:{}, 
+      // }
+    });
+    $('.owl-next').on('click', function() {
+      owl.trigger('next.owl.carousel');
+    })
+  
+    $('.owl-prev').on('click', function() {
+        owl.trigger('prev.owl.carousel', [300]);
+    })
+  }
+
+  //팝업 배너
+  if($('.vote_pop_slider.owl-carousel')){
+    let owl_pop_2= $('.vote_pop_slider02.owl-carousel').owlCarousel({
+      items:1, //화면표시 슬라이더 갯수
+      margin:0, 
+      loop:true,
+      center:true,
+      mouseDrag:true, 
+      touchDrag:true,
+      dots : true,
+      autoplay : true, // 자동 슬라이드 여부
+      autoplayTimeout : 3000, // 자동 슬라이드 시간 (예제는 3초)
+      // responsive:{
+      //   721:{}, 
+      // }
+    });
+    $('.owl-next-pop02').on('click', function() {
+      owl_pop_2.trigger('next.owl.carousel');
+    })
+  
+    $('.owl-prev-pop02').on('click', function() {
+        owl_pop_2.trigger('prev.owl.carousel', [300]);
+    })
+  }
+  
+
+}
 //모달
 const modal = () => {
   

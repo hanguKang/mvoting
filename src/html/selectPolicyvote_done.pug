@@ -1,0 +1,119 @@
+extends ../templates/layout_sub
+
+block content
+		// contents
+		.contents
+			// container
+			.container
+				// 검색폼
+				form#sform( method="get", action="#" )
+					input(type="hidden", name="order_type", value="")
+					// 리스트 페이지 번호
+					input(type="hidden", name="lpn", value="")
+					// 리스트 페이지 scroll 위치
+					input(type="hidden", name="lst", value="")
+				// .container.clearfix div삭제
+				.container_wrap
+					.sub_tit1_box
+						.center_box
+							h2.sub_tit1
+								// 220621 툴팁 버튼추가
+								button.btn_help(type="button", title="열기")
+									span.hide 도움말
+									span.help_box 서울시민+공무원이 올린 투표 중 투표수가 많은순 모아보기 입니다.
+								| 핫이슈 
+							.my_vote_list 
+								a.rgt_box.round-xxlg(href="#")
+									span.ico 
+									| 내가 참여한 투표 모아보기
+							// //220621 툴팁 버튼추가
+					// 분기투표인경우 다른 페이지를 보여준다. 
+					include selectJuminVote_done
+
+		form#voteBadForm(method="post", action="#")
+			input( type="hidden", name="vote_no", value="85180")
+			// 투표 신고하기 팝업
+			#popup04.layer_pop_box(tabindex="0", style="display: none;")
+				// layer_pop
+				.layer_pop
+					h2.sub_tit2 신고하기
+					// report_item_list
+					ul.report_item_list
+						li
+							span.radio_each
+								input(type="radio", name="sttemnt_resn", id="vItem1", value="001")
+								label(for="vItem1")
+									span.up 국가안전 저해 혹은 보안 관련 법규 위배
+									br
+									span.sup (국가안전을 저해하거나 보안 관련 법규에 위배되는 내용을 포함한 게시물일 경우)
+						li
+							span.radio_each
+								input(type="radio", name="sttemnt_resn", id="vItem2", value="002")
+								label(for="vItem2")
+									span.up 정치적 목적 포함
+									br
+									span.sup (정치적 목적이 있는 게시물일 경우)
+						li
+							span.radio_each
+								input(type="radio", name="sttemnt_resn", id="vItem3", value="003")
+								label(for="vItem3")
+									span.up 특정인 비방 혹은 명예훼손
+									br
+									span.sup (특정인을 비방하거나 명예훼손의 우려가 있는 게시물일 경우)
+						li
+							span.radio_each
+								input(type="radio", name="sttemnt_resn", id="vItem4", value="004")
+								label(for="vItem4")
+									span.up 영리목적의 상업성 광고 및 저작권 침해
+									br
+									span.sup (영리목적의 상업성 광고 및 저작권을 침해할 수 있는 게시물일 경우)
+						li
+							span.radio_each
+								input(type="radio", name="sttemnt_resn", id="vItem5", value="005")
+								label(for="vItem5")
+									span.up 욕설 / 음란물 등 불건전한 내용
+									br
+									span.sup (욕설 / 음란물 등 불건전한 게시물일 경우)
+						li
+							span.radio_each
+								input(type="radio", name="sttemnt_resn", id="vItem6", value="006")
+								label(for="vItem6")
+									span.up 동일한 사용자의 동일 내용 반복 게시 (중복투표 포함)
+									br
+									span.sup (같은 사람 또는 같은 사람이라고 인정되는 자가 같거나 유사한 내용을 반복적으로 올리는 게시물일 경우)
+						li
+							span.radio_each
+								input(type="radio", name="sttemnt_resn", id="vItem7", value="007")
+								label(for="vItem7")
+									span.up 기타 공익 저해 혹은 운영취지 위배
+									br
+									span.sup (그 밖에 공익을 저해하거나 엠보팅 운영 취지에 맞지 않는 투표안건 혹은 게시물일 경우)
+
+					// //report_item_list 
+					.style_deco_box1 
+						p.sub_txt 신고하시면 게시자의 글쓰기가 금지되거나 신고한 게시물이 삭제될 수 있습니다. 허위신고일 경우 신고한 사용자가 서비스 이용에 제한을 받게 됩니다. 이 점 유의해 주시기 바랍니다.			
+					// common_btn_box 
+					.common_btn_box.ta_c
+						a.b-.xlg.common_btn.cancel.cancel_btn.round-xxlg( href="#", data-layerclose="true") 
+							span 취소
+						a.b-.xlg.common_btn.ok.confirm_btn.round-xxlg( href="#")
+							span 확인
+					// // common_btn_box
+					button.layer_pop_close
+						span.hide 레이어 창 닫기
+				// // layer_pop 
+			// // layer_pop_box
+		// form#voteBadForm End
+		.layer_pop_box.vote_pop.type_photo
+			.layer_pop(data-focus-prev="focus01-close", data-focus-next="focus01-owl-prev", data-focus="focus01")
+				h2.sub_tit2
+				.vote_pop_contents 
+					.vote_pop_slider_box
+						.vote_pop_slider.owl-carousel.owl-theme.owl-loaded
+					.vote_pop_txt 
+						.vote_pop_tit 텍스트 제목
+						.vote_pop_txt 
+							p 영리목적의 상업성 광고 및 저작권 침해 
+							p (영리목적의 상업성 광고 및 저작권을 침해할 수 있는 게시물일 경우)
+				button.layer_pop_close(tabindex="3", data-focus="focus01-close", data-focus-next="focus01")
+					span.hide 레이어 창 닫기

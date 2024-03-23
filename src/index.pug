@@ -3,27 +3,28 @@ extends ./templates/layout
 block content 
     main        
         .contents
-            #myCarousel.carousel.slide.hide(data-bs-touch="true", data-bs-ride="carousel")
-                .carousel-indicators
-                    button.active( type="button", data-bs-target="#carouselExampleIndicators", data-bs-slide-to="0",  aria-label="Slide 1")
-                        span.hide 첫 번째 배너
-                    button( type="button", data-bs-target="#carouselExampleIndicators", data-bs-slide-to="1" , aria-label="Slide 2")
-                        span.hide 두 번째 배너
-                    button( type="button", data-bs-target="#carouselExampleIndicators", data-bs-slide-to="2" , aria-label="Slide 3")
-                        span.hide 세 번째 배너
-                .carousel-inner
-                    .carousel-item.active
-                        img.d-block.w-100(src="...",alt="슬라이드1")
-                    .carousel-item
-                        img.d-block.w-100(src="...",alt="슬라이드2")
-                    .carousel-item
-                        img.d-block.w-100(src="...",alt="슬라이드3")
-                button.carousel-control-prev(type="button", data-bs-target="#carouselExampleIndicators", data-bs-slide="prev")
-                    span.carousel-control-prev-icon(aria-hidden="true")
-                    span.visually-hidden 이전 배너 보기
-                button.carousel-control-next(type="button", data-bs-target="#carouselExampleIndicators", data-bs-slide="next")
-                    span.carousel-control-next-icon(aria-hidden="true")
-                    span.visually-hidden 다음 배너 보기
+            //-
+                #myCarousel.carousel.slide.hide(data-bs-touch="true", data-bs-ride="carousel")
+                    .carousel-indicators
+                        button.active( type="button", data-bs-target="#carouselExampleIndicators", data-bs-slide-to="0",  aria-label="Slide 1")
+                            span.hide 첫 번째 배너
+                        button( type="button", data-bs-target="#carouselExampleIndicators", data-bs-slide-to="1" , aria-label="Slide 2")
+                            span.hide 두 번째 배너
+                        button( type="button", data-bs-target="#carouselExampleIndicators", data-bs-slide-to="2" , aria-label="Slide 3")
+                            span.hide 세 번째 배너
+                    .carousel-inner
+                        .carousel-item.active
+                            img.d-block.w-100(src="...",alt="슬라이드1")
+                        .carousel-item
+                            img.d-block.w-100(src="...",alt="슬라이드2")
+                        .carousel-item
+                            img.d-block.w-100(src="...",alt="슬라이드3")
+                    button.carousel-control-prev(type="button", data-bs-target="#carouselExampleIndicators", data-bs-slide="prev")
+                        span.carousel-control-prev-icon(aria-hidden="true")
+                        span.visually-hidden 이전 배너 보기
+                    button.carousel-control-next(type="button", data-bs-target="#carouselExampleIndicators", data-bs-slide="next")
+                        span.carousel-control-next-icon(aria-hidden="true")
+                        span.visually-hidden 다음 배너 보기
             .container.clearfix
                 .container_wrap
                     .sub_tit1_box
@@ -38,8 +39,20 @@ block content
                                 a.rgt_box.round-xxlg(href="#")
                                     span.ico 
                                     | 내가 참여한 투표 모아보기
+                            //투표 목록 보는 순서 
+                            .vote_view_order 
+                                ul.vote_view_order_list 
+                                    li.vote_view_order_item.vote_view_order_item_01.on
+                                        a(href="#") 최신순
+                                            span.hide 목록보기
+                                    li.vote_view_order_item.vote_view_order_item_02 
+                                        a(href="#") 투표순
+                                            span.hide 목록보기
+                                    li.vote_view_order_item.vote_view_order_item_03
+                                        a(href="#") 조회수순
+                                            span.hide 목록보기
                             // //220621 툴팁 버튼추가
-                    #main-vote-box
+                    #main-vote-box.board_view
                         .tab_content
                             // ---------------- vote_list 시작 ---------------
                             ul.vote_list
@@ -49,8 +62,9 @@ block content
                                             .inner
                                                 img.card_img(src=imgurl+"common/card-bg-"+val+".png")
                                                 .mark_area
+                                                    span.b-sm.btn-green.round-xlg 추천투표
                                                     span.b-sm.btn-blue.round-xlg 인기투표
-                                                    span.b-sm.btn-purple.round-xlg 인기투표
+                                                    span.b-sm.btn-purple.round-xlg 정책참고
                                                     span.b-sm.btn-red.round-xlg 정책반영
                                             .type_finish.inner_layer
                                                 span 참여완료
@@ -102,6 +116,14 @@ block content
                                                 button.share_layer_close(type="button")
                                                     span.hide SNS 공유 창 닫기
                                 li.card_hot_issue.item.round-lg.box-shadow-card
+                                    .over_txt_box
+                                        img.autoHeight(src=imgurl + "common/card-bg-default.png" alt="")
+                                        a.inner.vs_left.round-sm(href="#") 
+                                            span.abs 예
+                                        span.ico_vs
+                                            span.hide 대결
+                                        a.inner.vs_right.round-sm(href="#") 
+                                            span.abs 아니오
                                     .card_txt
                                         .card_top
                                             div(class="txt_box txt_" + val )                                                
@@ -129,13 +151,7 @@ block content
                                             a.vote_hash_mark.round-sm(href="#") #어울림플라자
                                             a.vote_hash_mark.round-sm(href="#") #장애인
                                             a.vote_hash_mark.round-sm(href="#") #비장애인
-                                    .over_txt_box
-                                        a.inner.vs_left.round-sm(href="#") 
-                                            span.abs 예
-                                        span.ico_vs
-                                            span.hide 대결
-                                        a.inner.vs_right.round-sm(href="#") 
-                                            span.abs 아니오
+                                    
                                     //sns-popup layer
                                     .share_layer_box.share_box.round-lg
                                         .inner.round-rg
@@ -156,10 +172,22 @@ block content
                                                 span.hide 공유하기
                                             button.share_layer_close(type="button")
                                                 span.hide SNS 공유 창 닫기    
-                            .common_btn_box.ta_c.box-shadow-card.round-sm
+                            .common_btn_box.ta_c.box-shadow-card.round-sm.more_box
                                 a.common_btn.more.btn_more(href="#", data-page="2") 
                                     sapn.ico.plus
                                     span 더보기 
                                 a.common_btn.regist.v_regist(href="/mvoting/makevote/insertFormObjectiveVote.do") 투표등록
-                            
+                    .layer_pop_box(data-layernum="qr" tabindex="0")
+                        // layer_pop 
+                        .layer_pop
+                            h2.sub_tit2 QR코드 스캔
+                            .qr_scanbox 
+                                img(src="/upload/qrfile/1711009795365PKJQRMGRQICZO5CJIUC8.png", alt="길이가 길면 투표기간 위치가 변해요... 테스트입니다. 테스트 테스트 http://mvoting.seoul.go.kr:8080/53599")
+
+                            .common_btn_box.ta_c
+                                a#qr_save_btn.common_btn.ok.round-xxlg(href="", download="") 저장하기
+                            button.layer_pop_close
+                                span.hide 레이어 창 닫기
+                        // // layer_pop 
+                    
 

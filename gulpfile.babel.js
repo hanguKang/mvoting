@@ -22,7 +22,6 @@ import watchify from "watchify";
 import fancy_log from "fancy-log";
 
 
-
 const tsProject = ts.createProject("tsconfig.json");
 const sass = gulpSass(dartSass);
 
@@ -42,7 +41,7 @@ const routes = {
     watch: "src/scss/**/*.scss",
   },
   js: {
-    src: "src/js/main.js",
+    src: ["src/js/main.js", "src/js/owl.carousel.js"],
     dest: "build/js",
     watch: "src/js/**/*.js",
   },
@@ -73,9 +72,9 @@ const routes = {
 //       .pipe(source('bundle.js'))
 //       .pipe(gulp.dest(routes.ts.dest));
 // }
-const fonts = ()=>{
-  gulp.src(routes.font.src)
-  .pipe(gulp.dest(routes.font.dest));
+const fonts = async ()=>{
+    await gulp.src(routes.font.src, {read:false})
+    .pipe(gulp.dest(routes.font.dest));
 }
 
 const watchedBrowserify = watchify( //#1 수정사항 지켜보기
@@ -182,7 +181,7 @@ const ghDeploy = () =>
 
 // TASKS
 const clean = await deleteAsync(["build/*/*", "!build"]);
-const prepare = gulp.series([img]);
+const prepare = gulp.series([fonts, img]);
 //const assets = gulp.series([pug, styles, js, typescript]);
 const assets = gulp.series([pug, styles, js, tsCompile]);
 const live = gulp.parallel([webServer, watch]);

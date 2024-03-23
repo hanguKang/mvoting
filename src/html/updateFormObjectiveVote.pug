@@ -1,0 +1,453 @@
+extends ../templates/layout_sub
+
+block content
+
+    .contents
+      // container 
+      .container
+        // common_right 
+        #real_contents.common_right.w_tab_content.vote2
+          // sub_tit1_box
+          .sub_tit1_box
+            h2.sub_tit1 투표만들기
+          .s_outer
+            // // sub_tit1_box 
+            ul.basic_tab.tab_2p
+              li.active
+                a(href="#", onclick ="fnGoUrl('1'); return false;" title="선택됨") 일반투표
+              li
+                a(href="#",  onclick ="fnGoUrl('2'); return false;") VS형
+            // 이미지 업로드용 파일 폼 
+            form#fileForm.hide(method="post", action="#", enctype="multipart/form-data")
+              label
+                input( type="file", name="upload", style="display:none")
+            form#aform(method="post" action="#")
+              input(type="hidden", name="begin_dt" )
+              input(type="hidden", name="end_dt" )
+              input(type="hidden", name="vote_ty", value="<%=Const.voteTyN %>")
+              input(type="hidden", name="qestn_co" )
+              input(type="hidden", id="popup_doc_id", name="popup_doc_id", value="${resultVoteInfoMap.POPUP_DOC_ID}" )
+              input(type="hidden", name="vote_sttus" )
+              input(type="hidden", name="vote_no", value="${resultVoteInfoMap.VOTE_NO}")
+              input#totAnsCnt(type="hidden", name="totAnsCnt", value="2" )
+              .center_box
+                // vote_create_each 
+                .vote_create_each.vote_info
+                  // center_white_box 
+                  .center_white_box.full.box-shadow-card.round-md
+                    .form_row.mb-4
+                      .cell.attach_img
+                        .repre_img_box
+                          .att_view_img_box.vw_photo
+                            a.inner_txt_box(href="#")
+                              .txt_box
+                                p.txt1 대표 이미지
+                                p.txt2 최대 10MB 첨부 가능
+                            input(type="hidden", name="main_doc_id", value="${resultVoteInfoMap.POPUP_DOC_ID}")
+                            img(src=imgurl+"common/wa_mark2023.png" alt="대표 이미지" style="display:block;")
+                          a.attach_img_del_btn.btn_img_delete(href="#")
+                            span.hide 등록된 이미지 삭제
+                      .cell.tarea
+                        textarea.form_textarea.round-rg(name="vote_sj", cols="30", rows="10", title="제목 입력", placeholder="제목을 입력해 주세요. (최대 200자)", onKeyUp="lengthCounter(this);", value="")
+                        span.txt_length
+                          b 0
+                          | / 
+                          span.maxlength_val 200
+                    .form_row.mb-4
+                      .cell.tarea
+                        textarea.form_textarea.round-rg(name="vote_dc", cols="30", rows="10", title="투표취지 입력", placeholder="투표취지를 입력해 주세요. (최대 200자)", onKeyUp="lengthCounter(this);")
+                        span.txt_length
+                          b 0
+                          | / 
+                          span.maxlength_val 200
+                    .form_row
+                      .cell
+                        input.form_input.round-rg(type="text", name="link_url", title="자세히 보기 URL 입력", value="${resultVoteInfoMap.LINK_URL}", placeholder="자세히 보기 URL을 입력해 주세요. (ex. www.seoul.go.kr)", maxlength="200", onKeyUp="lengthCounter(this);")
+                        span.txt_length.input
+                          b 0
+                          | / 
+                          span.maxlength_val 200                
+                  // // center_white_box End
+                // // vote_create_each End
+
+                // vote_create_each 
+                .vote_create_each
+                  // center_white_box 
+                  .center_white_box.full.pd3_row1.box-shadow-card.round-md
+                    .form_row
+                      .cell.label 질문 순서 랜덤
+                      .cell
+                        span.radio_each
+                          input#qestn_random_y(type="radio", name="qestn_random_yn", value="Y")
+                          label(for="qestn_random_y")
+                            span.vradio
+                            | 예
+                        span.radio_each
+                          input#qestn_random_n(type="radio", name="qestn_random_yn", value="N")
+                          label(for="qestn_random_n")
+                            span.vradio
+                            | 아니오
+                        
+                  // // center_white_box End
+                // // vote_create_each End
+                #answer_default.vote_create_each.answer_box
+                  // center_white_box 
+                  .center_white_box.full.pd2.box-shadow-card.round-md
+                    .vote_sort_slt_box
+                      label.sel_label(for="votetype_0") 투표 유형
+                      select#votetype_0.form_slt.select_type(name="qestn_se_0")
+                        option(value="${qestnSeNum}") 객관식
+                        option(value="${qestnSeStr}") 주관식
+                    .form_row.v_tit_s
+                      .cell
+                        input.form_input.qest_sj.round-sm(type="text", name="qestn_sj_0", title="질문제목 입력", placeholder="질문을 입력해 주세요. (최대 200자)", maxlength="200", onKeyUp="lengthCounter(this);")
+                        span.txt_length.input
+                          b 0
+                          | / 
+                          span.maxlength_val 200
+
+                    // 객관식일 경우 추가되는 영역 
+                    .q_wrap
+                      .form_row.answer.answer_inp
+                        .cell
+                          input.form_input.round-sm(type="text", name="answer_0", title="답변 입력1", placeholder="답변을 입력해 주세요. (최대 200자)", maxlength="200", onKeyUp="lengthCounter(this);")
+                          span.txt_length.input
+                            b 0
+                            | / 
+                            span.maxlength_val 200
+                            input(type="hidden" name="ans_doc_id_0")
+                        .cell.att_sm_view
+                          // 썸네일 영역('.att_view_img_box') 과 사진 업로드버튼('.form_btn') 둘 다 클릭시 사진을 업로드 할 수 있습니다. 모바일호환을 위함. 만약에 에로사항이 있을 경우 문의 바랍니다. 
+                          a.att_view_img_box.ans_img_photo.round-sm(href="#", title="사진 업로드1")
+                            img(alt="대표 이미지1" src="../images/ico/ico_vote_sm_view.png" )
+                          a.attach_img_del_btn.btn_img_delete.round-sm(href="#", style="display:none;")
+                            span.hide 등록된 이미지 삭제1
+                        .cell.btn
+                          a.form_btn.ans_photo.round-sm(href="#") 사진 업로드1
+                        .cell.btn2
+                          a.form_btn.pnm.btn_anser_add.round-sm(href="#")
+                            span.hide 답변 추가
+                      .form_row.answer.answer_inp
+                        .cell
+                            input.form_input.round-sm(type="text", name="answer_0",  title="답변 입력2", placeholder="답변을 입력해 주세요. (최대 200자)", maxlength="200", onKeyUp="lengthCounter(this);" )
+                            span.txt_length.input
+                              b 0
+                              | / 
+                              span.maxlength_val 200
+                              input(type="hidden", name="ans_doc_id_0")
+                        .cell.att_sm_view
+                          a.att_view_img_box.ans_img_photo.round-sm(href="#", title="사진 업로드2")
+                            img(alt="대표 이미지2" src="../images/ico/ico_vote_sm_view.png" )
+                          a.attach_img_del_btn.btn_img_delete.round-sm(href="#")
+                            span.hide 등록된 이미지 삭제2
+                        .cell.btn
+                          a.form_btn.ans_photo.round-sm(href="#") 사진 업로드2
+                        .cell.btn2
+                      .form_row.answer.answer_inp
+                        .cell
+                          input.form_input.round-sm(type="text", name="answer_0", title="답변 입력1", placeholder="답변을 입력해 주세요. (최대 200자)", maxlength="200", onKeyUp="lengthCounter(this);")
+                          span.txt_length.input
+                            b 0
+                            | / 
+                            span.maxlength_val 200
+                            input(type="hidden" name="ans_doc_id_0")
+                        .cell.att_sm_view
+                          // 썸네일 영역('.att_view_img_box') 과 사진 업로드버튼('.form_btn') 둘 다 클릭시 사진을 업로드 할 수 있습니다. 모바일호환을 위함. 만약에 에로사항이 있을 경우 문의 바랍니다. 
+                          a.att_view_img_box.ans_img_photo.round-sm(href="#", title="사진 업로드3")
+                            img(alt="대표 이미지1" src="../images/ico/ico_vote_sm_view.png" )
+                          a.attach_img_del_btn.btn_img_delete.round-sm(href="#", style="display:none;")
+                            span.hide 등록된 이미지 삭제3
+                        .cell.btn
+                          a.form_btn.ans_photo.round-sm(href="#") 사진 업로드3
+                        .cell.btn2
+                          a.form_btn.pnm.minus.btn_anser_delete.round-sm(href="#")
+                            span.hide 해당 답변 삭제 3
+                      .form_row.answer.answer_inp
+                        .cell
+                            input.form_input.round-sm(type="text", name="answer_0",  title="답변 입력2", placeholder="답변을 입력해 주세요. (최대 200자)", maxlength="200", onKeyUp="lengthCounter(this);" )
+                            span.txt_length.input
+                              b 0
+                              | / 
+                              span.maxlength_val 200
+                              input(type="hidden", name="ans_doc_id_0")
+                        .cell.att_sm_view
+                          a.att_view_img_box.ans_img_photo.round-sm(href="#", title="사진 업로드4")
+                            img(alt="대표 이미지2" src="../images/ico/ico_vote_sm_view.png" )
+                          a.attach_img_del_btn.btn_img_delete.round-sm(href="#", style="display:none;")
+                            span.hide 등록된 이미지 삭제4
+                        .cell.btn
+                          a.form_btn.ans_photo.round-sm(href="#") 사진 업로드4
+                        .cell.btn2
+                          a.form_btn.pnm.minus.btn_anser_delete.round-sm(href="#")
+                            span.hide 해당 답변 삭제 4
+                      .form_row.setting
+                        div
+                          .cell
+                            span.mm_slt_each
+                              label.lbl_txt.random_lbl_txt(for="ge_answer_random_yn_0") 답변 
+                              select#ge_answer_random_yn_0.form_slt.sel_random( name="ge_answer_random_yn_0")
+                                option(value="N", selected="selected") 기본
+                                option(value="Y") 랜덤
+                        div
+                          .cell.label 답변개수 선택
+                          .cell
+                            span.mm_slt_each
+                              label.lbl_txt.sel_lbl_txt(for="sel_min_num_0") 최소
+                              select#sel_min_num_0.form_slt.sel_count(name="mumm_choise_co_0")
+                                option(value="0") 0개
+                                option(value="1", selected="selected") 1개
+                                option(value="2") 2개
+                            span.mm_slt_each
+                              label.lbl_txt.sel_lbl_txt(for="sel_max_num_0") 최대
+                              select#sel_max_num_0.form_slt.sel_count(name="mxmm_choise_co_0")
+                                option(value="0") 0개
+                                option(value="1", selected="selected") 1개
+                                option(value="2") 2개
+                    // // 객관식일 경우 추가되는 영역 End
+                  // // center_white_box End
+                  a.form_btn.inq_pnm.minus.btn_qestn_delete.round-xxlg(href="#") 
+                    span 질문삭제
+                //  //.vote_create_each.answer_box End
+                //.vote_create_each.answer_box
+                .vote_create_each.answer_box
+                  // center_white_box 
+                  .center_white_box.full.pd2.box-shadow-card.round-md
+                    .vote_sort_slt_box
+                      label.sel_label(for="votetype_0") 투표 유형
+                      select#votetype_0.form_slt.select_type.round-sm(name="qestn_se_0")
+                        option(value="${qestnSeNum}") 객관식
+                        option(value="${qestnSeStr}") 주관식
+                    .form_row.v_tit_s
+                      .cell
+                        input.form_input.qest_sj.round-sm(type="text", name="qestn_sj_0", title="질문제목 입력", placeholder="질문을 입력해 주세요. (최대 200자)", maxlength="200", onKeyUp="lengthCounter(this);")
+                        span.txt_length.input
+                          b 0
+                          | / 
+                          span.maxlength_val 200
+
+                    // 객관식일 경우 추가되는 영역 
+                    .q_wrap
+                      .form_row.answer.answer_inp
+                        .cell
+                          input.form_input.round-sm(type="text", name="answer_0", title="답변 입력1", placeholder="답변을 입력해 주세요. (최대 200자)", maxlength="200", onKeyUp="lengthCounter(this);")
+                          span.txt_length.input
+                            b 0
+                            | / 
+                            span.maxlength_val 200
+                            input(type="hidden" name="ans_doc_id_0")
+                        .cell.att_sm_view
+                          // 썸네일 영역('.att_view_img_box') 과 사진 업로드버튼('.form_btn') 둘 다 클릭시 사진을 업로드 할 수 있습니다. 모바일호환을 위함. 만약에 에로사항이 있을 경우 문의 바랍니다. 
+                          a.att_view_img_box.ans_img_photo.round-sm(href="#", title="사진 업로드1")
+                            img(alt="대표 이미지1" src="../images/ico/ico_vote_sm_view.png" )
+                          a.attach_img_del_btn.btn_img_delete.round-sm(href="#", style="display:none;")
+                            span.hide 등록된 이미지 삭제1
+                        .cell.btn
+                          a.form_btn.ans_photo.round-sm(href="#") 사진 업로드1
+                        .cell.btn2
+                          a.form_btn.pnm.btn_anser_add.round-sm(href="#")
+                            span.hide 답변 추가
+                      .form_row.answer.answer_inp
+                        .cell
+                            input.form_input.round-sm(type="text", name="answer_0",  title="답변 입력2", placeholder="답변을 입력해 주세요. (최대 200자)", maxlength="200", onKeyUp="lengthCounter(this);" )
+                            span.txt_length.input
+                              b 0
+                              | / 
+                              span.maxlength_val 200
+                              input(type="hidden", name="ans_doc_id_0")
+                        .cell.att_sm_view
+                          a.att_view_img_box.ans_img_photo.round-sm(href="#", title="사진 업로드2")
+                            img(alt="대표 이미지2" src="../images/ico/ico_vote_sm_view.png" )
+                          a.attach_img_del_btn.btn_img_delete.round-sm(href="#")
+                            span.hide 등록된 이미지 삭제2
+                        .cell.btn
+                          a.form_btn.ans_photo.round-sm(href="#") 사진 업로드2
+                        .cell.btn2
+                      .form_row.setting
+                        div
+                          .cell
+                            span.mm_slt_each
+                              label.lbl_txt.random_lbl_txt(for="ge_answer_random_yn_0") 답변 
+                              select#ge_answer_random_yn_0.form_slt.sel_random( name="ge_answer_random_yn_0")
+                                option(value="N", selected="selected") 기본
+                                option(value="Y") 랜덤
+                        div
+                          .cell.label 답변개수 선택
+                          .cell
+                            span.mm_slt_each
+                              label.lbl_txt.sel_lbl_txt(for="sel_min_num_0") 최소
+                              select#sel_min_num_0.form_slt.sel_count(name="mumm_choise_co_0")
+                                option(value="0") 0개
+                                option(value="1", selected="selected") 1개
+                                option(value="2") 2개
+                            span.mm_slt_each
+                              label.lbl_txt.sel_lbl_txt(for="sel_max_num_0") 최대
+                              select#sel_max_num_0.form_slt.sel_count(name="mxmm_choise_co_0")
+                                option(value="0") 0개
+                                option(value="1", selected="selected") 1개
+                                option(value="2") 2개
+                    // // 객관식일 경우 추가되는 영역 End
+                  // // center_white_box End
+                  a.form_btn.inq_pnm.minus.btn_qestn_delete.round-xxlg(href="#") 
+                    span 질문삭제
+                  a.form_btn.inq_pnm.plus.btn_qestn_add.wjdakf.round-xxlg(href="#") 
+                    span 질문추가
+                //  //.vote_create_each.answer_box End
+                // vote_create_each 
+                .vote_create_each
+                  // center_white_box 
+                  .center_white_box.full.pd3.box-shadow-card.round-md
+                    .form_row
+                      .cell.label 투표기간
+                      .cell
+                        .date_slt_box
+                          a.cal_btn.icon_calendar.start.calender_start(href="#", title="투표 시작일 선택")
+                            span.hide 캘린더 열기
+                          input(type="hidden", name="start_ymd", value="<%=begin_dt%>")
+                          .input_box 
+                            span.hide 투표기간 시작 날짜
+                            input#start_yymmdd.ymd.cal_input.calender_start(type="text", title="투표 시작 년.월.일 입력", placeholder="년.월.일", value="<%=begin_dt %>", maxlength="10", readonly )
+                          select#date_start_h01.form_slt(title="투표 시작 시 선택")
+                            option 시
+                          span.lbl_txt 시
+                          select#date_start_m01.form_slt(title="투표 시작 분 선택")
+                            option 분
+                          span.lbl_txt 분
+                        span.date_slt_wave ~
+                        .date_slt_box
+                          a.cal_btn.icon_calendar.end.calender_end(href="#", title="투표 종료일 선택")
+                            span.hide 캘린더 열기
+                          input(type="hidden", name="end_ymd", value="<%=end_dt %>")
+                          .input_box.end
+                            input#end_yymmdd.ymd.cal_input.calender_end(type="text", title="투표 종료 년.월.일 입력", placeholder="년.월.일", value="<%=end_dt %>", maxlength="10", readonly )
+                          select#date_end_h01.form_slt(title="투표 종료 시 선택")
+                            option(value="") 시
+                          span.lbl_txt 시
+                          select#date_end_m01.form_slt(title="투표 종료 시 선택")
+                            option 분
+                          span.lbl_txt 분
+                        .cell.date_slt_box
+                          p.ref_bull_txt 투표 기간 설정은 최대 31일까지 가능합니다.
+                  // // center_white_box End
+                // // vote_create_each End
+
+                // vote_create_each 
+                .vote_create_each
+                  // center_white_box 
+                  .center_white_box.full.pd3_row1.box-shadow-card.round-md
+                    .form_row
+                      .cell.label 재투표 가능 여부
+                      .cell
+                        span.radio_each
+                          input#vote_gubun_000(type="radio", name="vote_gubun", value="000")
+                          label(for="vote_gubun_000")
+                            span.vradio
+                            | 불가능
+                        span.radio_each
+                          input#vote_gubun_001(type="radio", name="vote_gubun", value="001")
+                          label(for="vote_gubun_001")
+                            span.vradio
+                            | 가능
+                  // // center_white_box End
+                // // vote_create_each End
+                
+                // vote_create_each 
+                .vote_create_each
+                  // center_white_box 
+                  .center_white_box.full.pd3_row1.box-shadow-card.round-md
+                    .form_row
+                      .cell.label 댓글
+                      .cell
+                        span.radio_each
+                          input#replyOn(type="radio", name="answer_yn", value="Y")
+                          label( for="replyOn")
+                            span.vradio
+                            | 받음                  
+                        span.radio_each
+                          input#replyOff(type="radio", name="answer_yn", value="N")
+                          label(for="replyOff")
+                            span.vradio
+                            | 안받음
+                  // // center_white_box End
+                // // vote_create_each End
+                
+                // vote_create_each 
+                .vote_create_each
+                  // center_white_box 
+                  .center_white_box.full.pd3_row1.box-shadow-card.round-md
+                    .form_row
+                      .cell.label 결과노출
+                      .cell
+                        span.radio_each
+                          input#resultOpenJoin(type="radio", name="progrs_middl_result", value="${voteResultShowR}")
+                          label(for="resultOpenJoin")
+                            span.vradio
+                            | 참여시 결과노출
+                        span.radio_each
+                          input#resultOpenFin(type="radio", name="progrs_middl_result", value="${voteResultShowE}")
+                          label(for="resultOpenFin")
+                            span.vradio
+                            | 마감 후 결과노출
+                        span.radio_each
+                          input#resultOpenNot(type="radio", name="progrs_middl_result", value="${voteResultShowN}")
+                          label(for="resultOpenNot")
+                            span.vradio
+                            | 결과노출 안함
+                  // // center_white_box End
+
+                // vote_create_each 
+                .vote_create_each
+                  // center_white_box 
+                  .center_white_box.full.pd3_row1.box-shadow-card.round-md
+                    .form_row
+                      .cell.label 공개범위
+                      .cell
+                        span.radio_each
+                          input#openAll(type="radio", name="othbc_trget", value="${othbcTrgetAll}")
+                          label(for="openAll")
+                            span.vradio
+                            | 전체공개
+                        span.radio_each
+                          input#openNot(type="radio", name="othbc_trget", value="${othbcTrgetNoALL}")
+                          label(for="openNot")
+                            span.vradio
+                            | 비공개 
+                        .pwd_confirm_box.open_pw_box(style="display:block;")
+                          input.form_input(type="password", name="vote_password", title="숫자 4자리 비밀번호 입력", value="${resultVoteInfoMap.VOTE_PASSWORD}", placeholder="숫자 4자리 비밀번호", maxlength="4" )
+                          input.form_input(type="password", name="vote_password_confirm", title="비밀번호 재입력", value="", placeholder="비밀번호 확인", maxlength="4")                  
+                  // // center_white_box End
+                // // vote_create_each End
+
+                // vote_create_each 
+                .vote_create_each
+                  // center_white_box 
+                  .center_white_box.full.pd3.box-shadow-card.round-md
+                    .form_row
+                      .cell.label
+                        label(for="vote_make_tag") 태그
+                      .cell.tag
+                        .tag_add_box
+                          input#vote_make_tag.form_input.input_tag(type="text", title="태그 입력", placeholder="태그를 입력해 주세요.", maxlength="50")
+                          a.form_btn.pnm.add_tag(href="#")
+                            span.hide 태그 추가
+                        .added_tag_list
+                          a.vote_hash_mark.user(href="#" onclick="event.stopPropagation(); fnHashTagDelete(this); return false;")
+                            input(type="hidden" name="tag_nm" value="<%=tagNmList.get(i)%>")
+                            | #해시태그 1
+                          a.vote_hash_mark.user(href="#" onclick="event.stopPropagation(); fnHashTagDelete(this); return false;")
+                            input(type="hidden" name="tag_nm" value="<%=tagNmList.get(i)%>")
+                            | #해시태그 2
+                          a.vote_hash_mark.user(href="#" onclick="event.stopPropagation(); fnHashTagDelete(this); return false;")
+                            input(type="hidden" name="tag_nm" value="<%=tagNmList.get(i)%>")
+                            | #해시태그 3
+                  // // center_white_box End
+                // // vote_create_each End
+                .common_btn_box.ta_c
+                  a.common_btn.round-xxxlg(href="#", onclick="fnSubmit('temp');return false;") 
+                    span 임시 저장
+                  a.common_btn.round-xxxlg(href="#", onclick="fnDeleteImSi();return false;") 
+                    span 임시 저장 삭제
+                  a.common_btn.more.round-xxxlg(href="#", onclick="fnSubmit('make');return false;") 
+                    span 투표 만들기          
+            // // common_right 
+        // // container 
+      // // contents 

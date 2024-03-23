@@ -1,0 +1,73 @@
+extends ../templates/layout_sub
+
+block content
+  // contents
+  .contents
+    // container
+    .container.clearfix
+      // common_right
+      #real_contents.common_right
+        // sub_tit1_box
+        .sub_tit1_box
+          h2.sub_tit1 휴면계정
+        // // sub_tit1_box
+        .s_outer 
+          // login_wrap
+          #noauth-box.login_wrap
+            p.login_top_txt 휴면상태의 계정은 휴대폰 번호 인증을 통해 휴면 해제가 가능합니다.
+
+            ul.basic_tab.tab_2p.onoff.m_tab
+                li.active.on
+                  a( href="#", title="선택됨") 기존 회원 휴면계정 해제
+                li
+                  a( href="#") 본인 인증 회원 휴면계정 해제
+            // cwb_container 
+            .onoff_box.tab_terms
+              .basic_tab_con_box.bg_none
+                // basic_tab_con 
+                .basic_tab_con
+                  .cwb_container.box-shadow-card.round-md
+                    h3.sub_tit2 비밀번호 찾기
+                    form#lockForm(method="post")
+                      div
+                        .center_white_box.type_asso.mob_wrapper.type2.common_usr.ico_box
+                          .form_row.up
+                            .cell.input_box
+                              input#phone_num.form_input.ico.numeric(type="text", name="phone_num", title="휴대폰 번호 입력", placeholder="가입한 전화번호(아이디)를 입력하세요." , value='<%=param.getString("moblphonNo") %>', readonly)
+                              p.ref_bull_txt.form_in.ml 
+                                span.hide 별표는 주의사항
+                                | * 휴대폰번호가 틀리지 않도록 신중히 입력해 주세요.
+                            .cell.btn.txt_box
+                              a#getNum.form_btn(href="#") 인증번호 받기
+                          .form_row
+                            .cell.input_box
+                              input#confirm_num.form_input.ico.cnum(type="text", name="confirm_num", title="인증번호 입력", placeholder="인증번호를 입력하세요.")
+                            .cell.ccount.txt_box
+                              span.ccount_txt.text_confirm ( 인증번호: 
+                                span.count 02:00
+                                |   )
+                        // // cwb_container END
+                  .common_btn_box.ta_c
+                    a.common_btn.cancel.round-xxxlg(href="<%=Const.doLogin %>") 취소
+                    a#next.common_btn.ok.round-xxxlg(href="#") 인증하기
+                .basic_tab_con 
+                  .cwb_container.box-shadow-card.round-md
+                    h3.sub_tit2 휴대폰 본인인증하기 
+                    form#aform(method="post")
+                      .combi_certi_wrapper
+                        .certi_con.pass_wrapper.center_white_box.common_usr.ico_box
+                          .certi_box
+                            img(src=imgurl + "ico/ico_lock_phone.png" alt="")
+                  ul.certi_list.two.sms_bg(data-appyn="<%=appYn %>")
+                    li
+                      a.b-.lg.round-xxlg(href="#") 인증하기
+                  p.certi_num 안내 
+                    span 1600-1522
+                  p.certi_txt 문자본인인증은 사용중인 휴대폰의 통신사 조회를 통해 본인확인이 가능 합니다.
+                // // basic_tab_con END
+              // // basic_tab_con_box END
+            // // cwb_container END
+          // // login_wrap END
+      // // common_right END
+    // // container END
+  // // contents  END

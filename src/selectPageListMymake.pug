@@ -1,0 +1,346 @@
+extends ./templates/layout
+             
+block content 
+  main        
+    .contents
+      //-
+        #myCarousel.carousel.slide.hide(data-bs-touch="true", data-bs-ride="carousel")
+            .carousel-indicators
+                button.active( type="button", data-bs-target="#carouselExampleIndicators", data-bs-slide-to="0",  aria-label="Slide 1")
+                    span.hide 첫 번째 배너
+                button( type="button", data-bs-target="#carouselExampleIndicators", data-bs-slide-to="1" , aria-label="Slide 2")
+                    span.hide 두 번째 배너
+                button( type="button", data-bs-target="#carouselExampleIndicators", data-bs-slide-to="2" , aria-label="Slide 3")
+                    span.hide 세 번째 배너
+            .carousel-inner
+                .carousel-item.active
+                    img.d-block.w-100(src="...",alt="슬라이드1")
+                .carousel-item
+                    img.d-block.w-100(src="...",alt="슬라이드2")
+                .carousel-item
+                    img.d-block.w-100(src="...",alt="슬라이드3")
+            button.carousel-control-prev(type="button", data-bs-target="#carouselExampleIndicators", data-bs-slide="prev")
+                span.carousel-control-prev-icon(aria-hidden="true")
+                span.visually-hidden 이전 배너 보기
+            button.carousel-control-next(type="button", data-bs-target="#carouselExampleIndicators", data-bs-slide="next")
+                span.carousel-control-next-icon(aria-hidden="true")
+                span.visually-hidden 다음 배너 보기
+      .container.clearfix
+        .container_wrap
+          .sub_tit1_box.my
+            .center_box
+              h2.sub_tit1 내 투표함
+              .my_vote_list 
+                a.rgt_box.round-xxlg(href="#")
+                  span.ico 
+                  | 내가 참여한 투표 모아보기
+              //투표 목록 보는 순서 
+              .vote_view_order 
+                ul.vote_view_order_list 
+                  li.vote_view_order_item.vote_view_order_item_01.on
+                    a(href="#") 최신순
+                      span.hide 목록보기
+                  li.vote_view_order_item.vote_view_order_item_02 
+                    a(href="#") 투표순
+                      span.hide 목록보기
+                  li.vote_view_order_item.vote_view_order_item_03
+                    a(href="#") 조회수순
+                      span.hide 목록보기
+              // //220621 툴팁 버튼추가
+            .center_box
+              //내 투표 만들기 필터링 버튼
+              ul.basic_tab.tab_2p( data-tabControl="1" )
+                li.active
+                  a(href="#", title="선택됨", onclick="fnChangeTab('mymake')") 만든투표
+                li(data-id="tabB", title="", onclick="fnChangeTab('imsivote')") 
+                  a(href="#") 임시 저장
+          // 리스트 폼 양식
+          form#aform(method="get", action="#")
+            input(type="hidden", name="vote_no")
+            input(type="hidden", name="currentPage", value="1")
+            // 리스트 페이지 정보 
+            input(type="hidden", name="lpn")
+            input(type="hidden", name="lst")
+            input(type="hidden", name="order_type", value="date")
+            input(type="hidden", name="pos_x")
+            input(type="hidden", name="pos_y")
+          form#vsForm(method="post", action="#")
+            input(type="hidden", name="vote_no")
+            input(type="hidden", name="answer_1")
+            // 리스트 페이지 정보 
+            input(type="hidden", name="lpn")
+            input(type="hidden", name="lst")
+            input(type="hidden", name="order_type" value="date")
+            input(type="hidden", id="stats_colct_yn")
+            input(type="hidden", name="lifyea" value="")
+            input(type="hidden", name="sexdstn" value="")
+            input(type="hidden", name="u_local" value="")
+            input(type="hidden", name="adres_code" value="")
+          #main-vote-box.board_view
+            .tab_content
+              // ---------------- vote_list 시작 ---------------
+              ul.vote_list
+                each val, index in [1,2,3,4,5]
+                  li.card_hot_issue.item.round-lg.box-shadow-card.my
+                    a.img_box(href="#")
+                      .inner
+                        img.card_img(src=imgurl+"common/card-bg-"+val+".png")
+                        .mark_area
+                          span.b-sm.btn-green.round-xlg 추천투표
+                          span.b-sm.btn-blue.round-xlg 인기투표
+                          span.b-sm.btn-purple.round-xlg 정책참고
+                          span.b-sm.btn-red.round-xlg 정책반영
+                      .type_finish.inner_layer
+                        span 참여완료
+                    .card_txt
+                      .card_top
+                        div(class="txt_box txt_" + val )                                                
+                          h1.tit 블록체인 객관식 정책투표 블록체인 객관식 정책투표
+                          p.txt
+                            a(href="#") 2024년 서울시 북스타트 엄마북(Book)엄마 아빠 책을 투표해주세요! 엄마 아빠책을 투표해주세요! 
+                          p.date_box 
+                            span.date.fc_gray 2023.11.01 ~ 2023.11.15 
+                              em.dday (D-1)
+                        .my_vote_util_box
+                          a.round_util_btn.copy(href="#", onclick="fnCopyVote('84180');return false;") 복사
+                          a.round_util_btn.finish(href="#", onclick="fnUpdateVoteSttus('84180','006');return false;") 마감
+                          a.round_util_btn.re(href="#", onclick="fnUpdateVoteSttus('84180','004');return false;") 재개
+                          a.round_util_btn.delete(href="#", onclick="fnUpdateVoteSttus('84180','999');return false;") 삭제
+                        .card_btm.util_area 
+                          ul.ico_info_list
+                            li.usr_cnt.board_info
+                              span.hide 투표인원
+                              | 6,789
+                            li.reply.board_info
+                              span.hide 댓글수
+                              | 20
+                            li.lookup.board_info
+                              span.hide 조회수
+                              | 20
+                          .fl_box
+                            button.share_btn.btn_share(type="button")
+                              span.hide SNS 공유 창 열기
+                      .hash_area
+                        a.vote_hash_mark.round-sm(href="#") #어울림플라자
+                        a.vote_hash_mark.round-sm(href="#") #장애인
+                        a.vote_hash_mark.round-sm(href="#") #비장애인
+                    //sns-popup layer
+                    .share_layer_box.share_box.round-lg
+                      .inner.round-rg
+                        ul.list.m_sns_share.round-xxlg
+                          li.sns_item.btn_facebook
+                            a(href="#", title="새창열림") 
+                              span.hide 페이스북
+                          li.sns_item.twit.btn_twitter
+                            a(href="#", title="새창열림") 
+                              span.hide 엑스
+                          li.sns_item.qr
+                            a(href="#", data-layeropen="qr" title="QR app 열림") 
+                              span.hide QR코드
+                          li.sns_item.url.btn_urlcopy
+                            a(href="#") 
+                              span.hide URL 복사
+                        button.share__btn(type="button")
+                          span.hide 공유하기
+                        button.share_layer_close(type="button")
+                          span.hide SNS 공유 창 닫기
+                li.card_hot_issue.item.round-lg.box-shadow-card.my
+                  .card_txt
+                    .card_top
+                      div(class="txt_box txt_" + val )                                                
+                        h1.tit 블록체인 객관식 정책투표
+                        p.txt
+                          a(href="#") 2024년 서울시 북스타트 엄마북(Book) 돋움 엄마아빠책을투표해주세요!
+                        p.date_box 
+                          span.date.fc_gray 2023.11.01 ~ 2023.11.15 
+                            em.dday (D-1)
+                      .my_vote_util_box
+                        a.round_util_btn.copy(href="#", onclick="fnCopyVote('84180');return false;") 복사
+                        a.round_util_btn.down(href="#", onclick="fnResultDown('44003');return false;") 결과 다운로드
+                        a.round_util_btn.delete(href="#", onclick="fnUpdateVoteSttus('84180','999');return false;") 삭제
+                      .card_btm.util_area 
+                        ul.ico_info_list
+                          li.usr_cnt.board_info
+                            span.hide 투표인원
+                            | 6,789
+                          li.reply.board_info
+                            span.hide 댓글수
+                            | 20
+                          li.lookup.board_info
+                            span.hide 조회수
+                            | 20
+                        .fl_box
+                          button.share_btn.btn_share(type="button")
+                            span.hide SNS 공유 창 열기
+                    .hash_area.hash_yes_no
+                      a.vote_hash_mark.round-sm(href="#") #어울림플라자
+                      a.vote_hash_mark.round-sm(href="#") #장애인
+                      a.vote_hash_mark.round-sm(href="#") #비장애인
+                  .over_txt_box
+                    a.inner.vs_left.round-sm(href="#") 
+                      span.abs 예
+                    span.ico_vs
+                      span.hide 대결
+                    a.inner.vs_right.round-sm(href="#") 
+                      span.abs 아니오
+                  //sns-popup layer
+                  .share_layer_box.share_box.round-lg
+                      .inner.round-rg
+                          ul.list.m_sns_share.round-xxlg.left
+                              li.sns_item.btn_facebook
+                                  a(href="#", title="새창열림") 
+                                      span.hide 페이스북
+                              li.sns_item.twit.btn_twitter
+                                  a(href="#", title="새창열림") 
+                                      span.hide 엑스
+                              li.sns_item.qr
+                                  a(href="#", data-layeropen="qr" title="QR app 열림") 
+                                      span.hide QR코드
+                              li.sns_item.url.btn_urlcopy
+                                  a(href="#") 
+                                      span.hide URL 복사
+                          button.share__btn.left(type="button")
+                              span.hide 공유하기
+                          button.share_layer_close(type="button")
+                              span.hide SNS 공유 창 닫기    
+              .common_btn_box.ta_c.box-shadow-card.round-sm.more_box
+                a.common_btn.more.btn_more(href="#", data-page="2") 
+                  sapn.ico.plus
+                  span 더보기 
+                a.common_btn.regist.v_regist(href="/mvoting/makevote/insertFormObjectiveVote.do") 투표등록
+              // ----------------------------------------- 임시저장 ---------------------------------------------
+              ul.vote_list
+                each val, index in [1,2,3]
+                  li.card_hot_issue.item.round-lg.box-shadow-card.my
+                    a.img_box(href="#")
+                      .inner
+                        img.card_img(src=imgurl+"common/card-bg-"+val+".png")
+                        .mark_area
+                          span.b-sm.btn-green.round-xlg 추천투표
+                          span.b-sm.btn-blue.round-xlg 인기투표
+                          span.b-sm.btn-purple.round-xlg 정책참고
+                          span.b-sm.btn-red.round-xlg 정책반영
+                      .type_finish.inner_layer
+                        span 참여완료
+                    .card_txt
+                      .card_top
+                        div(class="txt_box txt_" + val )                                                
+                          h1.tit 블록체인 객관식 정책투표 블록체인 객관식 정책투표
+                          p.txt
+                            a(href="#") 2024년 서울시 북스타트 엄마북(Book)엄마 아빠 책을 투표해주세요! 엄마 아빠책을 투표해주세요! 
+                          p.date_box 
+                            span.date.fc_gray 2023.11.01 ~ 2023.11.15 
+                              em.dday (D-1)
+                        .my_vote_util_box
+                          a.round_util_btn.copy(href="#", onclick="fnCopyVote('84180');return false;") 복사
+                          a.round_util_btn.vote_preview(href="#", onclick="fnUpdateVoteSttus('84180','006');return false;") 미리보기                          
+                          a.round_util_btn.delete(href="#", onclick="fnUpdateVoteSttus('84180','999');return false;") 삭제
+                        .card_btm.util_area 
+                          ul.ico_info_list
+                            li.usr_cnt.board_info
+                              span.hide 투표인원
+                              | 6,789
+                            li.reply.board_info
+                              span.hide 댓글수
+                              | 20
+                            li.lookup.board_info
+                              span.hide 조회수
+                              | 20
+                          .fl_box
+                            button.share_btn.btn_share(type="button")
+                              span.hide SNS 공유 창 열기
+                      .hash_area
+                        a.vote_hash_mark.round-sm(href="#") #어울림플라자
+                        a.vote_hash_mark.round-sm(href="#") #장애인
+                        a.vote_hash_mark.round-sm(href="#") #비장애인
+                    //sns-popup layer
+                    .share_layer_box.share_box.round-lg
+                      .inner.round-rg
+                        ul.list.m_sns_share.round-xxlg
+                          li.sns_item.btn_facebook
+                            a(href="#", title="새창열림") 
+                              span.hide 페이스북
+                          li.sns_item.twit.btn_twitter
+                            a(href="#", title="새창열림") 
+                              span.hide 엑스
+                          li.sns_item.qr
+                            a(href="#", data-layeropen="qr" title="QR app 열림") 
+                              span.hide QR코드
+                          li.sns_item.url.btn_urlcopy
+                            a(href="#") 
+                              span.hide URL 복사
+                        button.share__btn(type="button")
+                          span.hide 공유하기
+                        button.share_layer_close(type="button")
+                          span.hide SNS 공유 창 닫기
+                li.card_hot_issue.item.round-lg.box-shadow-card.my
+                  .card_txt
+                    .card_top
+                      div(class="txt_box txt_" + val )                                                
+                        h1.tit 블록체인 객관식 정책투표
+                        p.txt
+                          a(href="#") 2024년 서울시 북스타트 엄마북(Book) 돋움 엄마아빠책을투표해주세요!
+                        p.date_box 
+                          span.date.fc_gray 2023.11.01 ~ 2023.11.15 
+                            em.dday (D-1)
+                      .my_vote_util_box
+                        a.round_util_btn.copy(href="#", onclick="fnCopyVote('84180');return false;") 복사
+                        a.round_util_btn.vote_preview(href="#", onclick="fnUpdateVoteSttus('84180','006');return false;") 미리보기  
+                        a.round_util_btn.delete(href="#", onclick="fnUpdateVoteSttus('84180','999');return false;") 삭제
+                      .card_btm.util_area 
+                        ul.ico_info_list
+                          li.usr_cnt.board_info
+                            span.hide 투표인원
+                            | 6,789
+                          li.reply.board_info
+                            span.hide 댓글수
+                            | 20
+                          li.lookup.board_info
+                            span.hide 조회수
+                            | 20
+                        .fl_box
+                          button.share_btn.btn_share(type="button")
+                            span.hide SNS 공유 창 열기
+                    .hash_area.hash_yes_no
+                      a.vote_hash_mark.round-sm(href="#") #어울림플라자
+                      a.vote_hash_mark.round-sm(href="#") #장애인
+                      a.vote_hash_mark.round-sm(href="#") #비장애인
+                  .over_txt_box
+                    a.inner.vs_left.round-sm(href="#") 
+                      span.abs 예
+                    span.ico_vs
+                      span.hide 대결
+                    a.inner.vs_right.round-sm(href="#") 
+                      span.abs 아니오
+                  //sns-popup layer
+                  .share_layer_box.share_box.round-lg
+                      .inner.round-rg
+                          ul.list.m_sns_share.round-xxlg.left
+                              li.sns_item.btn_facebook
+                                  a(href="#", title="새창열림") 
+                                      span.hide 페이스북
+                              li.sns_item.twit.btn_twitter
+                                  a(href="#", title="새창열림") 
+                                      span.hide 엑스
+                              li.sns_item.qr
+                                  a(href="#", data-layeropen="qr" title="QR app 열림") 
+                                      span.hide QR코드
+                              li.sns_item.url.btn_urlcopy
+                                  a(href="#") 
+                                      span.hide URL 복사
+                          button.share__btn.left(type="button")
+                              span.hide 공유하기
+                          button.share_layer_close(type="button")
+                              span.hide SNS 공유 창 닫기 
+            .layer_pop_box(data-layernum="qr" tabindex="0")
+              // layer_pop 
+              .layer_pop
+                  h2.sub_tit2 QR코드 스캔
+                  .qr_scanbox 
+                      img(src="/upload/qrfile/1711009795365PKJQRMGRQICZO5CJIUC8.png", alt="길이가 길면 투표기간 위치가 변해요... 테스트입니다. 테스트 테스트 http://mvoting.seoul.go.kr:8080/53599")
+
+                  .common_btn_box.ta_c
+                      a#qr_save_btn.common_btn.ok.round-xxlg(href="", download="") 저장하기
+                  button.layer_pop_close
+                      span.hide 레이어 창 닫기
+            // // layer_pop 

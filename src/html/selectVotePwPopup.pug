@@ -1,0 +1,23 @@
+extends ../templates/layout_sub
+
+block content
+  // contents 
+  .contents
+    // .container
+    .container
+    // layer_pop_box
+  #popup01.layer_pop_box(tabindex="0" data-layernum="private" style="display:block" )
+    // layer_pop
+    .layer_pop
+      h2.sub_tit2 비공개 투표
+      p.private_pop_txt 비밀번호를 아는 사람만 검색을 통해 투표에 참여 할 수 있습니다.
+      input.form_input(type="password", name="pwd", maxlength="4", placeholder="비밀번호를 입력해 주세요.", title="비밀번호 입력")
+      // common_btn_box
+      .common_btn_box.ta_c
+        a.common_btn.cancel.popup_close.round-xxlg(href="#") 취소
+        a.common_btn.ok.popup_vote_pwd_check.round-xxlg(href="#") 확인
+      // // common_btn_box END
+      button.layer_pop_close.popup_close2
+        span.hide 레이어 창 닫기
+    // // layer_pop END
+  // // layer_pop_box END

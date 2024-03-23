@@ -1,0 +1,39 @@
+extends ../templates/layout_sub
+
+block content
+  // contents 
+  .contents
+    // container 
+    .container.clearfix
+      // common_right
+      #real_contents.common_right
+        form#aform(role="form", method="post", action="/mvoting/setting/mypage/ctz/updateCtzBoard.do",  enctype="multipart/form-data")
+          input#board_num(type="hidden", name="board_num",  value='<%=resultMap.getString("BOARD_SEQ") %>')
+        .sub_tit1_box
+          h2.sub_tit1 시민참여단
+        // // sub_tit1_box 
+        .s_outer
+          // board_view
+          .cwb_container.vote_create_each
+            .center_white_box.full.box-shadow-card.round-md
+              .form_row
+                .cell.label
+                  label(for="qestn_sj") 제목
+                .cell
+                  input#qestn_sj.form_input(type="text", name="qestn_sj", placeholder="제목을 입력해 주세요. (최대 200자)", maxlength="200",  value='<%=resultMap.getString("BOARD_SJ") %>')
+                  span.txt_length.input
+                    b 0
+                    | / 
+                    span.maxlength_val 200
+              .form_row
+                .cell.label
+                  label(for="qestn_cn") 내용
+                .cell.tarea
+                  textarea#qestn_cn.form_textarea(name="qestn_cn", maxlength="1000", cols="30", rows="10", placeholder="내용을 입력해 주세요.") <%=resultMap.getString("BOARD_CN") %>
+            .common_btn_box.ta_c
+              a.common_btn.cancel.round-xxxlg(href="/mvoting/setting/mypage/ctz/selectPageListCtzBoard.do") 취소
+              a.common_btn.regist.round-xxxlg(href="#", onclick="fnGoInsert(); return false;") 수정
+          // // board_view END
+      // // common_right END
+    // // container END
+  // // contents END

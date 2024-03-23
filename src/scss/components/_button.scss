@@ -1,11 +1,13 @@
-@use '../utiles/var';
 @use '../utiles/var_colors';
+@use '../utiles/var';
+@use '../config/mixin';
 
 $btn:"[class^=b-]";
-span#{$btn}{ $font-size:14px; font-size:em($font-size); line-height:1.5; padding:em(6px, $font-size) em(12px, $font-size); height:auto; letter-spacing:-1px; margin-right:em(8px, $font-size ); 
+span#{$btn}{ $font-size:14px; font-size:em($font-size); line-height:1.5; padding:em(6px, $font-size) em(12px, $font-size); height:auto; letter-spacing:-1px; margin-right:em(8px, $font-size ); margin-bottom:em(8px, $font-size);
 	&.btn-blue { }
+	&.btn-green { background-color:var_colors.$color_green; }
 	&.btn-purple{background-color:var_colors.$btn_bg_purple;}
-	&.btn-red { background:var_colors.$btn_bg_red;}
+	&.btn-red { background-color:var_colors.$btn_bg_red;}
 }
 #{$btn}{$font-size:16px;
 	text-indent:0;
@@ -461,4 +463,79 @@ i#{$btn}.b-sitego2{padding:0;min-height:inherit;}
 		margin-left: 7px;
 	}
 	&.on:after { content: ''; }	
+}
+
+
+//전체 버튼
+.common_btn_box{ $font-size:16px; font-size:$font-size; line-height:1.5; margin:em(40px, $font-size) auto em(80px, $font-size) auto; width:100%; max-width:em(1400px, $font-size);height: em(88px, $font-size); background-color:transparent;
+	&.more_box{background:#fff;
+		&:before{display:none;}
+	}
+	&.just_this{margin-top:0;}
+	&.ta_c{text-align: center;}
+	&.ta_r{text-align: right;}
+	&:before{content:''; display: inline-block; height:100%; vertical-align: middle;}
+	&.box-shadow-card{
+		.common_btn{
+			&.more{ background:transparent; color:#000;
+				.ico.plus{
+					display: inline-block;
+					width: 0.75em;
+					height: 12px;
+					background-repeat: no-repeat;
+					background-position: center center;
+					background-size: auto;
+					background-image: url(var.$imgurl_ico+'ico_more.png');
+					vertical-align: middle;
+				}
+			}
+		}
+	}
+	.common_btn{$font-size:20px; font-size:$font-size; font-weight:600; display: inline-block; margin:0 em(8px,$font-size); width:em(184px,$font-size); height:em(64px,$font-size); border:2px solid var_colors.$primary_color; background-color:#fff; color:var_colors.$primary_color; vertical-align: middle; text-align:center;
+		&:before{content:''; display: inline-block; height:100%; vertical-align: middle;}
+		&.more, &.modify, &.regist, &.del, &.ok {background-color:var_colors.$primary_bg; color:#fff; border:0 none;}
+		span{ vertical-align: middle;}
+
+		&.btn_more{$font-size:20px; font-size: $font-size; font-weight:600; display: inline-block; vertical-align:middle; margin-left:0; margin-right:0; width:100%; height:100%; line-height: em(88px, $font-size); background-color:#fff; border:0 none; color:#000000;
+			&:before{content:''; display: inline-block; vertical-align: middle; height:100%;}
+			.ico{
+				&.plus{display: inline-block; width:em(12px); height:(12px); @include mixin.bgSet; background-image:url(var.$imgurl_ico+'ico_more.png'); vertical-align:middle;}
+			}
+			span{vertical-align: middle;}      
+		}
+
+		&.regist.v_regist{$font-size:20px; font-size: $font-size;  font-weight:600;
+			display: none;
+			position: fixed;
+			right: em(15px, $font-size);
+			bottom: em(40px, $font-size);
+			z-index: 10;
+			width: em(80px, $font-size);
+			height: em(80px, $font-size);
+			line-height: em(80px, $font-size);
+			border-radius: 50%;
+		}
+	}
+	//반응형
+	@include mixin.maxWidth(1420px){
+		width:calc(100% - em(32px,$font-size)); 
+		margin-left:em(16px, $font-size); margin-right:em(16px, $font-size);
+	}// 1420 ENd
+
+	@include mixin.maxWidth(1260px){
+		
+	}// 1260 ENd
+}
+
+//댓글 버튼 
+.util_area{$font-size:16px; font-size:$font-size;
+	.md{height:em(32px, $font-size); padding:em(4px, $font-size) em(12px, $font-size); margin-left:em(8px, $font-size); background-color:#fff; color:#484B51; border:1px solid var_colors.$bdcolor; 
+		&:before{content:''; display:inline-block; height:100%; vertical-align: middle;}
+		.ico{@include mixin.bgSet; display:inline-block; margin-right:4px; width:18px; height:18px; vertical-align:-3px;
+			&.revise{background-image:url(var.$imgurl_ico+'ico_revise.png');}
+			&.del{background-image:url(var.$imgurl_ico+'ico_del.png');}
+			&.notify{background-image:url(var.$imgurl_ico+'ico_notify.png');vertical-align:-1px;}
+			&.like{background-image:url(var.$imgurl_ico+'ico_like.png');}
+		}
+	}
 }

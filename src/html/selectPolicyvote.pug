@@ -12,23 +12,23 @@ block content
 					input(type="hidden", name="lpn", value="")
 					// 리스트 페이지 scroll 위치
 					input(type="hidden", name="lst", value="")
-				.container.clearfix
-					.container_wrap
-						.sub_tit1_box
-							.center_box
-								h2.sub_tit1
-									// 220621 툴팁 버튼추가
-									button.btn_help(type="button", title="열기")
-										span.hide 도움말
-										span.help_box 서울시민+공무원이 올린 투표 중 투표수가 많은순 모아보기 입니다.
-									| 핫이슈 
-								.my_vote_list 
-									a.rgt_box.round-xxlg(href="#")
-										span.ico 
-										| 내가 참여한 투표 모아보기
-								// //220621 툴팁 버튼추가
-						// 분기투표인경우 다른 페이지를 보여준다. 
-						include selectJuminVote
+				// .container.clearfix div삭제
+				.container_wrap
+					.sub_tit1_box
+						.center_box
+							h2.sub_tit1
+								// 220621 툴팁 버튼추가
+								button.btn_help(type="button", title="열기")
+									span.hide 도움말
+									span.help_box 서울시민+공무원이 올린 투표 중 투표수가 많은순 모아보기 입니다.
+								| 핫이슈 
+							.my_vote_list 
+								a.rgt_box.round-xxlg(href="#")
+									span.ico 
+									| 내가 참여한 투표 모아보기
+							// //220621 툴팁 버튼추가
+					// 분기투표인경우 다른 페이지를 보여준다. 
+					include selectJuminVote
 
 		form#voteBadForm(method="post", action="#")
 			input( type="hidden", name="vote_no", value="85180")

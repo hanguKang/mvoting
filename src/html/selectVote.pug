@@ -12,19 +12,23 @@
           .each
         .board_view_top_up
           h3.tit.title_vote 서울시보건환경연구원 3대 주요뉴스 투표하고 커피쿠폰 받아가세요!
-          ul.sns_share_util
-            li.sns_share_util_item
-              a.btn_facebook.btn_sns(href="#", title="새창열림")
-                span.hide 페이스북으로 공유하기
-            li.twit.sns_share_util_item
-              a.btn_twitter.btn_sns(href="#", title="새창열림")
-                span.hide 트위터로 공유하기
-            li.qr.sns_share_util_item
-              a.btn_qr.btn_sns(href="#", data-layeropen="qr", data-vote-no="")
-                span.hide QR코드로 공유하기
-            li.url.sns_share_util_item
-              a.btn_urlcopy.btn_sns(href="#", data-vote-no="")
-                span.hide URL 복사하기
+          div.ico_box
+            a#vote-bad-btn.round_mark.siren(href="#")
+              span.ico.round-lg
+                span 신고하기
+            ul.sns_share_util
+              li.sns_share_util_item
+                a.btn_facebook.btn_sns(href="#", title="새창열림")
+                  span.hide 페이스북으로 공유하기
+              li.twit.sns_share_util_item
+                a.btn_twitter.btn_sns(href="#", title="새창열림")
+                  span.hide 트위터로 공유하기
+              li.qr.sns_share_util_item
+                a.btn_qr.btn_sns(href="#", data-layeropen="qr", data-vote-no="")
+                  span.hide QR코드로 공유하기
+              li.url.sns_share_util_item
+                a.btn_urlcopy.btn_sns(href="#", data-vote-no="")
+                  span.hide URL 복사하기
         .board_view_top_down
           ul.info_list
             li.info_list_item
@@ -63,11 +67,30 @@
           // 이미지 슬라이드 > 기존 selectVoeDjsp
               div(data-focus-prev="focus01-close" data-focus-next="focus01-owl-prev" data-focus="focus01")
           // 이미지 하나인 경우 메인이미지 
-            <div class="top_img_box">
-              <a href="#" id="main_image_pop" data-vote-no="85039">
-                <img src="/upload/vote/img/20240124/1706086572208GGYYXJQTIP6GZ6PQ2901YPOGQ.jpg" alt="서울형 육아휴직 장려금 사업 참여자 설문조사">
-              </a>
-            </div>
+          div.top_img_box
+            a#main_image_pop(href="#" , data-vote-no="85039")
+              img(src=imgurl+"common/testbanner.png", alt="테스트")
+          div.banner_box(data-focus-prev="focus01-close" data-focus-next="focus01-owl-prev" data-focus="focus01")
+            .top_img_box.vote_pop_slider.owl-carousel.owl-theme.owl-loaded
+              .owl-stage-outer 
+                .owl-stage
+                  .owl-item.article-items
+                    a(href="#") 
+                      img(src="https://cdn.pixabay.com/photo/2023/08/05/14/24/twilight-8171206_1280.jpg" alt="테스트1")
+                  .owl-item.article-items
+                    a(href="#") 
+                      img(src="https://cdn.pixabay.com/photo/2018/05/30/00/24/thunderstorm-3440450_1280.jpg" alt="테스트2")
+                  .owl-item.article-items
+                    a(href="#") 
+                      img(src="https://cdn.pixabay.com/photo/2012/08/06/00/53/bridge-53769_1280.jpg" alt="테스트3")
+            .owl-nav
+              button.owl-prev(type="button")
+                span(aria-label="Previous") 
+                span.hide 이전 슬라이드
+              button.owl-next(type="button") 
+                span(aria-label="Next") 
+                span.hide  다음 슬라이드
+
           // editor_view_box 
           div(data-focus-prev="focus01-close", data-focus-next="focus01-owl-prev", data-focus="focus01")
           .editor_view_box.vote_point_box
@@ -89,7 +112,11 @@
                 | 개인정보(휴대폰번호) 수집 및 이용, 제3자 제공에 동의하는 분에 한해 추첨을 통해 커피 기프티콘 증정 
             .link_url_right
               a.round_mark.url.round-sm(href="#", target="_blank", title="새창") 자세히보기
-                span.ico 
+                span.ico
+          .vote_quorum_box.notice_box.board_view_file.round-md
+            p.notice_txt 
+              span.ico.ico_point 
+              | 본 투표의 최소 의사 정족수는 3명 입니다.
     //투표 선택 상자
     .main_vote_area
       form#voteForm(method="post", action="#")
@@ -113,18 +140,35 @@
           //  vote_dep1_con 
           .vote_dep1_con.vote_join_list
             // vote_item_tab 
+            ul.vote_item_tab.clearfix
+              li.btn_vote_word.round-md.box-shadow-card.active(data-qestn-seq="")
+                a(href="#", title="선택됨") 답변 상세 샘플 질문입니다. 
+                  span.word_count.count 0
+              li.btn_vote_word.round-md.box-shadow-card(data-qestn-seq="")
+                a(href="#", title="") 주관식입니다.
+                  span.word_count.count 0
+              li.btn_vote_word.round-md.box-shadow-card(data-qestn-seq="")
+                a(href="#", title="") 일반적인 질문
+                  span.word_count.count 0
+              li.btn_vote_word.round-md.box-shadow-card(data-qestn-seq="")
+                a(href="#", title="") 기타
+                  span.word_count.count 0
             // vote_item_con_box 
             .vote_item_con_box
               // vote_item 기본 체크형 
               .vote_item.qestn-box(data-qestn-seq="")
-                p.vote_ref_txt.max_select 
-                  strong ( *표시는 필수 정보 사항입니다. ) 
-                  span.star_mark *
-                  | 최소
-                  em.min 3
-                  |개 및 최대
-                  em.max 3
-                  |개를 반드시 선택해주십시오.
+                .description_txt
+                  p.count_vote 총 투표권 2 / 
+                    span.check_cnt 0
+                    | 개
+                  p.vote_ref_txt.max_select 
+                    strong ( *표시는 필수 정보 사항입니다. ) 
+                    span.star_mark *
+                    | 최소
+                    em.min 3
+                    |개 및 최대
+                    em.max 3
+                    |개를 반드시 선택해주십시오.
                 h5.vote_item_tit.thd.round-md
                   span 연구원의 주요 뉴스 9개 중 연구원을 빛낸 3개의 뉴스에 투표해주세요!
                 ul.vote_select_list
@@ -150,6 +194,8 @@
                         .img_box
                           .inner
                             img(src=imgurl+"upload/vote/vote_check_item.png", alt="업로드 묘사")
+                          .vote_img_tooltip
+                            img(src=imgurl+"upload/vote/vote_check_item.png", alt="업로드 묘사")
                         .vote_wrp
                           p.txt.vote_box_text 방사능검사실, 농산물검사실 등 신규 실험환경 조성과 24시간 감염병 대응 근무자를 위한 후생복지 공간 개선 등 최신의 연구시설 신규 조성
                             input(type="hidden", name="", value="")
@@ -158,9 +204,9 @@
                       input#answer_1_2(type="checkbox", title="",  name="", value="", data-etcyn="")
                       label(for="answer_1_2")
                         span.vchkbox
-                  li.answer-box.round-md.box-shadow-card( data-answer-seq="" )
+                  li.answer-box.round-md.no_photo.box-shadow-card( data-answer-seq="" )
                     div.slt_area
-                      a.img_view_item.vote_box_photo( href="#", title="이미지 크게보기" )                        
+                      a.img_view_item( href="#")                        
                         .vote_wrp
                           p.txt.vote_box_text 방사능검사실, 농산물검사실 등 신규 실험환경 조성과 24시간 감염병 대응 근무자를 위한 후생복지 공간 개선 등 최신의 연구시설 신규 조성
                             input(type="hidden", name="", value="")
@@ -171,18 +217,17 @@
                       input#answer_1_3(type="checkbox", title="",  name="", value="", data-etcyn="")
                       label(for="answer_1_3")
                         span.vchkbox
-                  li.answer-box.round-md.box-shadow-card( data-answer-seq="" )
+                  li.answer-box.round-md.no_photo.box-shadow-card( data-answer-seq="" )
                     div.slt_area
-                      a.img_view_item.vote_box_photo( href="#", title="이미지 크게보기" )                        
-                        .vote_wrp
-                          p.txt.vote_box_text 답변 상세가 없는 경우
-                            input(type="hidden", name="", value="")
-                            span.nw_ico
+                      .vote_wrp
+                        p.txt.vote_box_text 답변 상세가 없는 경우
+                          input(type="hidden", name="", value="")
+                          span.nw_ico
                     span.chk_each.notxt
                       input#answer_1_4(type="checkbox", title="",  name="", value="", data-etcyn="")
                       label(for="answer_1_4")
                         span.vchkbox
-                  li.answer-box.round-md.box-shadow-card( data-answer-seq="" )
+                  li.answer-box.round-md.no_photo.box-shadow-card( data-answer-seq="" )
                     div.slt_area
                       a.img_view_item.vote_box_photo( href="#", title="이미지 크게보기" )                        
                         .vote_wrp
@@ -235,7 +280,7 @@
       // // main_vote_area End
     // form voteForm end 
     // common_btn_box 
-    #btn_list_box.common_btn_box.ta_c.bg_none
+    #btn_list_box.common_btn_box.ta_c
       a#list-btn.b-.xlg.round-xxlg.common_btn.list2( href="#" ) 
         span 목록
       a#vote-btn-check.b-.xlg.round-xxlg.common_btn( href="#" )
@@ -250,8 +295,10 @@
           a.vote_hash_mark.user.round-rg(href="#") #서울시보건환경연구원
           a.vote_hash_mark.user.round-rg(href="#") #이벤트
           a.vote_hash_mark.user.round-rg(href="#") #3대주요뉴스 투표
+
       // comment_area
       // 댓글시작 
+    .view_box_wrp.round-lg.box-shadow-card
       .comment_area.vote_reply_area            
         // 댓글 폼
         form#replyForm(method="post", action="#")
@@ -314,10 +361,10 @@
                     li 2024.02.15
                     li 21:18:19
                 .util_area
-                  a.b-.md.btn.report.btn_notify( href="#")
+                  a.b-.md.btn.report.btn_notify.round-rg( href="#")
                     span.ico.notify
                     span 신고
-                  a.b-.md.btn.recommend.btn_like( href="#")
+                  a.b-.md.btn.recommend.btn_like.round-rg( href="#")
                     span.ico.liek 
                     span 추천 0
               p.txt.reply_text.round-lg 셈세히 확인할려고 노력했습니다
@@ -335,10 +382,10 @@
                     li 2024.02.15
                     li 21:18:19
                 .util_area
-                  a.b-.md.btn.report.btn_notify( href="#")
+                  a.b-.md.btn.report.btn_notify.round-rg( href="#")
                     span.ico.notify 
                     span 신고
-                  a.b-.md.btn.recommend.btn_like( href="#")
+                  a.b-.md.btn.recommend.btn_like.round-rg( href="#")
                     span.ico.like 
                     span 추천 0
               p.txt.reply_text.round-lg 투표했ㅇ습니다~
@@ -348,9 +395,9 @@
                   span.cnum.count_ta
                     em 0
                   | / 1000자
-            li.end.text_finish( style="display:none;") 마지막 댓글입니다.
+            li.end.text_finish( style="display:block;") 마지막 댓글입니다.
           // // comment_list 
-    .common_btn_box.ta_c.box-shadow-card
+    .common_btn_box.ta_c.box-shadow-card.more_box
       a.btn_add.common_btn.more( href="#", data-page="") 
         span.ico.plus
         span 더보기

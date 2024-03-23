@@ -1,0 +1,139 @@
+extends ../templates/layout_sub
+
+block content
+  // contents 
+  .contents
+    // container 
+    .container.clearfix
+      // common_right 
+      #real_contents.common_right
+        form#aform(name="aform", method="post")
+          input#userAgree1(type="hidden", name="userAgree1")
+          input#userAgree2(type="hidden", name="userAgree2")
+          input#hide_moblphonNo(type="hidden", name="hide_moblphonNo", value="asdf")
+          input#hide_smsCrtfcNo(type="hidden", name="hide_smsCrtfcNo", value="")
+          // sub_tit1_box 
+          .sub_tit1_box
+            h2.sub_tit1 회원가입
+          // // sub_tit1_box 
+          // join_step 
+          ol.join_step
+            li.active.round-md
+              img(src="../images/ico/ico_login_step_1_on.png", alt="")
+              .step_txt.icon
+                span.step_txt1 STEP .01
+                p.step_txt2 약관동의 본인인증
+            li.round-md
+              img(src="../images/ico/ico_login_step_2_off.png", alt="정보작성 아이콘")
+              .step_txt.icon
+                span.step_txt1 STEP .02
+                p.step_txt2 정보작성
+            li.round-md
+              img(src="../images/ico/ico_login_step_3_off.png", alt="가입완료 아이콘")
+              .step_txt.icon
+                span.step_txt1 STEP .03
+                p.step_txt2 가입완료
+          .s_outer
+            // // join_step
+            .join_top_txt_box
+              p.ref_bull_txt 
+                span.ico.star 반드시 아래 약관내용을 숙지 한 후 모두 동의하셔야만 가입이 가능합니다.
+
+            .chk_wrap
+              .all.chk_each_box.box-shadow-card.round-md
+                span.chk_each
+                    input#cer_agree(type="checkbox", name="tSchType", onchange="$(this).parent().parent().siblings().find('input').prop('checked', $(this).is(':checked') );")
+                    label.label_join(for="cer_agree")
+                      span.vchkbox
+                      | 이용 약관에 모두 동의합니다.
+              ul.chk_wrap2.chk_each_box
+                li.box-shadow-card.round-md
+                  span.chk_each
+                    input#cer_agree1.cer_agree(type="checkbox", name="tSchType1")
+                    label.label_join(for="cer_agree1")
+                      span.vchkbox 
+                      | 14세 이상 입니다. 
+                      em.v_blue (필수)
+                li.box-shadow-card.round-md
+                  span.chk_each
+                    input#cer_agree2.cer_agree(type="checkbox", name="tSchType1")
+                    label.label_join(for="cer_agree2")
+                      span.vchkbox
+                      | 엠보팅 이용약관에 동의합니다.
+                      em.v_blue (필수)
+                  a(href="#" id="privacy2", data-type="2", title="엠보팅 이용약관" ) 새 창에서 내용보기
+                
+                li.box-shadow-card.round-md
+                  span.chk_each
+                    input#cer_agree3.cer_agree(type="checkbox", name="tSchType1")
+                    label.label_join(for="cer_agree3")
+                      span.vchkbox 개인정보 제3자 제공에 동의합니다.
+                        em.v_blue (필수)
+                  a#privacy3(href="#", data-type="3", title="개인정보 제3자 제공 동의서") 새 창에서 내용보기            
+                li.box-shadow-card.round-md
+                  span.chk_each
+                    input#cer_agree4.cer_agree(type="checkbox", name="tSchType1")
+                    label.label_join(for="cer_agree4")
+                      span.vchkbox 개인정보 처리방침에 동의합니다.
+                        em.v_blue (필수)
+                  a#privacy4(href="#", data-type="4", title="서울특별시 개인정보 처리방침") 새 창에서 내용보기            
+                li.box-shadow-card.round-md
+                  span.chk_each
+                    input#cer_agree5.cer_agree(type="checkbox", name="tSchType1")
+                    label.label_join(for="cer_agree5")
+                      span.vchkbox 개인정보 수집 이용 및 제공에 동의합니다.
+                        em.v_blue (필수)
+                  a#privacy5(href="#", data-type="5", title="개인정보 수집 이용 및 제공 동의서") 새 창에서 내용보기
+            // combi_certi_wrapper 
+              .onoff_box.combi_certi_wrapper
+                .certi_con.pass_wrapper
+                  .certi_img_box
+                    img(src="../../../common/images/sub/certi_login_tit_02.png" alt="휴대폰 본인인증하기")
+                  .certi_box
+                    img(src="../../../common/images/sub/certi_img_02.png" alt="")
+                    ul.certi_list.two.sms_bg(data-appyn="<%=appYn %>")
+                      li
+                        a(href="#") 인증하기              
+                    p.certi_num 안내 
+                      span 1600-1522
+                    p.certi_txt 문자본인인증은 사용중인 휴대폰의 통신사 조회를 통해 본인확인이 가능 합니다.
+            .onoff_box.tab_terms
+              .sub_each.cwb_container.box-shadow-card.round-md
+                //
+                  ul.basic_tab.tab_1p
+                    // 2019-11-04 id값 추가 
+                    li.active
+                      a#pNumFocusing(href="#") 문자인증 투표하기
+                // 2019-11-04
+                //
+                  ul.basic_tab.tab_1p
+                    li.active
+                      a#pNumFocusing(href="#") 문자인증 투표하기
+                // sub_each
+                .center_white_box.type_asso.mob_wrapper.type2.ico_box
+                  .form_row.service.up
+                    .cell.label 
+                      label(for="moblphonNo") 전화번호
+                    .cell.inp
+                      input#moblphonNo.form_input.ico.numeric(type="number", name="moblphonNo", title="휴대폰 번호 입력", placeholder="휴대폰 번호를 입력하세요." )
+                      p.ref_bull_txt.form_in.ml 입력하신 휴대폰번호는 아이디로 사용됩니다.
+                    .cell.btn
+                      a#getNum.form_btn.round-sm(href="#") 인증번호 받기
+                  .form_row.service
+                    .cell.label
+                      label(for="smsCrtfcNo") 인증번호
+                    .cell.inp
+                      input#smsCrtfcNo.form_input.ico.cnum(type="number", name="smsCrtfcNo", title="인증번호 입력", placeholder="인증번호를 입력하세요." )
+                    .cell.ccount.btn
+                      span.ccount_txt.text_confirm (인증번호:
+                        span.count  02:00
+                        | )
+              .btn_dc.dc02_asso.common_btn_box.ta_c
+                a.common_btn.cancel.round-xxlg(href="/mvoting/join/general/joinChoice.do") 취소
+                a#next.common_btn.ok.round-xxlg(href="#") 투표하기
+              // // sub_each END
+            // // .onoff_box END
+        // //form END
+      // // common_right  END
+    // // container END
+  // // contents END

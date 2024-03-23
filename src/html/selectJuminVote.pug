@@ -119,16 +119,18 @@
           .vote_dep1_con.vote_join_list.tabA
             // vote_item_tab 
             ul.vote_item_tab.clearfix.mvote_tab_content.tabA(data-id="tabB")
-              li.btn_vote_word.active(data-qestn-seq="1")
-                a(href="#" title="선택됨") 1
+              li.btn_vote_word.box-shadow-card.round-md.active(data-qestn-seq="1")
+                a(href="#" title="선택됨") 
+                  span.vote_word_tit 블록 1
                   span.word_count.count 0
-              li.btn_vote_word.active(data-qestn-seq="2")
-                a(href="#" title="선택됨") 주관식입니다.
+              li.btn_vote_word.box-shadow-card.round-md(data-qestn-seq="2")
+                a(href="#")
+                  span.vote_word_tit 주관식입니다.
                   span.word_count.count 0
-              li.btn_vote_word.active(data-qestn-seq="3")
-                a(href="#" title="선택됨") 1
+              li.btn_vote_word.box-shadow-card.round-md(data-qestn-seq="3")
+                a(href="#")
+                  span.vote_word_tit 블록 3
                   span.word_count.count 0
-              
             // vote_item_con_box 
             .vote_item_con_box
               // vote_item 기본 체크형 
@@ -174,9 +176,9 @@
                       input#answer_1_2(type="checkbox", title="",  name="", value="", data-etcyn="")
                       label(for="answer_1_2")
                         span.vchkbox
-                  li.answer-box.round-md.box-shadow-card( data-answer-seq="" )
+                  li.answer-box.no_photo.round-md.box-shadow-card( data-answer-seq="" )
                     div.slt_area
-                      a.img_view_item.vote_box_photo( href="#", title="이미지 크게보기" )                        
+                      a.img_view_item( href="#")                        
                         .vote_wrp
                           p.txt.vote_box_text 방사능검사실, 농산물검사실 등 신규 실험환경 조성과 24시간 감염병 대응 근무자를 위한 후생복지 공간 개선 등 최신의 연구시설 신규 조성
                             input(type="hidden", name="", value="")
@@ -187,24 +189,22 @@
                       input#answer_1_3(type="checkbox", title="",  name="", value="", data-etcyn="")
                       label(for="answer_1_3")
                         span.vchkbox
-                  li.answer-box.round-md.box-shadow-card( data-answer-seq="" )
-                    div.slt_area
-                      a.img_view_item.vote_box_photo( href="#", title="이미지 크게보기" )                        
-                        .vote_wrp
-                          p.txt.vote_box_text 답변 상세가 없는 경우
-                            input(type="hidden", name="", value="")
-                            span.nw_ico
+                  li.answer-box.no_photo.round-md.box-shadow-card( data-answer-seq="" )
+                    div.slt_area                     
+                      .vote_wrp
+                        p.txt.vote_box_text.no 답변 상세가 없는 경우
+                          input(type="hidden", name="", value="")
+                          span.nw_ico
                     span.chk_each.notxt
                       input#answer_1_4(type="checkbox", title="",  name="", value="", data-etcyn="")
                       label(for="answer_1_4")
                         span.vchkbox
-                  li.answer-box.round-md.box-shadow-card( data-answer-seq="" )
-                    div.slt_area
-                      a.img_view_item.vote_box_photo( href="#", title="이미지 크게보기" )                        
-                        .vote_wrp
-                          p.txt.vote_box_text 기타
-                            input(type="hidden", name="", value="")
-                            span.nw_ico
+                  li.answer-box.no_photo.round-md.box-shadow-card( data-answer-seq="" )
+                    div.slt_area                      
+                      .vote_wrp
+                        p.txt.vote_box_text.no 기타
+                          input(type="hidden", name="", value="")
+                          span.nw_ico
                     span.chk_each.notxt
                       input#answer_1_5(type="checkbox", title="",  name="", value="", data-etcyn="")
                       label(for="answer_1_5")
@@ -254,7 +254,7 @@
             // vote_item_con_box 
             .vote_item_con_box
               // vote_item 기본 체크형 
-              .vote_item.qestn-box(data-qestn-seq="")
+              .vote_item.qestn-box(data-qestn-seq="1")
                 p.vote_ref_txt.max_select 
                   strong ( *표시는 필수 정보 사항입니다. ) 
                   span.star_mark *
@@ -298,7 +298,7 @@
                         span.vchkbox
                   li.answer-box.round-md.box-shadow-card( data-answer-seq="" )
                     div.slt_area
-                      a.img_view_item.vote_box_photo( href="#", title="이미지 크게보기" )                        
+                      a.img_view_item( href="#" )                        
                         .vote_wrp
                           p.txt.vote_box_text 방사능검사실, 농산물검사실 등 신규 실험환경 조성과 24시간 감염병 대응 근무자를 위한 후생복지 공간 개선 등 최신의 연구시설 신규 조성
                             input(type="hidden", name="", value="")
@@ -311,9 +311,9 @@
                         span.vchkbox
                   li.answer-box.round-md.box-shadow-card( data-answer-seq="" )
                     div.slt_area
-                      a.img_view_item.vote_box_photo( href="#", title="이미지 크게보기" )                        
+                      a.img_view_item( href="#")                        
                         .vote_wrp
-                          p.txt.vote_box_text 답변 상세가 없는 경우
+                          p.txt.vote_box_text.no 답변 상세가 없는 경우
                             input(type="hidden", name="", value="")
                             span.nw_ico
                     span.chk_each.notxt
@@ -322,9 +322,8 @@
                         span.vchkbox
                   li.answer-box.round-md.box-shadow-card( data-answer-seq="" )
                     div.slt_area
-                      a.img_view_item.vote_box_photo( href="#", title="이미지 크게보기" )                        
                         .vote_wrp
-                          p.txt.vote_box_text 기타
+                          p.txt.vote_box_text.no 기타
                             input(type="hidden", name="", value="")
                             span.nw_ico
                     span.chk_each.notxt
@@ -333,7 +332,7 @@
                         span.vchkbox
                     .slt_txtarea(onclick="event.stopPropagation(); return false;")
                       input.etc-area.round-xxxlg(type="text", name="etc_answer_1_5", placeholder="내용을 입력해주세요.", maxlength="200")
-              .vote_item.qestn-box(data-qestn-seq="")
+              .vote_item.qestn-box(data-qestn-seq="2")
                 p.vote_ref_txt.max_select 
                   strong ( *표시는 필수 정보 사항입니다. ) 
                   span.star_mark *
@@ -373,12 +372,12 @@
       // // main_vote_area End
     // form voteForm end 
     // common_btn_box 
-    #btn_list_box.common_btn_box.ta_c.bg_none
+    #btn_list_box.common_btn_box.ta_c
       a#list-btn.b-.xlg.round-xxlg.common_btn.list2( href="#" ) 
         span 목록
       a#vote-btn-check.b-.xlg.round-xxlg.common_btn( href="#" )
         span 투표이력 확인
-      a#vote-btn.b-.xlg.vote.round-xxlg.common_btn(href="#")
+      a#vote-btn.b-.xlg.vote.round-xxlg.common_btn.ok(href="#")
         span 투표하기
     .view_box_wrp.round-lg.box-shadow-card
       //user_hash_area 
@@ -389,6 +388,7 @@
           a.vote_hash_mark.user.round-rg(href="#") #이벤트
           a.vote_hash_mark.user.round-rg(href="#") #3대주요뉴스 투표
       // comment_area
+    .view_box_wrp.round-lg.box-shadow-card
       // 댓글시작 
       .comment_area.vote_reply_area            
         // 댓글 폼
@@ -488,7 +488,7 @@
                   | / 1000자
             li.end.text_finish( style="display:none;") 마지막 댓글입니다.
           // // comment_list 
-    .common_btn_box.ta_c.box-shadow-card
+    .common_btn_box.ta_c.box-shadow-card.more_box
       a.btn_add.common_btn.more( href="#", data-page="") 
         span.ico.plus
         span 더보기

@@ -4,7 +4,7 @@ block content
 		// contents
 		.contents
 			// container
-			.container
+			.container.clearfix
 				// 검색폼
 				form#sform( method="get", action="#" )
 					input(type="hidden", name="order_type", value="")
@@ -12,7 +12,6 @@ block content
 					input(type="hidden", name="lpn", value="")
 					// 리스트 페이지 scroll 위치
 					input(type="hidden", name="lst", value="")
-				.container.clearfix
 					.container_wrap
 						.sub_tit1_box
 							.center_box
@@ -104,7 +103,64 @@ block content
 				// // layer_pop 
 			// // layer_pop_box
 		// form#voteBadForm End
-		.layer_pop_box.vote_pop.type_photo
+		#popup01.layer_pop_box.vote_pop.type_photo(style="display:none;")
+			.layer_pop(data-focus-prev="focus01-close", data-focus-next="focus01-close", data-focus="focus01")
+				h2.sub_tit2 이미지 1개
+				.vote_pop_contents 
+					.vote_pop_slider_box
+						.vote_pop_slider.vote_pop_slider01.owl-carousel.owl-theme.owl-loaded
+							.owl-stage-outer.owl-height
+								.owl-stage
+									.owl-item
+										a(href="#",target="_blank", title="새창열기")
+											img(src="https://cdn.pixabay.com/photo/2015/01/28/23/34/mountains-615428_1280.jpg", alt="테스트용1")
+									.owl-item
+										a(href="#",target="_blank", title="새창열기")
+											img(src="https://cdn.pixabay.com/photo/2016/11/06/05/36/lake-1802337_640.jpg", alt="테스트용2")
+									.owl-item
+										a(href="#",target="_blank", title="새창열기")
+											img(src="https://cdn.pixabay.com/photo/2015/06/19/20/13/sunset-815270_640.jpg", alt="테스트용3")
+							.owl-nav
+								button.owl-prev-pop01(type="button")
+									span(aria-label="Previous") 
+									span.hide 이전 슬라이드
+								button.owl-next-pop01(type="button") 
+									span(aria-label="Next") 
+									span.hide  다음 슬라이드
+				button.layer_pop_close(tabindex="3", data-focus="focus01-close", data-focus-next="focus01")
+					span.hide 레이어 창 닫기
+		#popup02.layer_pop_box.vote_pop.type_photo(style="display:none;")
+			.layer_pop(data-focus-prev="focus02-close", data-focus-next="focus02-owl-prev", data-focus="focus01")
+				h2.sub_tit2 이미지와 텍스트
+				.vote_pop_contents 
+					.vote_pop_slider_box
+						.vote_pop_slider.vote_pop_slider02.owl-carousel.owl-theme.owl-loaded
+							.owl-stage-outer.owl-height
+								.owl-stage
+									.owl-item
+										a(href="#",target="_blank", title="새창열기")
+											img(src="https://cdn.pixabay.com/photo/2015/01/28/23/34/mountains-615428_1280.jpg", alt="테스트용1")
+									.owl-item
+										a(href="#",target="_blank", title="새창열기")
+											img(src="https://cdn.pixabay.com/photo/2016/11/06/05/36/lake-1802337_640.jpg", alt="테스트용2")
+									.owl-item
+										a(href="#",target="_blank", title="새창열기")
+											img(src="https://cdn.pixabay.com/photo/2015/06/19/20/13/sunset-815270_640.jpg", alt="테스트용3")
+								.owl-nav
+									button.owl-prev-pop02(type="button")
+										span(aria-label="Previous") 
+										span.hide 이전 슬라이드
+									button.owl-next-pop02(type="button") 
+										span(aria-label="Next") 
+										span.hide  다음 슬라이드
+					.vote_pop_txt 
+						.vote_pop_tit 이미지와 텍스트
+						.vote_pop_txt 
+							p 영리목적의 상업성 광고 및 저작권 침해 
+							p (영리목적의 상업성 광고 및 저작권을 침해할 수 있는 게시물일 경우)
+				button.layer_pop_close(tabindex="3", data-focus="focus01-close", data-focus-next="focus01")
+					span.hide 레이어 창 닫기
+		#popup10.layer_pop_box.vote_pop.type_photo
 			.layer_pop(data-focus-prev="focus01-close", data-focus-next="focus01-owl-prev", data-focus="focus01")
 				h2.sub_tit2
 				.vote_pop_contents 
@@ -117,3 +173,4 @@ block content
 							p (영리목적의 상업성 광고 및 저작권을 침해할 수 있는 게시물일 경우)
 				button.layer_pop_close(tabindex="3", data-focus="focus01-close", data-focus-next="focus01")
 					span.hide 레이어 창 닫기
+					

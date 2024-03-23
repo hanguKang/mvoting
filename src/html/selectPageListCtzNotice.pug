@@ -1,0 +1,176 @@
+extends ../templates/layout_sub
+
+block content
+		// original : header_old.html(주석 : header::Start )이 들어갈 자리
+		// contents 
+		.contents
+			// -- container --
+			.container.s_container
+				// original : contents_left_nav.html( 주석 : commonLeft::Start )이 들어갈 자리  
+				// common_right
+				#real_contents.common_right
+					form#aform.bbs_form(method="get", action="/mvoting/notice/selectPageListNotice.do")
+						input#notice_no(type="hidden", name="notice_no", value="")
+						div.sub_tit1_box
+							h2.sub_tit1 공지사항
+						ul.basic_tab.tab_5p.round-md
+							li.active
+								a(href="/mvoting/setting/mypage/ctz/selectPageListCtzNotice.do?ctz_notice_se=003") 공지사항
+							li
+								a(href="/mvoting/setting/mypage/ctz/selectPageListCtz.do?oper_se=001") 투표참여/등록
+							li
+								a(href="/mvoting/setting/mypage/ctz/selectPageListCtz.do?oper_se=002") SNS공유
+							li
+								a(href="/mvoting/setting/mypage/ctz/selectPageListCtzReqBoard.do") 오류/개선의견
+							li
+								a(href="/mvoting/setting/mypage/ctz/selectPageListCtzBoard.do") 자유게시판
+						// board_list_box 
+						.board_list_box
+							.sch_bar
+								select#search.sch_slt( title="구분값 선택", name="sch_type")
+									option(value="title", selected="selected") 제목
+									option(value="cnts") 내용			
+								.sch_input 					
+									input#sch_text.sch_input(type="text", name="sch_text", title="검색어 입력", placeholder="검색어를 입력해 주세요.", value="")
+									a.sch_btn(href="#", onclick="fnSearch(); return false;")
+										span.hide 검색하기
+							// board 시작
+							.s_outer 
+								.s_table
+									table.board_list
+										caption 번호, 제목, 작성자, 등록일, 조회수가 나타나있는 공지사항 목록
+										colgroup
+											col(style="width:10%;")
+											col(style="width:auto;")
+											col(style="width:8%;")
+											col(style="width:10%;")
+											col(style="width:12%;")
+										thead.thd
+											tr.thd_tr
+												th(scope="col") 번호 
+												th(scope="col") 제목 
+												th(scope="col") 작성자 
+												th(scope="col") 등록일 
+												th(scope="col") 조회수 
+										tbody.tbd
+											tr.item
+												td.num 10
+												td.tit_td 
+													h3.tit
+														a(href="#", data-notice-no="4100") 엠보팅의 '새얼굴' 투표 하고 커피 쿠폰 받자! 
+												td.writer 관리자
+												td.date 2024.01.24
+												td.hits 
+													span.m_lbl_txt 조회수
+													| 397	
+											tr.item
+												td.num 9
+												td.tit_td 
+													h3.tit
+														a(href="#", data-notice-no="4100") 엠보팅의 '새얼굴' 투표 하고 커피 쿠폰 받자! 
+												td.writer 관리자
+												td.date 2024.01.24
+												td.hits 
+													span.m_lbl_txt 조회수
+													| 397		
+											tr.item
+												td.num 8
+												td.tit_td 
+													h3.tit
+														a(href="#", data-notice-no="4100") 엠보팅의 '새얼굴' 투표 하고 커피 쿠폰 받자! 
+												td.writer 관리자
+												td.date 2024.01.24
+												td.hits 
+													span.m_lbl_txt 조회수
+													| 397		
+											tr.item
+												td.num 7
+												td.tit_td 
+													h3.tit
+														a(href="#", data-notice-no="4100") 엠보팅의 '새얼굴' 투표 하고 커피 쿠폰 받자! 
+												td.writer 관리자
+												td.date 2024.01.24
+												td.hits 
+													span.m_lbl_txt 조회수
+													| 397		
+											tr.item
+												td.num 6
+												td.tit_td 
+													h3.tit
+														a(href="#", data-notice-no="4100") 엠보팅의 '새얼굴' 투표 하고 커피 쿠폰 받자! 
+												td.writer 관리자
+												td.date 2024.01.24
+												td.hits 
+													span.m_lbl_txt 조회수
+													| 397		
+											tr.item
+												td.num 5
+												td.tit_td 
+													h3.tit
+														a(href="#", data-notice-no="4100") 엠보팅의 '새얼굴' 투표 하고 커피 쿠폰 받자! 
+												td.writer 관리자
+												td.date 2024.01.24
+												td.hits 
+													span.m_lbl_txt 조회수
+													| 397		
+											tr.item
+												td.num 4
+												td.tit_td 
+													h3.tit
+														a(href="#", data-notice-no="4100") 엠보팅의 '새얼굴' 투표 하고 커피 쿠폰 받자! 
+												td.writer 관리자
+												td.date 2024.01.24
+												td.hits 
+													span.m_lbl_txt 조회수
+													| 397		
+											tr.item
+												td.num 3
+												td.tit_td 
+													h3.tit
+														a(href="#", data-notice-no="4100") 엠보팅의 '새얼굴' 투표 하고 커피 쿠폰 받자! 
+												td.writer 관리자
+												td.date 2024.01.24
+												td.hits 
+													span.m_lbl_txt 조회수
+													| 397			
+											tr.item
+												td.num 2
+												td.tit_td 
+													h3.tit
+														a(href="#", data-notice-no="4100") 엠보팅의 '새얼굴' 투표 하고 커피 쿠폰 받자! 
+												td.writer 관리자
+												td.date 2024.01.24
+												td.hits 
+													span.m_lbl_txt 조회수
+													| 397									
+											tr.item
+												td.num 1
+												td.tit_td 
+													h3.tit
+														a(href="#", data-notice-no="4100") 엠보팅의 '새얼굴' 투표 하고 커피 쿠폰 받자! 이벤트 당첨자 발표
+												td.writer 관리자
+												td.date 2024.01.24
+												td.hits 
+													span.m_lbl_txt 조회수
+													| 397	
+									// // table.border_list End				
+								// // .s_table End
+								// pagination 
+								.pagination
+									a.page_arrow.l2.page_item(href="#", onclick="fnGoPage('1'); return false;")
+										span.hide 처음 페이지로 이동
+									a.page_arrow.l1.page_item(href="#", onclick="return false;")
+										span.hide 이전 5페이지로 이동
+									a.page_item.active(href="#", onclick="fnGoPage('1'); return false;") 1 
+									a.page_item(href="#", onclick="fnGoPage('2'); return false;") 2
+									a.page_item(href="#", onclick="fnGoPage('3'); return false;") 3
+									a.page_arrow.r1.page_item(href="#", onclick="return false;") 
+										span.hide 다음 5페이지로 이동
+									a.page_arrow.r2.page_item(href="#", onclick="fnGoPage('3'); return false;")
+										span.hide 마지막 페이지로 이동
+									input#currentPage(type="hidden", name="currentPage", value="1")
+							// // .s_outer End
+						// board_list_box End
+				// // common_right End 
+			// // container  End 
+		// contents

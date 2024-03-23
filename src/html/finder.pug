@@ -1,0 +1,48 @@
+extends ../templates/layout_sub
+
+block content
+  // contents
+  .contents
+    // container
+    .container.clearfix
+      // common_right
+      #real_contents.common_right
+        // sub_tit1_box
+        .sub_tit1_box
+          h2.sub_tit1 비밀번호 찾기
+        // // sub_tit1_box
+        .s_outer 
+          // login_wrap
+          .login_wrap
+            p.login_top_txt 
+              span.spn_box.dot 비밀번호 찾기는 서울시 엠보팅 홈페이지 일반회원만 가능합니다. 
+              span.spn_box.dot SNS로 가입하신 회원님은 각 해당 SNS 홈페이지에서 확인 바랍니다.
+            // cwb_container
+            form#aform(name="aform", action ="/mvoting/login/login.do", method="post")
+              input#hide_moblphonNo(type="hidden", name="hide_moblphonNo" )
+              input#hide_smsCrtfcNo(type="hidden", name="hide_smsCrtfcNo" )
+              // cwb_container 
+              .cwb_container.size2.box-shadow-card.round-md
+                h3.sub_tit2 비밀번호 찾기 
+                .center_white_box.common_usr.ico_box
+                  .form_row
+                    .cell.input_box
+                      input#moblphonNo.form_input.ico(type="text", name="moblphonNo", title="휴대폰 번호 입력", placeholder="가입한 전화번호(아이디)를 입력하세요.")
+                    .cell.btn.txt_box
+                      a#getNum.form_btn(href="#") 인증번호 받기
+                  .form_row
+                    .cell.input_box
+                      input#smsCrtfcNo.form_input.ico.cnum(type="text", name="smsCrtfcNo", title="인증번호 입력", placeholder="인증번호를 입력하세요.")
+                    .cell.ccount.txt_box
+                      span.ccount_txt.text_confirm ( 인증번호: 
+                        span.count 02:00
+                        |   )
+              // // cwb_container END
+              .common_btn_box.ta_c.bg_none
+                a.common_btn.cancel.round-xxxlg(href="<%=Const.doLogin %>") 취소
+                a#next.common_btn.ok.round-xxxlg(href="#") 확인
+            // // cwb_container
+          // // login_wrap
+      // // common_right
+    // // container
+  // // contents 

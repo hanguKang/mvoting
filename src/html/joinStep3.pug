@@ -1,0 +1,45 @@
+extends ../templates/layout_sub
+
+block content
+  // contents 
+  .contents
+    // container 
+    .container.clearfix
+      // common_right 
+      #real_contents.common_right
+        // sub_tit1_box 
+        .sub_tit1_box
+          h2.sub_tit1 회원가입
+        // // sub_tit1_box 
+        // join_step 
+        ol.join_step
+          li.round-md
+            img(src="../images/ico/ico_login_step_1_off.png", alt="")
+            .step_txt.icon
+              span.step_txt1 STEP .01
+              p.step_txt2 약관동의 본인인증
+          li.round-md
+            img(src="../images/ico/ico_login_step_2_off.png", alt="정보작성 아이콘")
+            .step_txt.icon
+              span.step_txt1 STEP .02
+              p.step_txt2 정보작성
+          li.active.round-md
+            img(src="../images/ico/ico_login_step_3_on.png", alt="가입완료 아이콘")
+            .step_txt.icon
+              span.step_txt1 STEP .03
+              p.step_txt2 가입완료
+        .s_outer
+          // cwb_container 
+          .cwb_container.size3.bg_none
+            .center_white_box
+              .deco_area
+                .logo
+                  img(src=imgurl+"ico/ico_complete.png", alt="")
+              p.sub_txt
+                em.em0 회원가입이 완료되었습니다.
+                br
+                em.em1 서울시 엠보팅
+                |  일반회원가입이 정상적으로 완료되었습니다. 감사합니다.
+              a.b-.lg.common_btn.login.w100.round-xxlg(href="/mvoting/login/login.do") 로그인 바로가기
+              a.b-.lg.common_btn.main.w100.mt_10.round-xxlg(href="/") 메인화면으로 바로가기
+          // // cwb_container 

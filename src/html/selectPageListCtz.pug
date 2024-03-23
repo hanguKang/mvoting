@@ -1,0 +1,242 @@
+extends ../templates/layout_sub
+
+block content
+    // contents 
+    .contents
+      // -- container --
+      .container.s_container
+        // original : contents_left_nav.html( 주석 : commonLeft::Start )이 들어갈 자리  
+        // common_right
+        #real_contents.common_right
+          form#aform.bbs_form(method="post", action="/mvoting/setting/mypage/ctz/insertFormCtz.do")
+            input#notice_no(type="hidden", name="notice_no", value="")
+            div.sub_tit1_box
+              h2.sub_tit1 시민참여단
+            ul.basic_tab.tab_5p.round-md
+              li
+                a(href="/mvoting/setting/mypage/ctz/selectPageListCtzNotice.do?ctz_notice_se=003") 공지사항
+              li.active
+                a(href="/mvoting/setting/mypage/ctz/selectPageListCtz.do?oper_se=001") 투표참여/등록
+              li
+                a(href="/mvoting/setting/mypage/ctz/selectPageListCtz.do?oper_se=002") SNS공유
+              li
+                a(href="/mvoting/setting/mypage/ctz/selectPageListCtzReqBoard.do") 오류/개선의견
+              li
+                a(href="/mvoting/setting/mypage/ctz/selectPageListCtzBoard.do") 자유게시판
+            // board_list_box 
+            .board_list_box
+              .sch_bar
+                .top_slt_box
+                  select#sch_year.form_slt(name="sch_year",  title='<%if(param.getString("oper_se").equals("001")) {%>투표 년도 선택<% } else {%> 공유 년도 선택 <% } %>', onchange="javascript:fnSearch(); return false;")
+                    option(value="" selected="selected")  2024년
+                  select#sch_month.form_slt(name="sch_month",  title='<%if(param.getString("oper_se").equals("001")) {%>투표 월 선택<% } else {%> 공유 월 선택 <% } %>', onchange="javascript:fnSearch(); return false;")
+                    option(value="", selected="selected") 3월
+                  .btn_box
+                    //
+                      <a href="#" class="common_btn list2" target="_blank">등록가이드</a> 
+                    a.common_btn.regist.round-xxlg(href="#", onclick="fnSubmit()") 등록
+              // board 시작
+              .s_outer 
+                // sub_each 
+                .sub_each
+                  h3.sub_tit2.clearfix 지정투표 참여 내역
+                  // board_list_box
+                  .board_list_box
+                    .s_table
+                      table.board_list.m_label_style.just_this
+                        caption 지정투표 참여 내역에 대한 닉네임, 참여한 투표 정보 제공
+                        colgroup
+                          col.col_op01(style="width:16%;")
+                          col.col_op01(style="width:12%;")
+                          col.col_op01(style="width:12%;")
+                          col.col_op01(style="width:12%;")
+                          col.col_op01(style="width:12%;")
+                          col.col_op01(style="width:12%;")
+                          col.col_op01(style="width:12%;")
+                          col.col_op01(style="width:12%;")
+                        thead.thd
+                          tr.thd_tr
+                            th(scope="col") 닉네임
+                            th(scope="col") 투표1(62306)
+                            th(scope="col") 투표2(62306)
+                            th(scope="col") 투표3(62306)
+                            th(scope="col") 투표4(62306)
+                            th(scope="col") 투표5(62306)
+                            th(scope="col") 투표6(62306)
+                            th(scope="col") 투표7(62306)
+                        tbody.tbd
+                          tr.item
+                            td.tit_nick
+                              span.m_lbl_txt2 닉네임
+                              | 아무개
+                            td.tit_name
+                              span.m_lbl_txt2 투표
+                              | 참여
+                            td.tit_name 
+                              span.m_lbl_txt2 투표
+                              | 참여
+                            td.tit_name
+                              span.m_lbl_txt2 투표
+                              | 참여
+                            td.tit_name 
+                              span.m_lbl_txt2 투표
+                              | 참여
+                            td.tit_name 
+                              span.m_lbl_txt2 투표
+                              | 참여
+                            td.tit_name 
+                              span.m_lbl_txt2 투표
+                              | 참여
+                            td.tit_name 
+                              span.m_lbl_txt2 투표
+                              | 참여
+                      // // table.border_list End				
+                    // // .s_table END
+                // //sub_each END
+                // sub_each 
+                .sub_each
+                  h3.sub_tit2.clearfix 일반투표 점수 내역
+                  // board_list_box
+                  .board_list_box
+                    .s_table
+                      table.board_list.m_label_style.just_this
+                        caption 일반투표 점수 내역에 대한 참여 건 수, 점수 내역 정보 제공
+                        colgroup
+                          col.col_op01(style="width:50%;")
+                          col.col_op01(style="width:50%;")
+                        thead.thd
+                          tr.thd_tr
+                            th(scope="col") 참여 건 수
+                            th(scope="col") 점수
+                        tbody.tbd
+                          tr.item
+                            td.tit_name
+                              span.m_lbl_txt2 참여 건 수
+                              | ${votePointMap.NVOTE_JOIN_CNT}
+                            td.tit_name
+                              span.m_lbl_txt2 점수
+                              | ${votePointMap.NVOTE_JOIN_POINT}
+                      // // table.border_list End				
+                    // // .s_table End
+                // //sub_each END
+                // sub_each 
+                .sub_each
+                  h3.sub_tit2.clearfix 투표 등록 내역
+                  // board_list_box
+                  .board_list_box
+                    .s_table
+                      table.board_list.m_label_style
+                        caption 투표 등록 내역에 대한 번호, 월, 공유 URL, 등록된 항목 삭제 정보 제공
+                        colgroup
+                          col.col_op01(style="width:10%;")
+                          col.col_op01(style="width:10%;")
+                          col.col_op01(style="width:auto;")
+                          col.col_op01(style="width:10%;")
+                        thead.thd
+                          tr.thd_tr
+                            th(scope="col") 번호
+                            th(scope="col") 월
+                            th(scope="col") 공유 URL
+                            th(scope="col") 삭제 
+                        tbody.tbd
+                          tr.item 
+                            td.text-center.no_data(colspan="4") 조회된 데이터가 없습니다.
+                          tr.item
+                            td.tit_name
+                              span.m_lbl_txt2 번호
+                              | 3
+                            td.tit_name
+                              span.m_lbl_txt2 월
+                              | 3
+                            td.tit_name 
+                              span.m_lbl_txt2 공유 URL
+                              a.link_txt.break(href="#", onclick="fnGoVoteView('${resultList.VOTE_NO}'); return false;") <%=Const.siteDomain%>/${resultList.VOTE_NO} 
+                            td.tit_name
+                              span.delete 삭제
+                              a.tbl_in_btn(href="#",  style="cursor: pointer; cursor: hand;", onclick="fnDeleteCtz('${resultList.OPER_NO}');return false;") 삭제
+                          tr.item
+                            td.tit_name
+                              span.m_lbl_txt2 번호
+                              | 2
+                            td.tit_name
+                              span.m_lbl_txt2 월
+                              | 3
+                            td.tit_name 
+                              span.m_lbl_txt2 공유 URL
+                              a.link_txt.break(href="#", onclick="fnGoVoteView('${resultList.VOTE_NO}'); return false;") <%=Const.siteDomain%>/${resultList.VOTE_NO} 
+                            td.tit_name
+                              span.delete 삭제
+                              a.tbl_in_btn(href="#",  style="cursor: pointer; cursor: hand;", onclick="fnDeleteCtz('${resultList.OPER_NO}');return false;") 삭제
+                          tr.item
+                            td.tit_name
+                              span.m_lbl_txt2 번호
+                              | 1
+                            td.tit_name
+                              span.m_lbl_txt2 월
+                              | 3
+                            td.tit_name 
+                              span.m_lbl_txt2 공유 URL
+                              a.link_txt.break(href="#", onclick="fnGoVoteView('${resultList.VOTE_NO}'); return false;") <%=Const.siteDomain%>/${resultList.VOTE_NO} 
+                            td.tit_name
+                              span.delete 삭제
+                              a.tbl_in_btn(href="#",  style="cursor: pointer; cursor: hand;", onclick="fnDeleteCtz('${resultList.OPER_NO}');return false;") 삭제
+                      // // table.border_list End				
+                    // // .s_table End
+                // //sub_each END
+                // sub_each 
+                .sub_each
+                  h3.sub_tit2.clearfix SNS 공유 내역
+                  // board_list_box
+                  .board_list_box
+                    .s_table
+                      table.board_list.m_label_style
+                        caption SNS 공유 내역에 대한 번호, 월, 공유 URL, 등록된 항목 삭제 정보 제공
+                        colgroup
+                          col.col_op01(style="width:10%;")
+                          col.col_op01(style="width:10%;")
+                          col.col_op01(style="width:auto;")
+                          col.col_op01(style="width:10%;")
+                        thead.thd
+                          tr.thd_tr
+                            th(scope="col") 번호
+                            th(scope="col") 월
+                            th(scope="col") 공유 URL
+                            th(scope="col") 삭제 
+                        tbody.tbd
+                          tr.item 
+                            td.text-center.no_data(colspan="4") 조회된 데이터가 없습니다.
+                          tr.item
+                            td.tit_name
+                              span.m_lbl_txt2 번호
+                              | 3
+                            td.tit_name
+                              span.m_lbl_txt2 월
+                              | 3
+                            td.tit_name 
+                              span.m_lbl_txt2 공유 URL
+                              a.link_txt.break(href="${resultList2.URL}") ${resultList2.URL} 
+                            td.delete
+                              span.m_lbl_txt2 삭제
+                              a.tbl_in_btn(href="#",  style="cursor: pointer; cursor: hand;", onclick="fnDeleteCtz('${resultList2.OPER_NO}');return false;") 삭제
+                      // // table.border_list End				
+                    // // .s_table End
+                // //sub_each END
+                // pagination 
+                .pagination
+                  a.page_arrow.l2.page_item(href="#", onclick="fnGoPage('1'); return false;")
+                    span.hide 처음 페이지로 이동
+                  a.page_arrow.l1.page_item(href="#", onclick="return false;")
+                    span.hide 이전 5페이지로 이동
+                  a.page_item.active(href="#", onclick="fnGoPage('1'); return false;") 1 
+                  a.page_item(href="#", onclick="fnGoPage('2'); return false;") 2
+                  a.page_item(href="#", onclick="fnGoPage('3'); return false;") 3
+                  a.page_arrow.r1.page_item(href="#", onclick="return false;") 
+                    span.hide 다음 5페이지로 이동
+                  a.page_arrow.r2.page_item(href="#", onclick="fnGoPage('3'); return false;")
+                    span.hide 마지막 페이지로 이동
+                  input#currentPage(type="hidden", name="currentPage", value="1")
+              // // .s_outer End
+            // board_list_box End
+        // // common_right End 
+      // // container  End 
+    // contents
