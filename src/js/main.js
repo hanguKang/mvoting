@@ -23,7 +23,7 @@ import bootstrapMin from "bootstrap/dist/js/bootstrap.min";
 // document.body.appendChild(component());
 
 $(function () {
-  console.log('test');
+  console.log("test");
   MVOTING_LAYOUT.init();
   //carousel
   if (document.querySelector("#myCarousel")) {
@@ -142,37 +142,8 @@ const MVOTING_LAYOUT = {
       };
     // nav > ul > li
     document
-<<<<<<< HEAD
-<<<<<<< HEAD
-      .querySelector(".Page .main_menu>nav>ul>li")
-      .mouseenter(function (e) {
-        //console.log('123456');
-        let delay = true;
-        MVOTING_LAYOUT.hover_link = e.currentTarget.children.filter( eml => if(eml.tagName == 'A'));
-        MVOTING_LAYOUT.menu_detail_idx = $(MVOTING_LAYOUT.hover_link)
-          .parent("li")
-          .index();
-        //alert(MVOTING_LAYOUT.menu_detail_idx);
-        if (MVOTING_LAYOUT.mouse_prev) {
-          MVOTING_LAYOUT.header_enter = false;
-        } else {
-          MVOTING_LAYOUT.header_enter = true;
-        }
-
-        if (MVOTING_LAYOUT.header_enter) {
-          delay = true;
-        } else {
-          delay = false;
-        }
-
-        MVOTING_LAYOUT.open_menu_detail(MVOTING_LAYOUT.hover_link, delay);
-      });
-=======
-      .querySelectorAll(".Page .main_menu>.nav>ul.nav_list>li.nav_item").forEach((elem)=>{
-=======
       .querySelectorAll(".Page .main_menu>.nav>ul.nav_list>li.nav_item")
       .forEach((elem) => {
->>>>>>> main
         elem.addEventListener("mouseenter", (e) => {
           let delay = true,
             cur_li = e.currentTarget;
@@ -205,11 +176,6 @@ const MVOTING_LAYOUT = {
           MVOTING_LAYOUT.open_menu_detail(MVOTING_LAYOUT.hover_link, delay);
         });
       }); // forEach End
-<<<<<<< HEAD
-      
->>>>>>> develop
-=======
->>>>>>> main
   },
   mobile_check(window_width) {
     if (window_width < 721) {

@@ -2,7 +2,7 @@
  * 한국장애인고용공단 Lyout 관련 공통 기능
  * coForward :2022-11-17
  */
-<<<<<<< HEAD
+
 jQuery(function () {
   KEAD_LAYOUT.init();
 
@@ -1122,11 +1122,6 @@ menu_detail_prev:0,
             _trailer.removeEventListener('scroll', function(e){
               console.log(e.type);
               console.log('hohoho');
-<<<<<<< HEAD
->>>>>>> develop
-=======
->>>>>>> 6e49eea249cc3c6f4c82cc9e36d13a21ce67c2aa
->>>>>>> main
               console.log(_$lefts[idx]);
               _trailer.scrollLeft = _$lefts[idx];
               return false;
@@ -1963,11 +1958,6 @@ menu_detail_prev:0,
       //둘의 차이점은 HTMLCollection의 항목은 name, id 속성으로도 접근이 가능하지만, NodeList의 항목은 인덱스 번호로만 접근이 가능하다.
       
       
-<<<<<<< HEAD
->>>>>>> develop
-=======
->>>>>>> 6e49eea249cc3c6f4c82cc9e36d13a21ce67c2aa
->>>>>>> main
       //console.log(focusableElements); //노드목록으로만 반환
       focusableElements = Array.prototype.slice.call(focusableElements); //노드 목록을 어레이로 변환, 변환하지 않아도 firstTabStop, lastTabStop 값 가져올 수 있음
       //console.log(focusableElements); //노드 목록을 Array로 변환하면서 새로운 배열로 반환
@@ -2347,8 +2337,3 @@ menu_detail_prev:0,
       $(".depth1Class").css("color", "#000000");
   }
 }
-<<<<<<< HEAD
->>>>>>> develop
-=======
->>>>>>> 6e49eea249cc3c6f4c82cc9e36d13a21ce67c2aa
->>>>>>> main
