@@ -6,6 +6,7 @@ import _ from "lodash";
 import $ from "jquery";
 import bootstrapMin from "bootstrap/dist/js/bootstrap.min";
 
+
 // const rOne = random(10);
 // const rTwo = random(20);
 
@@ -23,13 +24,13 @@ import bootstrapMin from "bootstrap/dist/js/bootstrap.min";
 // document.body.appendChild(component());
 
 $(function () {
-  console.log("test");
+  console.log('test');
   MVOTING_LAYOUT.init();
   //carousel
-  if (document.querySelector("#myCarousel")) {
+  if(document.querySelector("#myCarousel")){
     const carousel = new bootstrapMin.Carousel("#myCarousel");
   }
-
+  
   //modal
   modal();
   //nav
@@ -40,71 +41,73 @@ $(function () {
 
 //모달
 const modal = () => {
+  
+  
   // 부트스트랩
   // modal.addEventListener("shown.bs.modal", () => {
   //   chbox.focus();
   // });
-
+  
   let focusedElementBeforeModal;
   //모달창
   const modal = document.getElementById("tsch_layer_popup");
   //체크
   const chbox = document.getElementById("tSchType2");
   //모달 배경레이어
-  let modalOverlay = document.querySelector(".modal-overlay");
+  let modalOverlay = document.querySelector('.modal-overlay');
   //버튼
-  let modalToggle = document.querySelector(".b-srch");
+  let modalToggle = document.querySelector('.b-srch'); 
   //닫기버튼
   let modalClose;
-
-  modalToggle.addEventListener("click", openModal);
-
+ 
+  modalToggle.addEventListener('click', openModal);
+  
+  
   function closeModal() {
-    modal.style.display = "none";
-    modalOverlay.style.display = "none";
+    modal.style.display = 'none';
+    modalOverlay.style.display = 'none';
     document.body.style.overflow = "auto";
     focusedElementBeforeModal.focus();
   }
 
-  function openModal(e) {
+
+  function openModal(e){
     e.preventDefault();
-    modalClose = document.querySelector(".layer_pop_close");
+    modalClose =  document.querySelector('.layer_pop_close'); 
     console.log(modalClose);
     document.body.style.overflow = "hidden";
     focusedElementBeforeModal = document.activeElement;
-    console.log("==============================");
+    console.log('==============================');
     console.dir(focusedElementBeforeModal);
-    modal.addEventListener("keydown", trapTabKey); // key를 누르고 있을때
-    modalOverlay.addEventListener("click", closeModal);
-    modalClose.addEventListener("click", closeModal);
-    let btn_srch = modal.querySelector(".b-srch");
-    btn_srch.addEventListener("click", closeModal);
-    let focusableElementsString =
-      'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]'; //포커스가 갈 수 있는 엘레먼트
+    modal.addEventListener('keydown', trapTabKey);// key를 누르고 있을때
+    modalOverlay.addEventListener('click', closeModal);
+    modalClose.addEventListener('click', closeModal);
+    let btn_srch = modal.querySelector('.b-srch');
+    btn_srch.addEventListener('click', closeModal);
+    let focusableElementsString = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]'; //포커스가 갈 수 있는 엘레먼트
     let focusableElements = modal.querySelectorAll(focusableElementsString);
     focusableElements = Array.prototype.slice.call(focusableElements);
     let firstTabStop = focusableElements[0];
     let lastTabStop = focusableElements[focusableElements.length - 1];
-    modal.style.display = "block";
-    modalOverlay.style.display = "block";
+    modal.style.display = 'block';
+    modalOverlay.style.display = 'block';
     firstTabStop.focus();
     function trapTabKey(e) {
       // Check for TAB key press
-      if (e.keyCode === 9) {
-        //탭키
+      if (e.keyCode === 9) { //탭키 
 
         // SHIFT + TAB
-        if (e.shiftKey) {
+        if (e.shiftKey) { 
           if (document.activeElement === firstTabStop) {
-            e.preventDefault();
-            lastTabStop.focus();
+          e.preventDefault();
+          lastTabStop.focus();
           }
 
-          // TAB
+        // TAB
         } else {
           if (document.activeElement === lastTabStop) {
-            e.preventDefault();
-            firstTabStop.focus();
+          e.preventDefault();
+          firstTabStop.focus();
           }
         }
       }
@@ -113,8 +116,13 @@ const modal = () => {
       if (e.keyCode === 27) {
         closeModal();
       }
-    } //trapTabKey End
-  }
+    }//trapTabKey End
+    
+
+  } 
+  
+
+  
 };
 //네비게이터
 const doNav = () => {
@@ -136,29 +144,46 @@ const MVOTING_LAYOUT = {
     let window_width = $(window).width();
     this.mobile_check(window_width);
     // nav > ul
-    document.querySelector(".Page .main_menu>.nav>.nav_list").onmouseleave =
-      () => {
-        //----- MVOTING_LAYOUT.close_menu_detail();
-      };
+    document.querySelector(".Page .main_menu>.nav>.nav_list").onmouseleave = () => {
+      //----- MVOTING_LAYOUT.close_menu_detail();
+    };
     // nav > ul > li
     document
-      .querySelectorAll(".Page .main_menu>.nav>ul.nav_list>li.nav_item")
-      .forEach((elem) => {
+<<<<<<< HEAD
+      .querySelector(".Page .main_menu>nav>ul>li")
+      .mouseenter(function (e) {
+        //console.log('123456');
+        let delay = true;
+        MVOTING_LAYOUT.hover_link = e.currentTarget.children.filter( eml => if(eml.tagName == 'A'));
+        MVOTING_LAYOUT.menu_detail_idx = $(MVOTING_LAYOUT.hover_link)
+          .parent("li")
+          .index();
+        //alert(MVOTING_LAYOUT.menu_detail_idx);
+        if (MVOTING_LAYOUT.mouse_prev) {
+          MVOTING_LAYOUT.header_enter = false;
+        } else {
+          MVOTING_LAYOUT.header_enter = true;
+        }
+
+        if (MVOTING_LAYOUT.header_enter) {
+          delay = true;
+        } else {
+          delay = false;
+        }
+
+        MVOTING_LAYOUT.open_menu_detail(MVOTING_LAYOUT.hover_link, delay);
+      });
+=======
+      .querySelectorAll(".Page .main_menu>.nav>ul.nav_list>li.nav_item").forEach((elem)=>{
         elem.addEventListener("mouseenter", (e) => {
           let delay = true,
-            cur_li = e.currentTarget;
-          MVOTING_LAYOUT.hover_link = Array.prototype.filter.call(
-            cur_li.children,
-            (x) => {
-              if (x.tagName == "A") return x;
-            }
-          )[0];
+          cur_li = e.currentTarget;
+          MVOTING_LAYOUT.hover_link = Array.prototype.filter.call(cur_li.children, x=> {
+            if (x.tagName == "A") return x;
+          })[0];
           // console.log('========');
           // console.dir(MVOTING_LAYOUT.hover_link);
-          MVOTING_LAYOUT.menu_detail_idx = Array.prototype.findIndex.call(
-            MVOTING_LAYOUT.hover_link.closest("ul").children,
-            (x) => x == cur_li
-          );
+          MVOTING_LAYOUT.menu_detail_idx = Array.prototype.findIndex.call( MVOTING_LAYOUT.hover_link.closest("ul").children, x => x == cur_li )
           console.log(MVOTING_LAYOUT.menu_detail_idx);
           //alert(MVOTING_LAYOUT.menu_detail_idx);
           if (MVOTING_LAYOUT.mouse_prev) {
@@ -166,16 +191,18 @@ const MVOTING_LAYOUT = {
           } else {
             MVOTING_LAYOUT.header_enter = true;
           }
-
+  
           if (MVOTING_LAYOUT.header_enter) {
             delay = true;
           } else {
             delay = false;
           }
-
+  
           MVOTING_LAYOUT.open_menu_detail(MVOTING_LAYOUT.hover_link, delay);
         });
       }); // forEach End
+      
+>>>>>>> develop
   },
   mobile_check(window_width) {
     if (window_width < 721) {
@@ -232,18 +259,18 @@ const MVOTING_LAYOUT = {
     // }
     let link = _link;
     let nxtElm = false;
-    if (link.nextElementSibling) nxtElm = link.nextElementSibling;
-    //document.querySelector(".menu_detail").classList.remove("open");
-    //jQuery(".menu_detail:not(.open)").css("display", "none");
-    //document.querySelector(".Page.main>header").classList.add("act");
+    if(link.nextElementSibling) nxtElm = link.nextElementSibling;
+      //document.querySelector(".menu_detail").classList.remove("open");
+      //jQuery(".menu_detail:not(.open)").css("display", "none");
+      //document.querySelector(".Page.main>header").classList.add("act");
     if (delay) {
       setTimeout(function () {
         //li:mouseenter 이벤트로 자식요소 a를 return  / open_menu_detail 할때는  a링크
-
-        if (link && nxtElm && nxtElm.classList.contains(".menu_detail")) {
+        
+        if (link && nxtElm && nxtElm.classList.contains(".menu_detail") ) {
           const target = nxtElm;
           target.classList.add("open"); //내가 열려는 요소에 open클래스 적용
-
+          
           //try{
           //     	if(fn_setBlueSet){
           //         fn_setBlueSet();
@@ -262,7 +289,7 @@ const MVOTING_LAYOUT = {
       }, 300);
     } else {
       //console.log('여기야.');
-
+      
       const target = nxtElm;
       target.classList.add("open");
 
