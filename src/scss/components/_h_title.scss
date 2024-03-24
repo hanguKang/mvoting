@@ -15,7 +15,7 @@
 .sub_tit3{$font-size:22px; font-size: $font-size; font-weight:500; text-align:center; text-shadow:0 0 1px #000000; margin-bottom:em(24px, $font-size); }
 
 .board_view{$font-size:16px;  line-height:1.5; 
-  .sub_tit3{position:relative; $font-size:22px; font-size:$font-size; font-weight:600; padding-left:em(40px, $font-size); margin-bottom:em(24px, $font-size);
+  .sub_tit3{position:relative; $font-size:22px; font-size:$font-size; font-weight:600;  margin-bottom:em(24px, $font-size);
     &:before{position:absolute; left:0; top:50%; transform:translateY(-50%); content:''; width:em(24px, $font-size); height:em(24px, $font-size); background-image:url(var.$imgurl_ico+"ico_bullet_square.png"); @include mixin.bgSet;}
     }
   .sub_tit4{$font-size:18px; font-size:$font-size; font-weight:500; text-shadow: 0 0 1px #26282C ; margin-bottom:em(24px,$font-size); color:#26282C;}
@@ -25,4 +25,12 @@
   .sub_tit1 {$font-size:22px; font-size: $font-size; padding:em(10px, $font-size) 0;}
   .sub_tit2{$font-size:20px; font-size: $font-size; padding:em(8px, $font-size) 0; margin-bottom:em(16px, $font-size); }
   .sub_tit3{$font-size:18px; font-size: $font-size; padding:em(8px, $font-size) 0; margin-bottom:em(16px, $font-size); }
+
+  .board_view{$font-size:16px; font-size:$font-size; line-height:1.5; 
+    .sub_tit3{$font-size:20px; font-size:$font-size; padding-left:em(0px, $font-size); margin-bottom:14px;
+      &:before{}
+      }
+    .sub_tit4{}
+  }
+
 }

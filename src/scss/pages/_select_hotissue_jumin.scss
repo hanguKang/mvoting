@@ -291,3 +291,32 @@
     .txt2{$font-size:16px; font-size:$font-size;color:#696E76; margin-bottom:em(8px, $font-size);}
   }
 }
+
+@include mixin.maxWidth(720px){
+  .board_view{$font-size:16px;  line-height:1.5; 
+    .srch_list_wrap{
+      .view_box_wrp{ padding:em(16px,$font-size); 
+        .comment_list.reply_area.reply_list{ height:auto; padding-top:0;
+          //작성자 정보
+          .reply-wrap{
+            .info_area{ display:block;
+              .usr_box{display: block; margin:em(8px,$font-size) 0;
+                .writer{ $font-size:16px; font-size:$font-size; text-shadow: 0 0 0 #000000; margin-right:0;}
+                .info_list{
+                  li{position:relative; margin:0;}
+                }
+              }
+            }
+          }
+          // 작성자 정보 및 유틸 End
+          .txt.reply_text{padding:em(16px, $font-size); margin-top:em(8px, $font-size); word-break: break-all; }
+        }
+      }
+    }
+    .report_info_box{$font-size:16px; font-size:$font-size; line-height:1.5; 
+      .tit{$font-size:20px; font-size:$font-size; padding:0 em(16px, $font-size); word-break: break-all;}
+      .txt1{$font-size:18px; font-size:$font-size; padding:0 em(16px, $font-size); word-break: break-all;}
+      .txt2{$font-size:16px; font-size:$font-size; padding:0 em(16px, $font-size); word-break: break-all;}
+    }
+  }
+}
