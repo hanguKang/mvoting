@@ -51,6 +51,7 @@ const doBanner = () => {
       mouseDrag: true,
       touchDrag: true,
       dots: true,
+      autoHeight:true,
       autoplay: true, // 자동 슬라이드 여부
       autoplayTimeout: 3000, // 자동 슬라이드 시간 (예제는 3초)
       // responsive:{

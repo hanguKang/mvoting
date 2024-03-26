@@ -3,29 +3,47 @@
 @use '../config/mixin';
 
 //체크박스
-.chk_each_box{$font-size:16px; font-size: $font-size;
-  text-align:left;
-  .chk_each{margin-right:em(20px); letter-spacing: -1px;
-    input[type="checkbox"]{position:relative; width:em(18px); height:em(18px); vertical-align: middle; border-color:#AAB0B8;
-      &:checked{
-        &:before{ position:absolute; width:em(18px); height:em(18px); content: ""; background:#fff url(var.$imgurl_ico+'ico_checkbox.png') no-repeat 0 0/contain;}
+.chk_each_box{$font-size:16px; font-size: $font-size; text-align:left; }
+.chk_each, .chk_each.notxt{margin-right:em(20px); letter-spacing: -1px;
+  input[type="checkbox"]{$font-size:16px; font-size: $font-size; position:relative; width:em(32px, $font-size); height:em(32px, $font-size); vertical-align: middle; border-color:#AAB0B8;
+    &:checked{
+      &:before{  content: ""; position:absolute; width:em(32px, $font-size); height:em(32px, $font-size); background:#fff url(var.$imgurl_ico+'ico_checkbox.png') no-repeat 0 0/contain;}
+      
+    }
+  }
+  @include mixin.maxWidth(var.$m721){
+    $font-size:16px; font-size:$font-size; flex:0 0 auto;  height:em(24px, $font-size); margin-right:em(8px, $font-size);
+    input[type=checkbox] {width: em(24px, $font-size); height:em(24px, $font-size);  overflow: hidden;
+      &:checked{ 
+        &:before{ width:em(24px, $font-size); height:em(24px, $font-size); border-radius:4px; }
       }
     }
   }
 }
+
+
 //라디오
-.radio_each{$font-size:16px; font-size:$font-size; letter-spacing: -2px; display:inline-block; color:#484B51; 
-  input[type="radio"]{position:relative; width:em(32px, $font-size); margin-right:em(12px,$font-size); height:em(32px, $font-size); border-color:#AAB0B8; vertical-align: middle;
+.radio_each, .chk_each.notxt{$font-size:16px; font-size:$font-size; letter-spacing: -2px; display:inline-block; color:#484B51; 
+  input[type="radio"]{position:relative; margin-right:em(12px,$font-size); width:em(32px, $font-size); height:em(32px, $font-size); border-color:#AAB0B8; vertical-align: middle;
     &:checked{
       &+label{ vertical-align: middle;
         .up{color:var_colors.$primary_color; font-weight:600;}
       }
       &:before{ position:absolute; width:em(32px, $font-size); height:em(32px); content: ""; background:#fff url(var.$imgurl_ico+'ico_radio_big.png') no-repeat 0 0/contain;}
+      
     }
-    &+label{display: inline-block; vertical-align:middle; margin-right:em(40px,$font-size);
-      @include mixin.maxWidth(var.$m721){
-        margin-right:em(12px, $font-size);
+    &+label{display: inline-block; vertical-align:middle; margin-right:em(40px,$font-size);}
+
+    @include mixin.maxWidth(var.$m721){
+      width:em(24px, $font-size); height:em(24px, $font-size);
+      &:checked{
+        &+label{ 
+          .up{}
+        }
+        &:before{ width:em(24px, $font-size); height:em(24px); content: ""; background:#fff url(var.$imgurl_ico+'ico_radio_big.png') no-repeat 0 0/contain;}
+        
       }
+      &+label{margin-right:em(12px, $font-size);}
     }
   }
 }

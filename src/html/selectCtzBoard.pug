@@ -24,10 +24,12 @@ block content
                 h3.tit.title_sj <%=resultMap.getString("BOARD_SJ") %>
                 ul.info_list
                   li
-                    span.label 작성자
-                    | <%=resultMap.getString("REGISTER") %>
-                    span.label 등록일 
-                    | <%=resultMap.getString("REGIST_DT") %>
+                    div.info
+                      span.label 작성자
+                      | <%=resultMap.getString("REGISTER") %> kdjas;rjlksjakfjldkj f
+                    div.info
+                      span.label 등록일 
+                      | <%=resultMap.getString("REGIST_DT") %>
                   li
                     span.label 조회수 
                     | <%=String.format("%,d", resultMap.getInt("RDCNT")) %>

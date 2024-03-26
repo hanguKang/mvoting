@@ -67,29 +67,29 @@ block content
                         tbody.tbd
                           tr.item
                             td.tit_nick
-                              span.m_lbl_txt2 닉네임
-                              | 아무개
+                              span.m_lbl_txt2 닉네임입니다. 닉네임입니다. 닉네임입니다.
+                              span.tbd_cell_txt 아무개입니다. 
                             td.tit_name
                               span.m_lbl_txt2 투표
-                              | 참여
+                              span.tbd_cell_txt 참여합니다. 참여합니다. 참여합니다. 참여합니다. 참여합니다. 
                             td.tit_name 
                               span.m_lbl_txt2 투표
-                              | 참여
+                              span.tbd_cell_txt 참여
                             td.tit_name
                               span.m_lbl_txt2 투표
-                              | 참여
+                              span.tbd_cell_txt 참여
                             td.tit_name 
                               span.m_lbl_txt2 투표
-                              | 참여
+                              span.tbd_cell_txt 참여
                             td.tit_name 
                               span.m_lbl_txt2 투표
-                              | 참여
+                              span.tbd_cell_txt 참여
                             td.tit_name 
                               span.m_lbl_txt2 투표
-                              | 참여
+                              span.tbd_cell_txt 참여
                             td.tit_name 
                               span.m_lbl_txt2 투표
-                              | 참여
+                              span.tbd_cell_txt 참여
                       // // table.border_list End				
                     // // .s_table END
                 // //sub_each END
@@ -112,10 +112,10 @@ block content
                           tr.item
                             td.tit_name
                               span.m_lbl_txt2 참여 건 수
-                              | ${votePointMap.NVOTE_JOIN_CNT}
+                              span.tbd_cell_txt  ${votePointMap.NVOTE_JOIN_CNT}
                             td.tit_name
                               span.m_lbl_txt2 점수
-                              | ${votePointMap.NVOTE_JOIN_POINT}
+                              span.tbd_cell_txt  ${votePointMap.NVOTE_JOIN_POINT}
                       // // table.border_list End				
                     // // .s_table End
                 // //sub_each END
@@ -144,10 +144,10 @@ block content
                           tr.item
                             td.tit_name
                               span.m_lbl_txt2 번호
-                              | 3
+                              span.tbd_cell_txt  3
                             td.tit_name
                               span.m_lbl_txt2 월
-                              | 3
+                              span.tbd_cell_txt  3
                             td.tit_name 
                               span.m_lbl_txt2 공유 URL
                               a.link_txt.break(href="#", onclick="fnGoVoteView('${resultList.VOTE_NO}'); return false;") <%=Const.siteDomain%>/${resultList.VOTE_NO} 
@@ -157,10 +157,10 @@ block content
                           tr.item
                             td.tit_name
                               span.m_lbl_txt2 번호
-                              | 2
+                              span.tbd_cell_txt  2
                             td.tit_name
                               span.m_lbl_txt2 월
-                              | 3
+                              span.tbd_cell_txt 3
                             td.tit_name 
                               span.m_lbl_txt2 공유 URL
                               a.link_txt.break(href="#", onclick="fnGoVoteView('${resultList.VOTE_NO}'); return false;") <%=Const.siteDomain%>/${resultList.VOTE_NO} 
@@ -170,13 +170,13 @@ block content
                           tr.item
                             td.tit_name
                               span.m_lbl_txt2 번호
-                              | 1
+                              span.tbd_cell_txt  1
                             td.tit_name
                               span.m_lbl_txt2 월
-                              | 3
+                              span.tbd_cell_txt  3
                             td.tit_name 
                               span.m_lbl_txt2 공유 URL
-                              a.link_txt.break(href="#", onclick="fnGoVoteView('${resultList.VOTE_NO}'); return false;") <%=Const.siteDomain%>/${resultList.VOTE_NO} 
+                              a.link_txt.tbd_cell_txt.break(href="#", onclick="fnGoVoteView('${resultList.VOTE_NO}'); return false;") <%=Const.siteDomain%>/${resultList.VOTE_NO} 
                             td.tit_name
                               span.delete 삭제
                               a.tbl_in_btn(href="#",  style="cursor: pointer; cursor: hand;", onclick="fnDeleteCtz('${resultList.OPER_NO}');return false;") 삭제

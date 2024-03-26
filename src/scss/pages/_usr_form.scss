@@ -72,7 +72,7 @@
 
   @include mixin.maxWidth(720px){
     $font-size:16px; font-size:16px;
-    padding:em(16px, $font-size); margin-bottom: em(24px, $font-size);
+    padding:0; margin-bottom: em(24px, $font-size); 
     .form_row {
       .cell{
         input[type=text]:not(.cal_input) {
@@ -95,8 +95,10 @@
       } 
     }
 
-
-
+    #btn_login{height:em(38px, $font-size); margin-bottom:em(8px, $font-size);}
+    .join_btn_box{
+      .join{height:em(38px, $font-size);}
+    }
 
   }// 720 .cwb_container mobile END
 }//.cwb_container END

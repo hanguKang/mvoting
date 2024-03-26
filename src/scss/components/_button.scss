@@ -526,9 +526,35 @@ i#{$btn}.b-sitego2{padding:0;min-height:inherit;}
 		
 	}// 1260 ENd
 	@include mixin.maxWidth(720px){
-		.common_btn{$font-size:18px; font-size:$font-size; font-weight:600; display: inline-block; margin:0 em(8px,$font-size); width:45%; height:em(48px,$font-size); 
+		display: flex; justify-content: center; align-items: center;
+		$font-size:16px; font-size:$font-size;
+		height:auto; margin:em(40px, $font-size) auto;
+		&:before{display:none;}
+		.common_btn{$font-size:18px; font-size:$font-size; font-weight:600; line-height:1; display: inline-block; margin:0 em(8px,$font-size); margin-bottom:em(8px, $font-size);  height:em(48px,$font-size); width:28%; min-width:auto; display: flex; justify-content: center; align-items: center;
+			&:before{display: none;}
+			&.more{ margin-bottom:0;
+				.ico.plus{
+					
+				}
+			}
+			&.list2{width:28%; line-height:0.8; min-width:auto;
+				& + .ok{width:28%; min-width:auto;}
+			}
+			&.btn_more{line-height:em(42px,$font-size);  height:em(48px,$font-size);
+				&:before{display:none;}
+			}
+			&.regist.v_regist{
+				$font-size:16px; font-size:$font-size;
+				display: block;
+				z-index: 10;
+				width: em(64px, $font-size);
+				height: em(64px, $font-size);
+				border-radius: 50%;
+				&:before{display:none;}
+				img{position:absolute; left:0; top:0; width:100%;}
+			}
 		}
-	}// 1260 ENd
+	}// 720 ENd
 }
 
 //댓글 버튼 

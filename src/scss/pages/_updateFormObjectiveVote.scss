@@ -141,9 +141,10 @@
 
   @include mixin.maxWidth(720px){
     $font-size:16px; font-size:$font-size;
+    .center_white_box{padding:em(16px, $font-size); border-radius:0;}
     .center_box{}
     .vote_create_each{
-      .center_white_box.full{ padding:em(16px, $font-size); }
+      .center_white_box.full{ padding:em(16px, $font-size); border-radius:0; }
 
       //투표기간
       .date_slt_box{font-weight:600; display: flex ; justify-content: start; align-items: center; 

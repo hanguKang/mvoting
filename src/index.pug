@@ -60,7 +60,8 @@ block content
                                     li.card_hot_issue.item.round-lg.box-shadow-card
                                         a.img_box(href="#")
                                             .inner
-                                                img.card_img(src=imgurl+"common/card-bg-"+val+".png")
+                                                .ratio_box
+                                                    img.ratio_inner_img.card_img(src=imgurl+"common/card-bg-"+val+".png")
                                                 .mark_area
                                                     span.b-sm.btn-green.round-xlg 추천투표
                                                     span.b-sm.btn-blue.round-xlg 인기투표
@@ -115,15 +116,27 @@ block content
                                                     span.hide 공유하기
                                                 button.share_layer_close(type="button")
                                                     span.hide SNS 공유 창 닫기
+                                        span.join_mark
+                                            span.hide 참여한 투표
                                 li.card_hot_issue.item.round-lg.box-shadow-card
                                     .over_txt_box
-                                        img.autoHeight(src=imgurl + "common/card-bg-default.png" alt="")
-                                        a.inner.vs_left.round-sm(href="#") 
-                                            span.abs 예
-                                        span.ico_vs
-                                            span.hide 대결
-                                        a.inner.vs_right.round-sm(href="#") 
-                                            span.abs 아니오
+                                        .ratio_box
+                                            a.inner.vs_left.round-sm(href="#") 
+                                                .ratio_box_yn
+                                                    img.ratio_inner_img(src=imgurl + "common/wa_mark2023.png" alt="테스트")
+                                                span.abs 
+                                                    span.abs_txt 예
+                                                span.join_mark.yn
+                                                    span.hide 참여한 투표
+                                            span.ico_vs
+                                                span.hide 대결
+                                            a.inner.vs_right.round-sm(href="#") 
+                                                .ratio_box_yn
+                                                    img.ratio_inner_img(src=imgurl + "common/wa_mark2023.png" alt="테스트")
+                                                span.abs 
+                                                    span.abs_txt 아니오 아니오 아니오 아니오 아니오 
+                                                span.join_mark.yn
+                                                    span.hide 참여한 투표
                                     .card_txt
                                         .card_top
                                             div(class="txt_box txt_" + val )                                                
@@ -171,12 +184,13 @@ block content
                                             button.share__btn.left(type="button")
                                                 span.hide 공유하기
                                             button.share_layer_close(type="button")
-                                                span.hide SNS 공유 창 닫기    
+                                                span.hide SNS 공유 창 닫기 
                             .common_btn_box.ta_c.box-shadow-card.round-sm.more_box
                                 a.common_btn.more.btn_more(href="#", data-page="2") 
                                     sapn.ico.plus
                                     span 더보기 
-                                a.common_btn.regist.v_regist(href="/mvoting/makevote/insertFormObjectiveVote.do") 투표등록
+                                a.common_btn.regist.v_regist(href="/mvoting/makevote/insertFormObjectiveVote.do") 
+                                    img(src=imgurl + "ico/ico_register_m.png", alt="투표등록")
                     .layer_pop_box(data-layernum="qr" tabindex="0")
                         // layer_pop 
                         .layer_pop

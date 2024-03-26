@@ -84,7 +84,8 @@ block content
                   li.card_hot_issue.item.round-lg.box-shadow-card.my
                     a.img_box(href="#")
                       .inner
-                        img.card_img(src=imgurl+"common/card-bg-"+val+".png")
+                        .ratio_box
+                          img.ratio_inner_img.card_img(src=imgurl+"common/card-bg-"+val+".png")
                         .mark_area
                           span.b-sm.btn-green.round-xlg 추천투표
                           span.b-sm.btn-blue.round-xlg 인기투표
@@ -128,6 +129,8 @@ block content
                         a.vote_hash_mark.round-sm(href="#") #어울림플라자
                         a.vote_hash_mark.round-sm(href="#") #장애인
                         a.vote_hash_mark.round-sm(href="#") #비장애인
+                      span.join_mark
+                        span.hide 참여한 투표
                     //sns-popup layer
                     .share_layer_box.share_box.round-lg
                       .inner.round-rg
@@ -148,7 +151,25 @@ block content
                           span.hide 공유하기
                         button.share_layer_close(type="button")
                           span.hide SNS 공유 창 닫기
+                    span.join_mark
+                      span.hide 참여한 투표
                 li.card_hot_issue.item.round-lg.box-shadow-card.my
+                  .over_txt_box
+                    .ratio_box
+                      a.inner.vs_left.round-sm(href="#") 
+                        .ratio_box_yn
+                          img.ratio_inner_img(src=imgurl + "common/wa_mark2023.png" alt="테스트")
+                        span.abs 예
+                        span.join_mark.yn
+                          span.hide 참여한 투표
+                      span.ico_vs
+                        span.hide 대결
+                      a.inner.vs_right.round-sm(href="#") 
+                        .ratio_box_yn
+                          img.ratio_inner_img(src=imgurl + "common/wa_mark2023.png" alt="테스트")
+                        span.abs 아니오
+                        span.join_mark.yn
+                          span.hide 참여한 투표
                   .card_txt
                     .card_top
                       div(class="txt_box txt_" + val )                                                
@@ -180,13 +201,6 @@ block content
                       a.vote_hash_mark.round-sm(href="#") #어울림플라자
                       a.vote_hash_mark.round-sm(href="#") #장애인
                       a.vote_hash_mark.round-sm(href="#") #비장애인
-                  .over_txt_box
-                    a.inner.vs_left.round-sm(href="#") 
-                      span.abs 예
-                    span.ico_vs
-                      span.hide 대결
-                    a.inner.vs_right.round-sm(href="#") 
-                      span.abs 아니오
                   //sns-popup layer
                   .share_layer_box.share_box.round-lg
                       .inner.round-rg
@@ -211,14 +225,16 @@ block content
                 a.common_btn.more.btn_more(href="#", data-page="2") 
                   sapn.ico.plus
                   span 더보기 
-                a.common_btn.regist.v_regist(href="/mvoting/makevote/insertFormObjectiveVote.do") 투표등록
+                a.common_btn.regist.v_regist(href="/mvoting/makevote/insertFormObjectiveVote.do") 
+                  img(src=imgurl + "ico/ico_register_m.png", alt="투표등록")
               // ----------------------------------------- 임시저장 ---------------------------------------------
               ul.vote_list
                 each val, index in [1,2,3]
                   li.card_hot_issue.item.round-lg.box-shadow-card.my
                     a.img_box(href="#")
                       .inner
-                        img.card_img(src=imgurl+"common/card-bg-"+val+".png")
+                        .ratio_box
+                          img.ratio_inner_img.card_img(src=imgurl+"common/card-bg-"+val+".png")
                         .mark_area
                           span.b-sm.btn-green.round-xlg 추천투표
                           span.b-sm.btn-blue.round-xlg 인기투표
@@ -277,7 +293,25 @@ block content
                           span.hide 공유하기
                         button.share_layer_close(type="button")
                           span.hide SNS 공유 창 닫기
+                    span.join_mark
+                      span.hide 참여한 투표
                 li.card_hot_issue.item.round-lg.box-shadow-card.my
+                  .over_txt_box
+                    .ratio_box
+                      a.inner.vs_left.round-sm(href="#") 
+                        .ratio_box_yn
+                          img.ratio_inner_img(src=imgurl + "common/wa_mark2023.png" alt="테스트")
+                        span.abs 예
+                        span.join_mark.yn
+                          span.hide 참여한 투표
+                      span.ico_vs
+                        span.hide 대결
+                      a.inner.vs_right.round-sm(href="#") 
+                        .ratio_box_yn
+                          img.ratio_inner_img(src=imgurl + "common/wa_mark2023.png" alt="테스트")
+                        span.abs 아니오
+                        span.join_mark.yn
+                          span.hide 참여한 투표
                   .card_txt
                     .card_top
                       div(class="txt_box txt_" + val )                                                
@@ -309,13 +343,6 @@ block content
                       a.vote_hash_mark.round-sm(href="#") #어울림플라자
                       a.vote_hash_mark.round-sm(href="#") #장애인
                       a.vote_hash_mark.round-sm(href="#") #비장애인
-                  .over_txt_box
-                    a.inner.vs_left.round-sm(href="#") 
-                      span.abs 예
-                    span.ico_vs
-                      span.hide 대결
-                    a.inner.vs_right.round-sm(href="#") 
-                      span.abs 아니오
                   //sns-popup layer
                   .share_layer_box.share_box.round-lg
                       .inner.round-rg
