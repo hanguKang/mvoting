@@ -126,8 +126,8 @@
       .btn_vote_word{// li 목록 
         $font-size:18px;
         flex:0 0 25%; margin-right:em(16px);
-        a{ font-size:$font-size; padding:em(20px) em(12px); height:em(56px, $font-size); display: flex; justify-content: space-between; align-items: center; background-color:#fff; @include mixin.ellipsis(2);
-          .vote_word_tit{}
+        a{ font-size:$font-size; padding:em(20px) em(12px); height:em(56px, $font-size); display: flex; justify-content: space-between; align-items: center; background-color:#fff;
+          .vote_word_tit{ @include mixin.ellipsis(2);}
           .word_count{ flex:0 0 28px; font-weight:600; display: flex; justify-content: center; align-items: center;  height:em(28px, $font-size);  background-color:var_colors.$input_bg; color:#0069cc; border-radius:50%;  }
         }
         &.active{
@@ -328,8 +328,7 @@
 }
 
 @include mixin.maxWidth(720px){
-  .board_view{$font-size:16px;  line-height:1.5; 
-    
+  .board_view{$font-size:16px;  line-height:1.5;     
     .srch_list_wrap{
       //투표 상단
       .board_view_top{position:relative; margin-bottom:em(24px); 
@@ -397,6 +396,26 @@
                 a{color:#fff;background-color:var_colors.$primary_bg; 
                   .word_count{ background-color:#fff;}
                 }
+              }
+            }
+          }
+          .main_vote_area{
+            .vote_ref_txt { 
+              &:before{}
+              strong{ }
+              .star_mark{}
+            }
+            //투표 진행 결과 막대 
+            .top{
+              .vote_result_bar{
+                .bar{ }
+              }
+            }
+            .vote_result_bar {  
+              .bar{ }
+              .vote_count{
+                .num{}
+                .per{}
               }
             }
           }

@@ -35,18 +35,18 @@ block content
                 .cwb_container.full.box-shadow-card.round-rg
                   // sns_certi_list2 
                   .center_white_box
-                  // 2019-11-19 'mw700' 클래스 추가 
-                  .form_row.mw700.service.up
-                    .cell.label
-                      label(for="userNcnm")
-                        span.star_mark *
-                        | 닉네임 입력
-                    .cell.inp
-                      input#userNcnm.form_input(type="text", name="userNcnm", title="닉네임 입력", placeholder="닉네임을 입력하세요.", value='<%=dataMap.getString("USER_NCNM") %>')
-                      p#nik_chk_y.ref_bull_txt.form_in.wsp(style="display:none") 사용 가능한 닉네임 입니다.
-                      p#nik_chk_n.ref_bull_txt.form_in.wsp(style="display:none") 이미 사용중 입니다. 다른 닉네임을 입력 해 주세요.
-                    .cell.btn
-                      a#checkNcnm.form_btn.round-sm(href="#") 닉네임 중복확인
+                    // 2019-11-19 'mw700' 클래스 추가 
+                    .form_row.mw700.service.up
+                      .cell.label
+                        label(for="userNcnm")
+                          span.star_mark *
+                          | 닉네임 입력
+                      .cell.inp
+                        input#userNcnm.form_input(type="text", name="userNcnm", title="닉네임 입력", placeholder="닉네임을 입력하세요.", value='<%=dataMap.getString("USER_NCNM") %>')
+                        p#nik_chk_y.ref_bull_txt.form_in.wsp(style="display:none") 사용 가능한 닉네임 입니다.
+                        p#nik_chk_n.ref_bull_txt.form_in.wsp(style="display:none") 이미 사용중 입니다. 다른 닉네임을 입력 해 주세요.
+                      .cell.btn
+                        a#checkNcnm.form_btn.round-sm(href="#") 닉네임 중복확인
                 .common_btn_box.ta_c
                   a#btnNickOk.b-.xlg.common_btn.ok.confirm.round-xxxlg(href="#") 확인
             // // basic_tab_con END

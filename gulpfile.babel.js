@@ -164,7 +164,7 @@ const styles = () =>
       })
     )
     //.pipe(minifyCss())    
-    .pipe(sourcemaps.write())
+    //.pipe(sourcemaps.write())
     .pipe(gulp.dest(routes.scss.dest));
 
 const ghDeploy = () =>
