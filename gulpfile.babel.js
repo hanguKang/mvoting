@@ -180,7 +180,7 @@ const ghDeploy = () =>
 
 
 // TASKS
-const clean = await deleteAsync(["build/*/*", "!build"]);
+const clean = await deleteAsync(["build/**/*", "!build"]);
 const prepare = gulp.series([fonts, img]);
 //const assets = gulp.series([pug, styles, js, typescript]);
 const assets = gulp.series([pug, styles, js, tsCompile]);
